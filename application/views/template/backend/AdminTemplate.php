@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>CV JAYA ABADI</title>
+    <title>PT. CAHAYA BARU GEMILANG</title>
 
 
     <!--[if lt IE 10]>
