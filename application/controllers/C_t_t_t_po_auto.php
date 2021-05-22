@@ -65,7 +65,16 @@ class C_t_t_t_po_auto extends MY_Controller
  
 
 
-
+public function aproval($id)
+  {
+    $data = array(
+        'UPDATED_BY' => $this->session->userdata('username'),
+        'PRINTED' => TRUE
+    );
+    $this->m_t_t_t_po_auto->update($data, $id);
+    $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Success!</strong> Data Berhasil Diaprove!</p></div>');
+    redirect('/c_t_t_t_po_auto');
+  }
 
 
 

@@ -14,6 +14,10 @@
       </table>
 
 
+      <?php
+      $level_user_id = $this->session->userdata('level_user_id');
+      ?>  
+
 
     </form>
   </div>
@@ -28,6 +32,7 @@
         <thead>
           <tr>
             <th>No</th>
+            <th>Aproval</th>
             <th>INV</th>
             <th>Date</th>
             <th>Ket</th>
@@ -46,6 +51,32 @@
             {
               echo "<tr>";
               echo "<td>" . ($key + 1) . "</td>";
+
+              echo "<td>";
+              $ok_color = 'red';
+              if($value->PRINTED=='t')
+              {
+                $ok_color = 'green';
+              }
+              if($value->PRINTED=='f' and $level_user_id==1)
+              {
+                echo "<a href='" . site_url('c_t_t_t_po_manual/aproval/' . $value->ID) . "' ";
+                ?>
+                onclick="return confirm('Apakah kamu yakin ini menyetujui PO ini?')"
+                <?php
+                echo "> <i class='fa fa-check f-w-600 f-16 text-c-" . $ok_color . "'></i></a>";
+              }
+              if($value->PRINTED=='t')
+              {
+                echo "<a";
+                echo "> <i class='fa fa-check f-w-600 f-16 text-c-" . $ok_color . "'></i></a>";
+              }
+              
+              
+
+
+              echo "</td>";
+
 
 
 
@@ -95,18 +126,15 @@
               echo "<td>";
 
 
-              if (intval($value->SUM_SUB_TOTAL) != 0)
+              if (intval($value->SUM_SUB_TOTAL) != 0 and $value->PRINTED=='t')
               {
                 echo "<a "; #/1 ini artinya kena pajak
 
                 echo "onclick= 'p_1_" . $key . "()'";
-                if ($value->PRINTED == 'f') {
+                if ($value->PRINTED == 't') {
                   echo "> <i class='fa fa-print text-c-black'></i></a> ";
                 }
-                if ($value->PRINTED == 't') {
-                  echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                  
-                }
+                
 
                 echo "<script>";
                 echo "function p_1_" . $key . "()";
@@ -152,7 +180,8 @@
             {
               echo "<tr>";
               echo "<td><s>" . ($key + 1) . "</s></td>";
-              echo "<td><s>" . $value->INV . "</td>";
+              echo "<td><s> </s></td>";
+              echo "<td><s>" . $value->INV . "</s></td>";
               echo "<td><s>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</s></td>";
               echo "<td><s>" . $value->KET . "</s></td>";
               echo "<td><s>" . $value->SUPPLIER . "</s></td>";

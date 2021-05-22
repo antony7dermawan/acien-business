@@ -172,8 +172,7 @@ class C_t_t_t_pemakaian_rincian extends MY_Controller
               'CREATED_BY' => $this->session->userdata('username'),
               'UPDATED_BY' => '',
               'MARK_FOR_DELETE' => FALSE,
-              'COMPANY_ID' => $this->session->userdata('company_id'),
-              'POSTFIX_ID' => $this->session->userdata('postfix_id')
+              'COMPANY_ID' => $this->session->userdata('company_id')
               
             );
 
@@ -216,8 +215,7 @@ class C_t_t_t_pemakaian_rincian extends MY_Controller
               'CREATED_BY' => $this->session->userdata('username'),
               'UPDATED_BY' => '',
               'MARK_FOR_DELETE' => FALSE,
-              'COMPANY_ID' => $this->session->userdata('company_id'),
-              'POSTFIX_ID' => $this->session->userdata('postfix_id')
+              'COMPANY_ID' => $this->session->userdata('company_id')
               
             );
 
@@ -315,8 +313,7 @@ class C_t_t_t_pemakaian_rincian extends MY_Controller
               'CREATED_BY' => $this->session->userdata('username'),
               'UPDATED_BY' => '',
               'MARK_FOR_DELETE' => FALSE,
-              'COMPANY_ID' => $this->session->userdata('company_id'),
-              'POSTFIX_ID' => $this->session->userdata('postfix_id')
+              'COMPANY_ID' => $this->session->userdata('company_id')
             );
 
             $this->m_t_t_t_pembelian_rincian->tambah($data);
@@ -342,8 +339,7 @@ class C_t_t_t_pemakaian_rincian extends MY_Controller
             'PRINTED' => FALSE,
             'INV_SUPPLIER' => '',
             'T_STATUS' => 20, //ini kode po auto
-            'TABLE_CODE' => 'PEMBELIAN',
-            'POSTFIX_ID' => $this->session->userdata('postfix_id')
+            'TABLE_CODE' => 'PEMBELIAN'
           );
 
           $this->m_t_t_t_pembelian->tambah($data);
@@ -368,8 +364,7 @@ class C_t_t_t_pemakaian_rincian extends MY_Controller
               'CREATED_BY' => $this->session->userdata('username'),
               'UPDATED_BY' => '',
               'MARK_FOR_DELETE' => FALSE,
-              'COMPANY_ID' => $this->session->userdata('company_id'),
-              'POSTFIX_ID' => $this->session->userdata('postfix_id')
+              'COMPANY_ID' => $this->session->userdata('company_id')
             );
 
             $this->m_t_t_t_pembelian_rincian->tambah($data);

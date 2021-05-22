@@ -15,7 +15,7 @@ class C_t_t_t_pembelian_rincian extends MY_Controller
     $this->load->model('m_t_m_d_supplier');
     $this->load->model('m_t_t_t_pembelian_rincian'); 
   }
-
+  
   public function index($pembelian_id)
   {
 

@@ -2,14 +2,14 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 
 
-class C_t_t_t_pemakaian extends MY_Controller
+class C_t_t_t_pinlok_out extends MY_Controller
 {
 
   public function __construct()
   {
     parent::__construct();
 
-    $this->load->model('m_t_t_t_pemakaian');
+    $this->load->model('m_t_t_t_pembelian');
     $this->load->model('m_t_m_d_company');
     $this->load->model('m_t_m_d_payment_method');
     $this->load->model('m_t_m_p_anggota');
@@ -38,9 +38,11 @@ class C_t_t_t_pemakaian extends MY_Controller
       $this->session->set_userdata('date_pemakaian', $date_pemakaian);
     }
     $data = [
-      "c_t_t_t_pemakaian" => $this->m_t_t_t_pemakaian->select($this->session->userdata('date_pemakaian')),
+      "c_t_t_t_pinlok_out" => $this->m_t_t_t_pembelian->select_pinlok($this->session->userdata('date_pemakaian')),
 
-      "c_t_m_d_company" => $this->m_t_m_d_company->select(),
+
+
+      "c_t_m_d_company" => $this->m_t_m_d_company->select_pinlok(),
       "c_t_m_d_payment_method" => $this->m_t_m_d_payment_method->select(),
       "c_t_m_p_anggota" => $this->m_t_m_p_anggota->select(),
 
@@ -53,7 +55,7 @@ class C_t_t_t_pemakaian extends MY_Controller
       "title" => "Transaksi Pemakaian",
       "description" => "form Pemakaian"
     ];
-    $this->render_backend('template/backend/pages/t_t_t_pemakaian', $data);
+    $this->render_backend('template/backend/pages/t_t_t_pinlok_out', $data);
   }
 
 
@@ -61,7 +63,7 @@ class C_t_t_t_pemakaian extends MY_Controller
   {
     $date_pemakaian = ($this->input->post("date_pemakaian"));
     $this->session->set_userdata('date_pemakaian', $date_pemakaian);
-    redirect('/c_t_t_t_pemakaian');
+    redirect('/c_t_t_t_pinlok_out');
   }
 
 
@@ -71,9 +73,9 @@ class C_t_t_t_pemakaian extends MY_Controller
         'UPDATED_BY' => $this->session->userdata('username'),
         'MARK_FOR_DELETE' => TRUE
     );
-    $this->m_t_t_t_pemakaian->update($data, $id);
+    $this->m_t_t_t_pembelian->update($data, $id);
     $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Success!</strong> Data Berhasil DIhapus!</p></div>');
-    redirect('/c_t_t_t_pemakaian');
+    redirect('/c_t_t_t_pinlok_out');
   }
 
   public function undo_delete($id)
@@ -82,10 +84,10 @@ class C_t_t_t_pemakaian extends MY_Controller
         'UPDATED_BY' => $this->session->userdata('username'),
         'MARK_FOR_DELETE' => FALSE
     );
-    $this->m_t_t_t_pemakaian->update($data, $id);
+    $this->m_t_t_t_pembelian->update($data, $id);
     
     $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Dikembalikan!</strong></p></div>');
-    redirect('/c_t_t_t_pemakaian');
+    redirect('/c_t_t_t_pinlok_out');
   }
 
  
@@ -98,12 +100,12 @@ class C_t_t_t_pemakaian extends MY_Controller
 
   function tambah()
   {
-    $anggota_id = intval($this->input->post("anggota_id"));
-    $payment_method_id = intval($this->input->post("payment_method_id"));
-    $inv_head = substr($this->input->post("inv_head"), 0, 50);
+    $company_id = intval($this->input->post("company_id"));
+
+
     $no_polisi_id = intval($this->input->post("no_polisi_id"));
     $supir_id = intval($this->input->post("supir_id"));
-    $sales_id = intval($this->input->post("sales_id"));
+    
 
     $lokasi_id = intval($this->input->post("lokasi_id"));
 
@@ -111,7 +113,9 @@ class C_t_t_t_pemakaian extends MY_Controller
     $date = $this->input->post("date");
 
     $inv_int = 0;
-    $read_select = $this->m_t_t_t_pemakaian->select_inv_int();
+
+
+    $read_select = $this->m_t_t_t_pembelian->select_inv_int();
     foreach ($read_select as $key => $value) 
     {
       $inv_int = intval($value->INV_INT)+1;
@@ -122,17 +126,18 @@ class C_t_t_t_pemakaian extends MY_Controller
     {
       $inv_pembelian = $value->INV_PEMBELIAN;
       $inv_retur_pembelian = $value->INV_RETUR_PEMBELIAN;
-      $inv_pemakaian = $value->INV_PEMAKAIAN;
-      $inv_retur_pemakaian = $value->INV_RETUR_PEMAKAIAN;
+      $inv_penjualan = $value->INV_PENJUALAN;
+      $inv_retur_penjualan = $value->INV_RETUR_PENJUALAN;
       $inv_po = $value->INV_PO;
+      $inv_pinlok = $value->INV_PINLOK;
     }
 
-    $live_inv = $inv_pemakaian.date('y-m').'.'.sprintf('%05d', $inv_int);
+    $live_inv = $inv_pinlok.date('y-m').'.'.sprintf('%05d', $inv_int);
 
     $date_pemakaian = $date;
     $this->session->set_userdata('date_pemakaian', $date_pemakaian);
 
-    if($anggota_id!=0 and $payment_method_id!=0 and $no_polisi_id!=0 and $supir_id!=0  and $sales_id!=0 )
+    if($company_id!=0 and $no_polisi_id!=0 and $supir_id!=0  )
     {
       $data = array(
         'DATE' => $date,
@@ -140,24 +145,24 @@ class C_t_t_t_pemakaian extends MY_Controller
         'NEW_DATE' => $date,
         'INV' => $live_inv,
         'INV_INT' => $inv_int,
-        'COMPANY_ID' => $this->session->userdata('company_id'),
-        'PAYMENT_METHOD_ID' => $payment_method_id,
-        'ANGGOTA_ID' => $anggota_id,
-        'NO_POLISI_ID' => $no_polisi_id,
-        'SUPIR_ID' => $supir_id,
-        'SALES_ID' => $sales_id,
+        'COMPANY_ID' => $company_id,
+        'PAYMENT_METHOD_ID' => 1,
+        'SUPPLIER_ID' => 0,
         'KET' => $ket,
         'CREATED_BY' => $this->session->userdata('username'),
         'UPDATED_BY' => '',
         'MARK_FOR_DELETE' => FALSE,
         'PRINTED' => FALSE,
+        'INV_SUPPLIER' => '',
+        'T_STATUS' => 50, //ini kode pinlok out
+        'TABLE_CODE' => 'PINLOK',
+        'COMPANY_ID_FROM' => $this->session->userdata('company_id'),
         'LOKASI_ID' => $lokasi_id,
-        'INV_HEAD' => $inv_head,
-        'TABLE_CODE' => 'PEMAKAIAN',
-        'ENABLE_EDIT' => 1
+        'SUPIR_ID' => $supir_id,
+        'NO_POLISI_ID' => $no_polisi_id
       );
 
-      $this->m_t_t_t_pemakaian->tambah($data);
+      $this->m_t_t_t_pembelian->tambah($data);
 
 
 
@@ -174,7 +179,7 @@ class C_t_t_t_pemakaian extends MY_Controller
     
 
     
-    redirect('c_t_t_t_pemakaian');
+    redirect('c_t_t_t_pinlok_out');
   }
 
 
@@ -185,19 +190,24 @@ class C_t_t_t_pemakaian extends MY_Controller
   public function edit_action()
   {
     $id = $this->input->post("id");
-    $inv_head = substr($this->input->post("inv_head"), 0, 50);
+    
     $ket = substr($this->input->post("ket"), 0, 200);
-    $anggota = $this->input->post("anggota");
-    $payment_method = $this->input->post("payment_method");
+    $company = $this->input->post("company");
 
 
     $no_polisi = $this->input->post("no_polisi");
     $supir = $this->input->post("supir");
-    $sales = $this->input->post("sales");
     $lokasi = $this->input->post("lokasi");
 
     $supplier_id = 0;
     $payment_method_id = 0;
+
+
+
+    $read_select = $this->m_t_m_d_company->select_id($company);
+    foreach ($read_select as $key => $value) {
+      $company_id = $value->ID;
+    }
 
 
     $read_select = $this->m_t_m_d_no_polisi->select_id($no_polisi);
@@ -210,10 +220,7 @@ class C_t_t_t_pemakaian extends MY_Controller
       $supir_id = $value->ID;
     }
 
-    $read_select = $this->m_t_m_d_sales->select_id($sales);
-    foreach ($read_select as $key => $value) {
-      $sales_id = $value->ID;
-    }
+   
 
     $read_select = $this->m_t_m_d_lokasi->select_id($lokasi);
     foreach ($read_select as $key => $value) {
@@ -221,31 +228,24 @@ class C_t_t_t_pemakaian extends MY_Controller
     }
 
 
-    $read_select = $this->m_t_m_d_payment_method->select_id($payment_method);
-    foreach ($read_select as $key => $value) {
-      $payment_method_id = $value->ID;
-    }
+    
 
-    $read_select = $this->m_t_m_p_anggota->select_id($anggota);
-    foreach ($read_select as $key => $value) {
-      $anggota_id = $value->ID;
-    }
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
 
-    if($anggota_id!=0 and $payment_method_id!=0 and $no_polisi_id!=0 and $supir_id!=0  and $sales_id!=0 and $lokasi_id!=0 )
+    if($company_id!=0 and $no_polisi_id!=0 and $supir_id!=0  )
     {
       $data = array(
-        'PAYMENT_METHOD_ID' => $payment_method_id,
-        'ANGGOTA_ID' => $anggota_id,
+        
+        'COMPANY_ID' => $company_id,
         'SUPIR_ID' => $supir_id,
         'NO_POLISI_ID' => $no_polisi_id,
-        'SALES_ID' => $sales_id,
+
         'KET' => $ket,
         'UPDATED_BY' => $this->session->userdata('username'),
-        'LOKASI_ID' => $lokasi_id,
-        'INV_HEAD' => $inv_head
+
+        'COMPANY_ID' => $company_id
       );
-      $this->m_t_t_t_pemakaian->update($data, $id);
+      $this->m_t_t_t_pembelian->update($data, $id);
       $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Diupdate!</strong></p></div>');
     }
     else
@@ -253,6 +253,6 @@ class C_t_t_t_pemakaian extends MY_Controller
       $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Gagal!</strong> Data Tidak Lengkap!</p></div>');
     }
     
-    redirect('/c_t_t_t_pemakaian');
+    redirect('/c_t_t_t_pinlok_out');
   }
 }

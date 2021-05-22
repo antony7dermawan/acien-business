@@ -46,6 +46,28 @@ public function select_id($id)
     return $akun->result ();
   }
 
+
+  
+
+  public function select_pinlok()
+  {
+    $this->db->select('*');
+    $this->db->from('T_M_D_COMPANY');
+
+    if($this->session->userdata('t_m_d_company_delete_logic')==0)
+    {
+      $this->db->where('MARK_FOR_DELETE',FALSE);
+    }
+
+    $this->db->where("ID<>{$this->session->userdata('company_id')}");
+
+    $this->db->order_by("ID", "asc");
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
+
+
+
   public function delete($id)
   {
     $this->db->where('ID',$id);

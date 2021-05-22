@@ -167,6 +167,12 @@ if($level_user_id==1)
                     <span class="pcoded-mtext">PO Manual</span>
                 </a>
             </li>
+
+            <li class="">
+                <a href="<?= base_url("c_t_t_t_pinlok_in"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Pinlok In</span>
+                </a>
+            </li>
             
 
 
@@ -188,6 +194,29 @@ if($level_user_id==1)
                 </a>
             </li>
 
+
+
+
+            <li class="">
+                <a href="<?= base_url("c_t_t_t_pemakaian"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Pemakaian</span>
+                </a>
+            </li>
+
+            <li class="">
+                <a href="<?= base_url("c_t_t_t_retur_pemakaian"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Retur Pemakaian</span>
+                </a>
+            </li>
+
+
+
+
+            <li class="">
+                <a href="<?= base_url("c_t_t_t_pinlok_out"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Pinlok Out</span>
+                </a>
+            </li>
 
             <?php
             }

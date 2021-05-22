@@ -9,6 +9,16 @@ public function update($data, $id)
     return $this->db->update('T_T_T_PEMBELIAN_RINCIAN', $data);
 }
 
+
+
+
+public function update_by_pembelian_id($data, $pembelian_id)
+{
+    $this->db->where('PEMBELIAN_ID', $pembelian_id);
+    return $this->db->update('T_T_T_PEMBELIAN_RINCIAN', $data);
+}
+
+
 public function select_min_harga_barang($barang_id)
 {
     $this->db->select("min(\"HARGA\") as \"HARGA_MIN\"");
@@ -29,6 +39,60 @@ public function select_min_harga_barang($barang_id)
     return $akun->result ();
 }
 
+
+
+  public function select_by_id($pembelian_rincian_id)
+  {
+    
+
+
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.ID");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.PEMBELIAN_ID");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.BARANG_ID");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.QTY");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.SISA_QTY");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.HARGA");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.SUB_TOTAL");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.SISA_QTY_TT");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.SPECIAL_CASE_ID");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.SUPPLIER_ID");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.CREATED_BY");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.UPDATED_BY");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.MARK_FOR_DELETE");
+    $this->db->select("T_T_T_PEMBELIAN_RINCIAN.PEMBELIAN_RINCIAN_ID");
+    
+
+
+
+    $this->db->select('T_M_D_BARANG.KODE_BARANG');
+    $this->db->select('T_M_D_BARANG.BARANG');
+    $this->db->select('T_M_D_BARANG.PART_NUMBER');
+    $this->db->select('T_M_D_BARANG.MERK_BARANG');
+    $this->db->select('T_M_D_BARANG.POSISI');
+    $this->db->select('T_M_D_BARANG.MINIMUM_STOK');
+
+
+
+    $this->db->select('T_M_D_SATUAN.SATUAN');
+
+
+
+    $this->db->from('T_T_T_PEMBELIAN_RINCIAN');
+
+    
+    $this->db->join('T_M_D_BARANG', 'T_M_D_BARANG.BARANG_ID = T_T_T_PEMBELIAN_RINCIAN.BARANG_ID', 'left');
+
+    $this->db->join('T_M_D_SATUAN', 'T_M_D_BARANG.SATUAN_ID = T_M_D_SATUAN.ID', 'left');
+
+   
+
+
+    $this->db->where('T_T_T_PEMBELIAN_RINCIAN.ID',$pembelian_rincian_id);
+
+
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
 
 public function select_min_harga_status($barang_id,$harga)
 {
@@ -140,6 +204,12 @@ public function select_barang_with_supplier($barang_id)
     $akun = $this->db->get ();
     return $akun->result ();
   }
+
+
+
+
+
+  
   public function select($pembelian_id)
   {
     

@@ -1,6 +1,6 @@
 <div class="card">
   <div class="card-header">
-    <form action='<?php echo base_url("c_t_t_t_pemakaian/date_pemakaian"); ?>' class='no_voucer_area' method="post" id=''>
+    <form action='<?php echo base_url("c_t_t_t_retur_pemakaian/date_retur_pemakaian"); ?>' class='no_voucer_area' method="post" id=''>
       <table>
         <tr>
           <th>
@@ -8,7 +8,7 @@
           </th>
           <th>
             <form action='/action_page.php'>
-              <input type='date' class='form-control' name='date_pemakaian' value='<?= $this->session->userdata('date_pemakaian') ?>' onchange='this.form.submit();'>
+              <input type='date' class='form-control' name='date_retur_pemakaian' value='<?= $this->session->userdata('date_retur_pemakaian') ?>' onchange='this.form.submit();'>
           </th>
         </tr>
       </table>
@@ -31,8 +31,7 @@
             <th>INV</th>
             <th>Date</th>
             <th>Ket</th>
-            <th>Anggota</th>
-            <th>Payment Method</th>
+            <th>INV Pemakaian</th>
             <th>Total</th>
 
             <th>Action</th>
@@ -40,22 +39,21 @@
         </thead>
         <tbody>
           <?php
-          foreach ($c_t_t_t_pemakaian as $key => $value) {
+          foreach ($c_t_t_t_retur_pemakaian as $key => $value) {
             if($value->MARK_FOR_DELETE == 'f')
             {
               echo "<tr>";
               echo "<td>" . ($key + 1) . "</td>";
-              echo "<td>" . $value->INV_HEAD.$value->INV . "</td>";
+              echo "<td>" . $value->INV . "</td>";
               echo "<td>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</td>";
               echo "<td>" . $value->KET . "</td>";
-              echo "<td>" . $value->ANGGOTA . "</td>";
-              echo "<td>" . $value->PAYMENT_METHOD . "</td>";
+              echo "<td>" . $value->INV_PEMAKAIAN . "</td>";
 
 
 
               //satu button
               echo "<td>";
-              echo "<a href='" . site_url('c_t_t_t_pemakaian_rincian/index/' . $value->ID) . "' ";
+              echo "<a href='" . site_url('c_t_t_t_retur_pemakaian_rincian/index/' . $value->ID) . "' ";
               echo "onclick=\"return confirm('Lanjut?')\"";
               echo "> <i class='fa fa-search-plus text-c-blue'></i></a> ";
               echo " Rp" . number_format(intval($value->SUM_SUB_TOTAL)) . "</td>";
@@ -75,42 +73,20 @@
                 }
                 if ($value->PRINTED == 't') {
                   echo "> <i class='fa fa-print text-c-green'></i></a> ";
+                  if($this->session->userdata('level_user_id')==1)
+                  {
+                    echo "<a href='" . site_url('c_t_ak_terima_pelanggan/undo/' . $value->ID) . "' ";
+                    echo "onclick=\"return confirm('Apakah kamu yakin ingin memperbaiki data ini?')\"";
+                    echo "> <i class='fa fa-refresh f-w-600 f-16 text-c-red'></i></a>";
+                  }
                 }
 
                 echo "<script>";
                 echo "function p_1_" . $key . "()";
                 echo "{";
-                echo "window.open('laporan_pdf/c_t_t_t_pemakaian_print/index/" . $value->ID . "');";
+                echo "window.open('laporan_pdf/c_t_t_t_retur_pemakaian_print/index/" . $value->ID . "');";
                 echo "}";
                 echo "</script>";
-
-
-
-
-
-                echo "<a "; #/1 ini artinya kena pajak
-
-                echo "onclick= 'p_2_" . $key . "()'";
-                if ($value->PRINTED == 'f') {
-                  echo "> <i class='fa fa-print text-c-blue'></i></a> ";
-                }
-                if ($value->PRINTED == 't') {
-                  echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                  
-                }
-
-                echo "<script>";
-                echo "function p_2_" . $key . "()";
-                echo "{";
-                echo "window.open('laporan_pdf/c_t_t_t_pemakaian2_print/index/" . $value->ID . "');";
-                echo "}";
-                echo "</script>";
-
-
-                if($value->ENABLE_EDIT==0)
-                {
-                  echo "<a class='fa text-c-green'>Sudah Ditagih</a>";
-                }
               }
               
 
@@ -121,7 +97,7 @@
                 echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
                 echo "</a>";
 
-                echo "<a href='" . site_url('c_t_t_t_pemakaian/delete/' . $value->ID) . "' ";
+                echo "<a href='" . site_url('c_t_t_t_retur_pemakaian/delete/' . $value->ID) . "' ";
 
                 echo "onclick=\"return confirm('Apakah kamu yakin ingin menghapus data ini?')\"";
 
@@ -149,14 +125,13 @@
               echo "<td><s>" . $value->INV . "</td>";
               echo "<td><s>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</s></td>";
               echo "<td><s>" . $value->KET . "</s></td>";
-              echo "<td><s>" . $value->ANGGOTA . "</s></td>";
-              echo "<td><s>" . $value->PAYMENT_METHOD . "</s></td>";
+              echo "<td><s>" . $value->INV_PEMAKAIAN . "</s></td>";
 
 
 
               //satu button
               echo "<td><s>";
-              echo "<a href='" . site_url('c_t_t_t_pemakaian_rincian/index/' . $value->ID) . "' ";
+              echo "<a href='" . site_url('c_t_t_t_retur_pemakaian_rincian/index/' . $value->ID) . "' ";
               echo "onclick=\"return confirm('Lanjut?')\"";
               echo "> <i class='fa fa-search-plus text-c-blue'></i></a> ";
               echo " Rp" . number_format(intval($value->SUM_SUB_TOTAL)) . "</s></td>";
@@ -165,7 +140,7 @@
               
               echo "<td>";
 
-              echo "<a href='".site_url('c_t_t_t_pemakaian/undo_delete/' . $value->ID)."' ";
+              echo "<a href='".site_url('c_t_t_t_retur_pemakaian/undo_delete/' . $value->ID)."' ";
               ?>
               onclick="return confirm('Apakah kamu yakin ingin mengembalikan data ini?')"
               <?php
@@ -197,14 +172,14 @@
 
 
 <!-- MODAL TAMBAH PEMASUKAN! !-->
-<form action="<?php echo base_url('c_t_t_t_pemakaian/tambah') ?>" method="post" id='add_data'>
+<form action="<?php echo base_url('c_t_t_t_retur_pemakaian/tambah') ?>" method="post" id='add_data'>
   <div class="modal fade" id="addModal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Tanggal Transaksi:
             <form action='/action_page.php'>
-              <input type='date' class='form-control' name='date' value='<?= $this->session->userdata('date_pemakaian') ?>'>
+              <input type='date' class='form-control' name='date' value='<?= $this->session->userdata('date_retur_pemakaian') ?>'>
           </h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -214,117 +189,22 @@
         <div class="modal-body">
           
           
+
+
+        
+
         <div class="form-group">
-              <label>Anggota</label>
-              <select name="anggota_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
+              <label>INV Pemakaian</label>
+              <select name="pemakaian_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
               <?php
-              foreach ($c_t_m_p_anggota as $key => $value) 
+              foreach ($select_inv_pemakaian as $key => $value) 
               {
-                echo "<option value='".$value->ID."'>".$value->ANGGOTA."</option>";
+                echo "<option value='".$value->ID."'>".$value->INV."</option>";
 
               }
               ?>
               </select>
         </div>
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Sales</label>
-              <select name="sales_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_sales as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->SALES."</option>";
-
-              }
-              ?>
-              </select>
-            </fieldset>
-
-          </div><!-- Membungkus Row Kedua !-->
-
-
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Payment Method</label>
-              <select name="payment_method_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_payment_method as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->PAYMENT_METHOD."</option>";
-
-              }
-              ?>
-              </select>
-          </div> <!-- Membungkus Row !-->
-        </div>
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>No Polisi</label>
-              <select name="no_polisi_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_no_polisi as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->NO_POLISI."</option>";
-
-              }
-              ?>
-              </select>
-            </fieldset>
-
-          </div><!-- Membungkus Row Kedua !-->
-
-
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Supir</label>
-              <select name="supir_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_supir as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->SUPIR."</option>";
-
-              }
-              ?>
-              </select>
-          </div> <!-- Membungkus Row !-->
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Inv Head</label>
-              <input type='text' class='form-control' placeholder='Input Text' name='inv_head'>
-            </fieldset>
-
-          </div><!-- Membungkus Row Kedua !-->
-
-
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Lokasi</label>
-              <select name="lokasi_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_lokasi as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->LOKASI."</option>";
-
-              }
-              ?>
-              </select>
-          </div> <!-- Membungkus Row !-->
-        </div>
-
 
         <div class="form-group">
               <label>Keterangan</label>
@@ -362,7 +242,7 @@
 <!-- MODAL EDIT AKUN !-->
 <div class="modal fade" id="Modal_Edit" tabindex="-1" role="dialog">
   <div class="modal-dialog" role="document">
-    <form action="<?php echo base_url('c_t_t_t_pemakaian/edit_action') ?>" method="post" autocomplete="off" id='edit_data'>
+    <form action="<?php echo base_url('c_t_t_t_retur_pemakaian/edit_action') ?>" method="post" autocomplete="off" id='edit_data'>
       <div class="modal-content">
         <div class="modal-header">
           <h4 class="modal-title">Edit Data</h4>
@@ -376,141 +256,7 @@
         <input type="hidden" name="id" value="" class="form-control">
 
 
-        <div class="form-group">
-              <label>Anggota</label>
-              <div class="searchable">
-                  <input type="text" name='anggota' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_p_anggota as $key => $value) 
-                    {
-                      echo "<li>".$value->ANGGOTA."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Sales</label>
-
-
-              <div class="searchable">
-                  <input type="text" name='sales' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_sales as $key => $value) 
-                    {
-                      echo "<li>".$value->SALES."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-            </fieldset>
-
-          </div><!-- Membungkus Row Kedua !-->
-
-
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Payment Method</label>
-
-
-              <div class="searchable">
-                  <input type="text" name='payment_method' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_payment_method as $key => $value) 
-                    {
-                      echo "<li>".$value->PAYMENT_METHOD."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-            </fieldset>
-          </div> <!-- Membungkus Row !-->
-        </div>
-
-
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>No Polisi</label>
-
-
-              <div class="searchable">
-                  <input type="text" name='no_polisi' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_no_polisi as $key => $value) 
-                    {
-                      echo "<li>".$value->NO_POLISI."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-            </fieldset>
-
-          </div><!-- Membungkus Row Kedua !-->
-
-
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Supir</label>
-
-
-              <div class="searchable">
-                  <input type="text" name='supir' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_supir as $key => $value) 
-                    {
-                      echo "<li>".$value->SUPIR."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-            </fieldset>
-          </div> <!-- Membungkus Row !-->
-        </div>
-
-
-        <div class="row">
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Inv Head</label>
-              <input type='text' class='form-control' placeholder='Input Text' name='inv_head'>
-            </fieldset>
-
-          </div><!-- Membungkus Row Kedua !-->
-
-
-          <div class="col-md-6">
-
-            <fieldset class="form-group">
-              <label>Lokasi</label>
-              <div class="searchable">
-                  <input type="text" name='lokasi' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_lokasi as $key => $value) 
-                    {
-                      echo "<li>".$value->LOKASI."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
-          </div> <!-- Membungkus Row !-->
-        </div>
+       
 
 
         <div class="form-group">
@@ -544,7 +290,7 @@
 
 
 <script>
-  const read_data = <?= json_encode($c_t_t_t_pemakaian) ?>;
+  const read_data = <?= json_encode($c_t_t_t_retur_pemakaian) ?>;
   console.log(read_data);
   let elModalEdit = document.querySelector("#Modal_Edit");
   console.log(elModalEdit);
@@ -559,30 +305,17 @@
       const {
         ID,
         KET : ket,
-        ANGGOTA : anggota,
-        PAYMENT_METHOD : payment_method,
-        NO_POLISI : no_polisi,
-        SUPIR : supir,
-        SALES : sales,
+       
         UPDATED_BY : updated_by,
-        CREATED_BY : created_by,
-        LOKASI : lokasi,
-        INV_HEAD : inv_head
+        CREATED_BY : created_by
       } = User[0];
 
       elModalEdit.querySelector("[name=id]").value = ID;
       
-      elModalEdit.querySelector("[name=no_polisi]").value = no_polisi;
-      elModalEdit.querySelector("[name=supir]").value = supir;
-      elModalEdit.querySelector("[name=sales]").value = sales;
 
-      elModalEdit.querySelector("[name=anggota]").value = anggota;
-      elModalEdit.querySelector("[name=payment_method]").value = payment_method;
       elModalEdit.querySelector("[name=ket]").value = ket;
       elModalEdit.querySelector("[name=updated_by]").text = updated_by;
       elModalEdit.querySelector("[name=created_by]").text = created_by;
-      elModalEdit.querySelector("[name=lokasi]").value = lokasi;
-      elModalEdit.querySelector("[name=inv_head]").value = inv_head;
 
   
 
