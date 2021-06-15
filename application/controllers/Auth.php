@@ -48,8 +48,10 @@ class Auth extends MY_Controller {
           'date_to_dashboard_2'=>date('Y-m-d'),
           'date_po_auto'=>date('Y-m-d'),
           'date_po_manual'=>date('Y-m-d'),
+          'date_pinlok_out'=>date('Y-m-d'),
+          'date_pinlok_in'=>date('Y-m-d'),
+          'date_penjualan_jasa'=>date('Y-m-d'),
           
-
 
 
 

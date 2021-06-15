@@ -11,7 +11,7 @@ class C_t_ak_faktur_penjualan_rincian extends MY_Controller
     $this->load->model('m_t_ak_faktur_penjualan_rincian');
     $this->load->model('m_t_ak_faktur_penjualan');
 
-    $this->load->model('m_t_t_t_penjualan');
+    $this->load->model('m_t_t_t_penjualan_jasa');
   }
 
 
@@ -43,7 +43,7 @@ class C_t_ak_faktur_penjualan_rincian extends MY_Controller
     #$this->m_t_ak_faktur_penjualan_rincian->delete_id($id);
 
 
-    $read_select = $this->m_t_t_t_penjualan->select_date($pelanggan_id, $date_from_select_penjualan, $date_to_select_penjualan);
+    $read_select = $this->m_t_t_t_penjualan_jasa->select_date($pelanggan_id, $date_from_select_penjualan, $date_to_select_penjualan);
     foreach ($read_select as $key => $value) {
       $penjualan_id = $value->ID;
 
@@ -62,7 +62,7 @@ class C_t_ak_faktur_penjualan_rincian extends MY_Controller
       $data = array(
         'ENABLE_EDIT' => 0
       );
-      $this->m_t_t_t_penjualan->update($data, $penjualan_id);
+      $this->m_t_t_t_penjualan_jasa->update($data, $penjualan_id);
     }
 
 
@@ -78,7 +78,7 @@ class C_t_ak_faktur_penjualan_rincian extends MY_Controller
     $data = array(
         'ENABLE_EDIT' => 1
       );
-      $this->m_t_t_t_penjualan->update($data, $penjualan_id);
+      $this->m_t_t_t_penjualan_jasa->update($data, $penjualan_id);
 
     $this->m_t_ak_faktur_penjualan_rincian->delete($id_faktur_penjualan_rincian);
     $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Success!</strong> Data Berhasil DIhapus!</p></div>');

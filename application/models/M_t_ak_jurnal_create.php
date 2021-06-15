@@ -34,6 +34,7 @@ public function update_all($data)
     $this->db->select("T_AK_JURNAL_CREATE.CATATAN");
     $this->db->select("T_AK_JURNAL_CREATE.DEPARTEMEN");
     $this->db->select("T_AK_JURNAL_CREATE.NO_VOUCER");
+    $this->db->select("T_AK_JURNAL_CREATE.NO_VOUCER_INT");
     $this->db->select("T_AK_JURNAL_CREATE.DATE");
     $this->db->select("T_AK_JURNAL_CREATE.TIME");
     $this->db->select("T_AK_JURNAL_CREATE.CREATED_BY");

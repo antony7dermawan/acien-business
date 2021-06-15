@@ -54,6 +54,7 @@ class C_t_ak_jurnal_edit extends MY_Controller
     foreach ($read_select as $key => $value) {
       if ($key == 0) {
         $no_voucer = $value->NO_VOUCER;
+        $no_voucer_int = $value->NO_VOUCER_INT;
       }
     }
 
@@ -88,10 +89,18 @@ class C_t_ak_jurnal_edit extends MY_Controller
         'NO_VOUCER' => $no_voucer,
         'CREATED_ID' => $created_id,
         'CHECKED_ID' => 1,
-        'SPECIAL_ID' => 0
+        'SPECIAL_ID' => 0,
+        'COMPANY_ID' => $this->session->userdata('company_id'),
+        'NO_VOUCER_INT' => $value->NO_VOUCER_INT
       );
 
       $this->m_t_ak_jurnal_edit->tambah($data);
+
+      $data = array(
+        'DATE' => $date
+      );
+
+      $this->m_t_ak_jurnal_edit->update_all($data);
 
       $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
     }
@@ -126,7 +135,9 @@ class C_t_ak_jurnal_edit extends MY_Controller
         'NO_VOUCER' => $value->NO_VOUCER,
         'CREATED_ID' => $value->CREATED_ID,
         'CHECKED_ID' => $value->CHECKED_ID,
-        'SPECIAL_ID' => $value->SPECIAL_ID
+        'SPECIAL_ID' => $value->SPECIAL_ID,
+        'NO_VOUCER_INT' => $value->NO_VOUCER_INT,
+        'COMPANY_ID' => $value->COMPANY_ID
 
       );
 
@@ -247,6 +258,13 @@ class C_t_ak_jurnal_edit extends MY_Controller
     );
 
     $this->m_t_ak_jurnal_edit->update($data, $id);
+
+
+    $data = array(
+        'DATE' => $date
+    );
+    $this->m_t_ak_jurnal_edit->update_all($data);
+
     $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Diupdate!</strong></p></div>');
     redirect('/c_t_ak_jurnal_edit');
   }

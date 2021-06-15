@@ -13,6 +13,8 @@ class C_t_ak_jurnal_create extends MY_Controller
     $this->load->model('m_ak_m_coa');
     $this->load->model('m_ak_m_family');
     $this->load->model('m_ak_m_type');
+    $this->load->model('m_t_m_d_company');
+
   }
 
   public function index()
@@ -90,11 +92,46 @@ class C_t_ak_jurnal_create extends MY_Controller
     $kredit = intval($this->input->post("kredit"));
     $catatan = substr(($this->input->post("catatan")), 0, 200);
     $departemen = substr(($this->input->post("departemen")), 0, 50);
-    $no_voucer = $this->session->userdata('now_no_voucer');
+
     $date = $this->input->post("date");
 
-    if ($this->session->userdata('now_no_voucer') != '') 
+
+    $data_id = 0;
+    $read_select = $this->m_t_ak_jurnal_create->select();
+    foreach ($read_select as $key => $value) {
+      $data_id = 1;
+
+      if ($key == 0) {
+        $no_voucer = $value->NO_VOUCER;
+        $inv_int = $value->NO_VOUCER_INT;
+      }
+    }
+
+    if($data_id==0)
     {
+      $inv_int = 0;
+      $read_select = $this->m_t_ak_jurnal->select_inv_int();
+      foreach ($read_select as $key => $value) 
+      {
+        $inv_int = intval($value->NO_VOUCER_INT)+1;
+      }
+
+      $read_select = $this->m_t_m_d_company->select_by_company_id();
+      foreach ($read_select as $key => $value) 
+      {
+        $inv_pembelian = $value->INV_PEMBELIAN;
+        $inv_retur_pembelian = $value->INV_RETUR_PEMBELIAN;
+        $inv_penjualan = $value->INV_PENJUALAN;
+        $inv_retur_penjualan = $value->INV_RETUR_PENJUALAN;
+        $inv_po = $value->INV_PO;
+        $inv_pinlok = $value->INV_PINLOK;
+        $inv_jurnal = $value->INV_JURNAL;
+      }
+
+      $no_voucer = $inv_jurnal.date('y-m').'.'.sprintf('%05d', $inv_int);
+    }
+
+    
       $data = array(
         'DATE' => $date,
         'TIME' => date('H:i:s'),
@@ -105,17 +142,21 @@ class C_t_ak_jurnal_create extends MY_Controller
         'KREDIT' => $kredit,
         'CATATAN' => $catatan,
         'DEPARTEMEN' => $departemen,
-        'NO_VOUCER' => $no_voucer
+        'NO_VOUCER' => $no_voucer,
+        'NO_VOUCER_INT' => $inv_int
 
       );
 
       $this->m_t_ak_jurnal_create->tambah($data);
 
+      $data = array(
+        'DATE' => $date
+      );
+
+      $this->m_t_ak_jurnal_create->update_all($data);
+
       $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
-    }
-    if ($this->session->userdata('now_no_voucer') == '') {
-      $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>GAGAL!</strong> NO VOUCER BELUM DIISI!</p></div>');
-    }
+    
 
     redirect('c_t_ak_jurnal_create');
   }
@@ -142,7 +183,8 @@ class C_t_ak_jurnal_create extends MY_Controller
         'CREATED_ID' => $created_id,
         'CHECKED_ID' => 1,
         'SPECIAL_ID' => 0,
-        'COMPANY_ID' => $this->session->userdata('company_id')
+        'COMPANY_ID' => $this->session->userdata('company_id'),
+        'NO_VOUCER_INT' => $value->NO_VOUCER_INT
 
       );
 
@@ -254,12 +296,20 @@ class C_t_ak_jurnal_create extends MY_Controller
       'KREDIT' => $kredit,
       'CATATAN' => $catatan,
       'DEPARTEMEN' => $departemen,
-      'NO_VOUCER' => $no_voucer,
-      'DATE' => $date
+      'NO_VOUCER' => $no_voucer
 
     );
 
     $this->m_t_ak_jurnal_create->update($data, $id);
+
+
+    $data = array(
+      'DATE' => $date
+    );
+
+    $this->m_t_ak_jurnal_create->update_all($data);
+
+
     $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Diupdate!</strong></p></div>');
     redirect('/c_t_ak_jurnal_create');
   }

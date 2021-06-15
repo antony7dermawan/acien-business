@@ -184,13 +184,20 @@ if($level_user_id==1)
             ?>
             <li class="">
                 <a href="<?= base_url("c_t_t_t_penjualan"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Penjualan</span>
+                    <span class="pcoded-mtext">Penjualan Barang</span>
                 </a>
             </li>
 
             <li class="">
                 <a href="<?= base_url("c_t_t_t_retur_penjualan"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Retur Penjualan</span>
+                    <span class="pcoded-mtext">Retur Penjualan Barang</span>
+                </a>
+            </li>
+
+
+            <li class="">
+                <a href="<?= base_url("c_t_t_t_penjualan_jasa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Penjualan Jasa</span>
                 </a>
             </li>
 

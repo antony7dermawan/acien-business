@@ -23,7 +23,22 @@ public function select_no_voucer()
     return $akun->result ();
 }
 
+public function select_inv_int()
+  {
+    $this_year = date('Y-m').'-01';
+    $this->db->limit(1);
+    $this->db->select("NO_VOUCER_INT");
+    $this->db->from('T_AK_JURNAL');
+    $this->db->where("COMPANY_ID={$this->session->userdata('company_id')}");
 
+
+    
+    $this->db->where("DATE>='{$this_year}'");
+    $this->db->order_by("ID", "desc");
+
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
 
 
 public function select_used_jurnal($type_id,$from_date,$to_date)
@@ -131,6 +146,7 @@ public function select_created_id($created_id)
     $this->db->select("T_AK_JURNAL.CATATAN");
     $this->db->select("T_AK_JURNAL.DEPARTEMEN");
     $this->db->select("T_AK_JURNAL.NO_VOUCER");
+    $this->db->select("T_AK_JURNAL.NO_VOUCER_INT");
     $this->db->select("T_AK_JURNAL.DATE");
     $this->db->select("T_AK_JURNAL.TIME");
     $this->db->select("T_AK_JURNAL.CREATED_BY");
@@ -138,6 +154,7 @@ public function select_created_id($created_id)
     $this->db->select("T_AK_JURNAL.CREATED_ID");
     $this->db->select("T_AK_JURNAL.CHECKED_ID");
     $this->db->select("T_AK_JURNAL.SPECIAL_ID");
+    $this->db->select("T_AK_JURNAL.COMPANY_ID");
 
     $this->db->from('T_AK_JURNAL');
     $this->db->join('AK_M_COA', 'AK_M_COA.ID = T_AK_JURNAL.COA_ID', 'left');

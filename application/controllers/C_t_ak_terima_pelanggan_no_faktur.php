@@ -60,9 +60,18 @@ class C_t_ak_terima_pelanggan_no_faktur extends MY_Controller
     $faktur_penjualan_id = intval($this->input->post("faktur_penjualan_id"));
     $read_select = $this->m_t_ak_faktur_penjualan->select_by_id($faktur_penjualan_id);
     foreach ($read_select as $key => $value) {
-      $sum_total_penjualan = intval(intval($value->SUM_TOTAL_PENJUALAN)*1.1);
+      $sum_total_penjualan = round($value->SUM_TOTAL_PENJUALAN);
+
+
+      $ppn = $value->PPN;
+      $pph = $value->PPH;
     }
 
+    $total_all = $sum_total_penjualan;
+    if($ppn=='t')
+    {
+      $total_all = $total_all * 1.1;
+    }
     $data = array(
       'FAKTUR_PENJUALAN_ID' => $faktur_penjualan_id,
       'TERIMA_PELANGGAN_ID' => $terima_pelanggan_id,

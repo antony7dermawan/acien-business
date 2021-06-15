@@ -11,7 +11,11 @@ public function update($data, $id)
 }
 
 
-
+public function update_all($data)
+{
+  $this->db->where('CREATED_BY',$this->session->userdata('username'));
+  return $this->db->update('T_AK_JURNAL_EDIT', $data);
+}
 
 
 
@@ -51,6 +55,7 @@ public function select_created_id()
     $this->db->select("T_AK_JURNAL_EDIT.CATATAN");
     $this->db->select("T_AK_JURNAL_EDIT.DEPARTEMEN");
     $this->db->select("T_AK_JURNAL_EDIT.NO_VOUCER");
+    $this->db->select("T_AK_JURNAL_EDIT.NO_VOUCER_INT");
     $this->db->select("T_AK_JURNAL_EDIT.DATE");
     $this->db->select("T_AK_JURNAL_EDIT.TIME");
     $this->db->select("T_AK_JURNAL_EDIT.CREATED_BY");
@@ -58,6 +63,8 @@ public function select_created_id()
     $this->db->select("T_AK_JURNAL_EDIT.CREATED_ID");
     $this->db->select("T_AK_JURNAL_EDIT.CHECKED_ID");
     $this->db->select("T_AK_JURNAL_EDIT.SPECIAL_ID");
+    
+    $this->db->select("T_AK_JURNAL_EDIT.COMPANY_ID");
 
     $this->db->from('T_AK_JURNAL_EDIT');
     $this->db->join('AK_M_COA', 'AK_M_COA.ID = T_AK_JURNAL_EDIT.COA_ID', 'left');

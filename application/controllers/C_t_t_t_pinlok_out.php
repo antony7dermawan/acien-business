@@ -32,13 +32,13 @@ class C_t_t_t_pinlok_out extends MY_Controller
     $this->session->set_userdata('t_m_d_supir_delete_logic', '0');
     $this->session->set_userdata('t_m_d_lokasi_delete_logic', '0');
 
-    if($this->session->userdata('date_pemakaian')=='')
+    if($this->session->userdata('date_pinlok_out')=='')
     {
-      $date_pemakaian = date('Y-m-d');
-      $this->session->set_userdata('date_pemakaian', $date_pemakaian);
+      $date_pinlok_out = date('Y-m-d');
+      $this->session->set_userdata('date_pinlok_out', $date_pinlok_out);
     }
     $data = [
-      "c_t_t_t_pinlok_out" => $this->m_t_t_t_pembelian->select_pinlok($this->session->userdata('date_pemakaian')),
+      "c_t_t_t_pinlok_out" => $this->m_t_t_t_pembelian->select_pinlok($this->session->userdata('date_pinlok_out')),
 
 
 
@@ -59,10 +59,10 @@ class C_t_t_t_pinlok_out extends MY_Controller
   }
 
 
-  public function date_pemakaian()
+  public function date_pinlok_out()
   {
-    $date_pemakaian = ($this->input->post("date_pemakaian"));
-    $this->session->set_userdata('date_pemakaian', $date_pemakaian);
+    $date_pinlok_out = ($this->input->post("date_pinlok_out"));
+    $this->session->set_userdata('date_pinlok_out', $date_pinlok_out);
     redirect('/c_t_t_t_pinlok_out');
   }
 
