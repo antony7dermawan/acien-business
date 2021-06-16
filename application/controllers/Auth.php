@@ -51,6 +51,9 @@ class Auth extends MY_Controller {
           'date_pinlok_out'=>date('Y-m-d'),
           'date_pinlok_in'=>date('Y-m-d'),
           'date_penjualan_jasa'=>date('Y-m-d'),
+          'date_pembayaran_supplier'=>date('Y-m-d'),
+          'date_from_select_pembelian'=>date('Y-m-d'),
+          'date_to_select_pembelian'=>date('Y-m-d'),
           
 
 

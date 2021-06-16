@@ -6,6 +6,7 @@
       $level_user_id = $this->session->userdata('level_user_id');
       foreach ($c_t_t_t_pembelian_by_id as $key => $value) {
         $inv = $value->INV;
+        $payment_t = $value->PAYMENT_T;
       }
 
 
@@ -22,7 +23,15 @@
 
     <a href="<?= base_url("c_t_t_t_pembelian"); ?>" class="btn waves-effect waves-light btn-inverse"><i class="icofont icofont-double-left"></i>Back</a>
     <!-- Tombol untuk menambah data akun !-->
-    <button data-toggle="modal" data-target="#addModal" class="btn btn-success waves-effect waves-light">New Data</button>
+    <?php
+    if($payment_t==0)
+    {
+      ?>
+      <button data-toggle="modal" data-target="#addModal" class="btn btn-success waves-effect waves-light">New Data</button>
+      <?php
+    }
+    ?>
+    
 
     <div class="table-responsive dt-responsive">
       <table id="dom-jqry" class="table table-striped table-bordered nowrap">
@@ -57,7 +66,7 @@
 
               
               echo "<td>";
-              if (intval($value->QTY) == intval($value->SISA_QTY))
+              if (intval($value->QTY) == intval($value->SISA_QTY) and $payment_t==0)
               {
                 echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='" . $value->ID . "'>";
                 echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";

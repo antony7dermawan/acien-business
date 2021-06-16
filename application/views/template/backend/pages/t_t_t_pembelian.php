@@ -34,8 +34,9 @@
             <th>Supplier</th>
             <th>INV Sp</th>
             <th>Payment Method</th>
+            
             <th>Total</th>
-
+            <th>Sudah Dibayar</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -63,6 +64,10 @@
               echo " Rp" . number_format(intval($value->SUM_SUB_TOTAL)) . "</td>";
               //satu button
 
+
+              echo "<td>";
+
+              echo " Rp" . number_format(intval($value->PAYMENT_T)) . "</td>";
               
               echo "<td>";
 
@@ -92,7 +97,7 @@
                 echo "}";
                 echo "</script>";
 
-                echo " ".$value->UPDATED_BY;
+                //echo " ".$value->UPDATED_BY;
               }
               
 
@@ -145,6 +150,10 @@
               echo " Rp" . number_format(intval($value->SUM_SUB_TOTAL)) . "</s></td>";
               //satu button
 
+
+              echo "<td><s>";
+
+              echo " Rp" . number_format(intval($value->PAYMENT_T)) . "<s></td>";
               
               echo "<td>";
 

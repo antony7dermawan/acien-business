@@ -133,7 +133,9 @@ class C_t_t_t_pembelian extends MY_Controller
         'PRINTED' => FALSE,
         'INV_SUPPLIER' => $inv_supplier,
         'T_STATUS' => 0, //ini kode pembelian
-        'TABLE_CODE' => 'PEMBELIAN'
+        'TABLE_CODE' => 'PEMBELIAN',
+        'PAYMENT_T' => 0,
+        'ENABLE_EDIT' => 1 //MASI BISA EDIT
       );
 
       $this->m_t_t_t_pembelian->tambah($data);

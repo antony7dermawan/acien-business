@@ -307,7 +307,9 @@ class C_t_t_t_penjualan_rincian extends MY_Controller
             'PRINTED' => FALSE,
             'INV_SUPPLIER' => '',
             'T_STATUS' => 20, //ini kode po auto
-            'TABLE_CODE' => 'PEMBELIAN'
+            'TABLE_CODE' => 'PEMBELIAN',
+            'PAYMENT_T' => 0,
+            'ENABLE_EDIT' => 1 //MASI BISA EDIT
           );
 
           $this->m_t_t_t_pembelian->tambah($data);

@@ -422,6 +422,14 @@ if($level_user_id==1 or $level_user_id==6)
                     <span class="pcoded-mtext">Setting Print Terima Pelanggan</span>
                 </a>
             </li>
+
+
+
+            <li class="">
+                <a href="<?= base_url("c_t_ak_pembayaran_supplier_print_setting"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Setting Print Pembayaran Supplier</span>
+                </a>
+            </li>
         </ul>
     </li>
 
@@ -486,6 +494,13 @@ if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id
                 <li class="">
                     <a href="<?= base_url("c_t_ak_terima_pelanggan"); ?>" class="submenu waves-effect waves-dark">
                         <span class="pcoded-mtext">Terima Pelanggan</span>
+                    </a>
+                </li>
+            </ul>
+            <ul class="pcoded-submenu">
+                <li class="">
+                    <a href="<?= base_url("c_t_ak_pembayaran_supplier"); ?>" class="submenu waves-effect waves-dark">
+                        <span class="pcoded-mtext">Pembayaran Supplier</span>
                     </a>
                 </li>
             </ul>

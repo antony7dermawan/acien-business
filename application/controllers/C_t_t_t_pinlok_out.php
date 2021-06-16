@@ -159,7 +159,9 @@ class C_t_t_t_pinlok_out extends MY_Controller
         'COMPANY_ID_FROM' => $this->session->userdata('company_id'),
         'LOKASI_ID' => $lokasi_id,
         'SUPIR_ID' => $supir_id,
-        'NO_POLISI_ID' => $no_polisi_id
+        'NO_POLISI_ID' => $no_polisi_id,
+        'PAYMENT_T' => 0,
+        'ENABLE_EDIT' => 1 //MASI BISA EDIT
       );
 
       $this->m_t_t_t_pembelian->tambah($data);
