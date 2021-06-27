@@ -71,17 +71,16 @@
 
                 echo "onclick= 'p_1_" . $key . "()'";
                 if ($value->PRINTED == 'f') {
-                  echo "> <i class='fa fa-print text-c-black'></i></a> ";
+                  echo "> <i class='text-c-black'>P1</i></a> ";
                 }
                 if ($value->PRINTED == 't') {
-                  echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                  
+                  echo "> <i class='text-c-black'>P1</i></a> ";
                 }
 
                 echo "<script>";
                 echo "function p_1_" . $key . "()";
                 echo "{";
-                echo "window.open('laporan_pdf/c_t_t_t_penjualan_jasa_print/index/" . $value->ID . "');";
+                echo "window.open('laporan_pdf/c_penjualan_jasa_print_1/index/" . $value->ID . "');";
                 echo "}";
                 echo "</script>";
 
@@ -93,17 +92,16 @@
 
                 echo "onclick= 'p_2_" . $key . "()'";
                 if ($value->PRINTED == 'f') {
-                  echo "> <i class='fa fa-print text-c-blue'></i></a> ";
+                  echo "> <i class='text-c-blue'>P2</i></a> ";
                 }
                 if ($value->PRINTED == 't') {
-                  echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                  
+                  echo "> <i class='text-c-blue'>P2</i></a> ";
                 }
 
                 echo "<script>";
                 echo "function p_2_" . $key . "()";
                 echo "{";
-                echo "window.open('laporan_pdf/c_t_t_t_penjualan_jasa2_print/index/" . $value->ID . "');";
+                echo "window.open('laporan_pdf/c_penjualan_jasa_print_2/index/" . $value->ID . "');";
                 echo "}";
                 echo "</script>";
 
@@ -255,6 +253,48 @@
           </div> <!-- Membungkus Row !-->
         </div>
 
+
+
+        <div class="row">
+          <div class="col-md-6">
+
+            <fieldset class="form-group">
+              <label>No Faktur Pajak</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='no_faktur_pajak'>
+            </fieldset>
+
+          </div><!-- Membungkus Row Kedua !-->
+
+
+          <div class="col-md-6">
+
+            <fieldset class="form-group">
+              <label>Blok</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='blok'>
+          </div> <!-- Membungkus Row !-->
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-md-6">
+
+            <fieldset class="form-group">
+              <label>No SPK</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='no_spk'>
+            </fieldset>
+
+          </div><!-- Membungkus Row Kedua !-->
+
+
+          <div class="col-md-6">
+
+            <fieldset class="form-group">
+              <label>No BAP</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='no_bap'>
+          </div> <!-- Membungkus Row !-->
+        </div>
+
      
 
        
@@ -362,7 +402,45 @@
         </div>
 
 
+        <div class="row">
+          <div class="col-md-6">
 
+            <fieldset class="form-group">
+              <label>No Faktur Pajak</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='no_faktur_pajak'>
+            </fieldset>
+
+          </div><!-- Membungkus Row Kedua !-->
+
+
+          <div class="col-md-6">
+
+            <fieldset class="form-group">
+              <label>Blok</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='blok'>
+          </div> <!-- Membungkus Row !-->
+        </div>
+
+
+
+        <div class="row">
+          <div class="col-md-6">
+
+            <fieldset class="form-group">
+              <label>No SPK</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='no_spk'>
+            </fieldset>
+
+          </div><!-- Membungkus Row Kedua !-->
+
+
+          <div class="col-md-6">
+
+            <fieldset class="form-group">
+              <label>No BAP</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='no_bap'>
+          </div> <!-- Membungkus Row !-->
+        </div>
       
 
 
@@ -420,6 +498,11 @@
         UPDATED_BY : updated_by,
         CREATED_BY : created_by,
 
+        NO_FAKTUR_PAJAK : no_faktur_pajak,
+        BLOK : blok,
+        NO_SPK : no_spk,
+        NO_BAP : no_bap,
+
         INV_HEAD : inv_head
       } = User[0];
 
@@ -432,6 +515,11 @@
       elModalEdit.querySelector("[name=created_by]").text = created_by;
 
       elModalEdit.querySelector("[name=inv_head]").value = inv_head;
+
+      elModalEdit.querySelector("[name=no_faktur_pajak]").value = no_faktur_pajak;
+      elModalEdit.querySelector("[name=blok]").value = blok;
+      elModalEdit.querySelector("[name=no_spk]").value = no_spk;
+      elModalEdit.querySelector("[name=no_bap]").value = no_bap;
 
   
 

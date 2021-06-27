@@ -583,4 +583,255 @@ if($level_user_id==1 or $level_user_id==6)
     
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<li class="pcoded-hasmenu"> <!-- batas buka 3 tingkat!-->
+<a href="javascript:void(0)" class="waves-effect waves-dark">
+<span class="pcoded-micon"><i class="feather icon-sidebar"></i></span>
+<span class="pcoded-mtext">Payroll</span>
+
+</a>
+<ul class="pcoded-submenu"> <!-- batas buka 3 tingkat!-->
+
+
+
+
+
+
+
+<!-- Diluar Grouping disini -->
+    <li <?php if($this->uri->segment(2)=="buku_besar"){echo 'class="pcoded-hasmenu"';}?>>
+        <a href="<?= base_url("c_dashboard2/"); ?>" class="waves-effect waves-dark">
+        <span class="pcoded-micon">
+        <i class="feather icon-credit-card"></i>
+        </span>
+        <span class="pcoded-mtext">Dashboard</span>
+        </a>
+    </li>
+
+
+<?php
+$level_user_id = $this->session->userdata('level_user_id');
+if($level_user_id==1 or $level_user_id==6)
+{
+    ?>
+    
+
+
+
+
+    <li class="pcoded-hasmenu">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-home"></i></span>
+            <span class="pcoded-mtext" >Master Payroll</span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_ak_m_db_k"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Personal</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_family"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master Religion</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_type"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master Gender</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master Marital</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master Permanen</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master Departemen</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master Posisi</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master Bank</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master BPJS TK</span>
+                </a>
+            </li>
+            <li class="">
+                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Master BPJS Kes</span>
+                </a>
+            </li>
+
+
+
+
+     
+        </ul>
+    </li>
+
+ 
+
+    <?php
+}
+?>
+
+
+
+
+
+
+
+
+
+<?php
+if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id==5 or $level_user_id==6)
+{
+    ?>
+    <!-- Menu ke dua -->
+    <li class="pcoded-hasmenu">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-list"></i></span>
+            <span class="pcoded-mtext">Transaksi Payroll</span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_t_ak_jurnal_create"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Update Slip Gaji</span>
+                </a>
+            </li>
+        </ul>
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_t_ak_jurnal"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Transaksi Potongan</span>
+                </a>
+            </li>
+        </ul>
+
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_t_ak_jurnal"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Transaksi Tunjangan</span>
+                </a>
+            </li>
+        </ul>
+
+
+
+        
+    </li>
+    <?php
+}
+?>
+
+    
+
+    
+<?php
+if($level_user_id==1)
+{
+    ?>
+    <li class="pcoded-hasmenu">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
+            <span class="pcoded-mtext">Admin</span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_t_login_user"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">User</span>
+                </a>
+            </li>
+            
+        </ul>
+    </li>
+
+
+    
+    <?php
+}
+
+?>
+
+
+<?php
+if($level_user_id==1 or $level_user_id==6)
+{
+    ?>
+    <li class="pcoded-hasmenu">
+        <a href="javascript:void(0)" class="waves-effect waves-dark">
+            <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
+            <span class="pcoded-mtext">Laporan</span>
+        </a>
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_laporan2"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Detail</span>
+                </a>
+            </li>
+            
+        </ul>
+    </li>
+
+
+    
+    <?php
+}
+
+?>
+
+
+
+
+
+
+
+    
+</ul> <!-- batas buka 3 tingkat!-->
+</li> <!-- batas buka 3 tingkat!-->
+
+
+
+
+
 </ul>

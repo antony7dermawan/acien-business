@@ -26,6 +26,7 @@ public function select_inv_penjualan_jasa()
 
 
 
+
 public function select_date($pelanggan_id,$from_date,$to_date)
   {
     $this->db->select("T_T_T_PENJUALAN_JASA.ID");
@@ -220,6 +221,11 @@ public function select_range_date($from_date,$to_date,$kredit_logic,$sales_id,$p
     $this->db->select("T_M_D_PAYMENT_METHOD.PAYMENT_METHOD");
     $this->db->select("T_M_D_PELANGGAN.PELANGGAN");
 
+    $this->db->select("T_T_T_PENJUALAN_JASA.NO_FAKTUR_PAJAK");
+    $this->db->select("T_T_T_PENJUALAN_JASA.BLOK");
+    $this->db->select("T_T_T_PENJUALAN_JASA.NO_SPK");
+    $this->db->select("T_T_T_PENJUALAN_JASA.NO_BAP");
+
 
 
 
@@ -281,9 +287,16 @@ public function select_range_date($from_date,$to_date,$kredit_logic,$sales_id,$p
 
     $this->db->select("T_M_D_PAYMENT_METHOD.PAYMENT_METHOD");
     $this->db->select("T_M_D_PELANGGAN.PELANGGAN");
+    $this->db->select("T_M_D_PELANGGAN.ALAMAT");
+    $this->db->select("T_M_D_PELANGGAN.NO_TELP");
+    $this->db->select("T_M_D_PELANGGAN.NPWP");
 
     $this->db->select("T_M_D_COMPANY.COMPANY");
-
+    
+    $this->db->select("T_T_T_PENJUALAN_JASA.NO_FAKTUR_PAJAK");
+    $this->db->select("T_T_T_PENJUALAN_JASA.BLOK");
+    $this->db->select("T_T_T_PENJUALAN_JASA.NO_SPK");
+    $this->db->select("T_T_T_PENJUALAN_JASA.NO_BAP");
 
 
     $this->db->select("SUM_SUB_TOTAL");

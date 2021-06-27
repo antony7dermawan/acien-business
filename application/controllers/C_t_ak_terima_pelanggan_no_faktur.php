@@ -12,6 +12,7 @@ class C_t_ak_terima_pelanggan_no_faktur extends MY_Controller
     $this->load->model('m_t_ak_terima_pelanggan');
     $this->load->model('m_t_ak_faktur_penjualan');
   }
+  
 
   public function index($id, $pks_id)
   {

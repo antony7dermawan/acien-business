@@ -72,6 +72,10 @@ public function select_no_faktur()
     $this->db->select("SUM_TOTAL_PENJUALAN");
     $this->db->select("SUM_PAYMENT_T");
 
+    $this->db->select("SUM_JUMLAH");
+
+    $this->db->select("SUM_ADM_BANK");
+
     $this->db->from('T_AK_PEMBAYARAN_SUPPLIER');
 
     $this->db->join('T_M_D_SUPPLIER', 'T_M_D_SUPPLIER.ID = T_AK_PEMBAYARAN_SUPPLIER.SUPPLIER_ID', 'left');
@@ -84,9 +88,14 @@ public function select_no_faktur()
 
 
 
-    $this->db->join("(select \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBAYARAN_SUPPLIER_ID\",sum(\"T_T_T_PEMBELIAN\".\"PAYMENT_T\")\"SUM_PAYMENT_T\" from \"T_T_T_PEMBELIAN_RINCIAN\"LEFT OUTER JOIN \"T_T_T_PEMBELIAN\" ON \"T_T_T_PEMBELIAN\".\"ID\"=\"T_T_T_PEMBELIAN_RINCIAN\".\"PEMBELIAN_ID\" LEFT OUTER JOIN \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\" ON \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBELIAN_ID\" = \"T_T_T_PEMBELIAN\".\"ID\" where \"T_T_T_PEMBELIAN_RINCIAN\".\"MARK_FOR_DELETE\"=false group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum2", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum2.PEMBAYARAN_SUPPLIER_ID', 'left');
+   
+
+    $this->db->join("(select \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBAYARAN_SUPPLIER_ID\",sum(\"T_T_T_PEMBELIAN\".\"PAYMENT_T\")\"SUM_PAYMENT_T\" from \"T_T_T_PEMBELIAN\"  LEFT OUTER JOIN \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\" ON \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBELIAN_ID\" = \"T_T_T_PEMBELIAN\".\"ID\"  group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum2", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum2.PEMBAYARAN_SUPPLIER_ID', 'left');
 
 
+    $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"JUMLAH\")\"SUM_JUMLAH\" from \"T_AK_PEMBAYARAN_SUPPLIER_METODE_BAYAR\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_3", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_3.PEMBAYARAN_SUPPLIER_ID', 'left');
+
+    $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"ADM_BANK\")\"SUM_ADM_BANK\" from \"T_AK_PEMBAYARAN_SUPPLIER_METODE_BAYAR\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_4", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_4.PEMBAYARAN_SUPPLIER_ID', 'left');
     
     
     $date_before = date('Y-m-d',(strtotime ( '-30 day' , strtotime ( $date_pembayaran_supplier) ) ));
@@ -127,7 +136,15 @@ public function select_no_faktur()
 
 
 
-    $this->db->select("sum as \"SUM_TOTAL_PENJUALAN\"");
+
+    $this->db->select("SUM_TOTAL_PENJUALAN");
+    $this->db->select("SUM_PAYMENT_T");
+
+    $this->db->select("SUM_JUMLAH");
+
+    $this->db->select("SUM_ADM_BANK");
+
+
 
     $this->db->from('T_AK_PEMBAYARAN_SUPPLIER');
 
@@ -135,8 +152,22 @@ public function select_no_faktur()
 
 
 
-    $this->db->join("(select \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBAYARAN_SUPPLIER_ID\",sum(\"T_T_T_PEMBELIAN_RINCIAN\".\"SUB_TOTAL\") from \"T_T_T_PEMBELIAN_RINCIAN\"LEFT OUTER JOIN \"T_T_T_PEMBELIAN\" ON \"T_T_T_PEMBELIAN\".\"ID\"=\"T_T_T_PEMBELIAN_RINCIAN\".\"PEMBELIAN_ID\" LEFT OUTER JOIN \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\" ON \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBELIAN_ID\" = \"T_T_T_PEMBELIAN\".\"ID\" where \"T_T_T_PEMBELIAN_RINCIAN\".\"MARK_FOR_DELETE\"=false group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum.PEMBAYARAN_SUPPLIER_ID', 'left');
+    $this->db->join("(select \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBAYARAN_SUPPLIER_ID\",sum(\"T_T_T_PEMBELIAN_RINCIAN\".\"SUB_TOTAL\")\"SUM_TOTAL_PENJUALAN\" from \"T_T_T_PEMBELIAN_RINCIAN\"LEFT OUTER JOIN \"T_T_T_PEMBELIAN\" ON \"T_T_T_PEMBELIAN\".\"ID\"=\"T_T_T_PEMBELIAN_RINCIAN\".\"PEMBELIAN_ID\" LEFT OUTER JOIN \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\" ON \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBELIAN_ID\" = \"T_T_T_PEMBELIAN\".\"ID\" where \"T_T_T_PEMBELIAN_RINCIAN\".\"MARK_FOR_DELETE\"=false group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum.PEMBAYARAN_SUPPLIER_ID', 'left');
+
+
+
+   
+
+    $this->db->join("(select \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBAYARAN_SUPPLIER_ID\",sum(\"T_T_T_PEMBELIAN\".\"PAYMENT_T\")\"SUM_PAYMENT_T\" from \"T_T_T_PEMBELIAN\"  LEFT OUTER JOIN \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\" ON \"T_AK_PEMBAYARAN_SUPPLIER_RINCIAN\".\"PEMBELIAN_ID\" = \"T_T_T_PEMBELIAN\".\"ID\"  group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum2", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum2.PEMBAYARAN_SUPPLIER_ID', 'left');
+
+
+    $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"JUMLAH\")\"SUM_JUMLAH\" from \"T_AK_PEMBAYARAN_SUPPLIER_METODE_BAYAR\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_3", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_3.PEMBAYARAN_SUPPLIER_ID', 'left');
+
+    $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"ADM_BANK\")\"SUM_ADM_BANK\" from \"T_AK_PEMBAYARAN_SUPPLIER_METODE_BAYAR\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_4", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_4.PEMBAYARAN_SUPPLIER_ID', 'left');
     
+
+
+
     $this->db->where('T_AK_PEMBAYARAN_SUPPLIER.ID',$id);
     $this->db->order_by("ID", "desc");
 

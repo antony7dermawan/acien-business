@@ -25,6 +25,7 @@ public function select_id($id)
 
 
 
+
   public function select()
   {
     $this->db->select('*');

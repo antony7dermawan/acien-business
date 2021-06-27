@@ -30,6 +30,7 @@ public function update($data, $id)
 
 
    
+   
 
 
     $this->db->from('T_T_T_PENJUALAN_JASA_RINCIAN');

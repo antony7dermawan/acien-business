@@ -103,7 +103,10 @@ class C_t_t_t_penjualan_jasa extends MY_Controller
     $payment_method_id = intval($this->input->post("payment_method_id"));
     $inv_head = substr($this->input->post("inv_head"), 0, 50);
     
-    
+    $no_faktur_pajak = substr($this->input->post("no_faktur_pajak"), 0, 50);
+    $blok = substr($this->input->post("blok"), 0, 50);
+    $no_spk = substr($this->input->post("no_spk"), 0, 50);
+    $no_bap = substr($this->input->post("no_bap"), 0, 50);
 
 
     $ket = substr($this->input->post("ket"), 0, 200);
@@ -154,7 +157,11 @@ class C_t_t_t_penjualan_jasa extends MY_Controller
         
         'INV_HEAD' => $inv_head,
         'TABLE_CODE' => 'PENJUALAN_JASA',
-        'ENABLE_EDIT' => 1
+        'ENABLE_EDIT' => 1,
+        'NO_FAKTUR_PAJAK' => $no_faktur_pajak,
+        'BLOK' => $blok,
+        'NO_SPK' => $no_spk,
+        'NO_BAP' => $no_bap
       );
 
       $this->m_t_t_t_penjualan_jasa->tambah($data);

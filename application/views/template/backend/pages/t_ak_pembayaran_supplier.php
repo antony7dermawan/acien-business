@@ -72,7 +72,7 @@
 
 
 
-            echo "Rp" . number_format(round($value->SUM_TOTAL_PENJUALAN)) . "</td>";
+            echo "Rp" . number_format(round($value->SUM_JUMLAH)) . "</td>";
 
 
             
@@ -83,7 +83,7 @@
             if(intval($value->SUM_TOTAL_PENJUALAN)!=0)
             {
               $enable_ppn=0;
-              echo "<a href='" . site_url('c_t_ak_pembayaran_supplier/update_enable_edit/' . $value->ID) . "/" . intval($value->SUM_TOTAL_PENJUALAN) . "/".$enable_ppn."/" . $value->ENABLE_EDIT . "'"; #/1 ini artinya kena pajak
+              echo "<a href='" . site_url('c_t_ak_pembayaran_supplier/update_enable_edit/' . $value->ID) . "'"; #/1 ini artinya kena pajak
 
               
 
@@ -94,16 +94,13 @@
               if ($value->ENABLE_EDIT == 0) {
                 echo "> <i class='fa fa-print text-c-green'></i></a> ";
 
-                if($this->session->userdata('level_user_id')==1 and $value->PAYMENT_T==0)
+                if($this->session->userdata('level_user_id')==1 )
                 {
                   echo "<a href='" . site_url('c_t_ak_pembayaran_supplier/undo/' . $value->ID) . "' ";
                   echo "onclick=\"return confirm('Apakah kamu yakin ingin memperbaiki data ini?')\"";
                   echo "> <i class='fa fa-refresh f-w-600 f-16 text-c-red'></i></a>";
                 }
-                if($value->PAYMENT_T>0)
-                {
-                  echo "Sudah Dibayar";
-                }
+                
                 
               }
 
