@@ -106,6 +106,36 @@
                 echo "</script>";
 
 
+
+
+                echo "<a "; #/1 ini artinya kena pajak
+
+                echo "onclick= 'p_3_" . $key . "()'";
+                if ($value->PRINTED == 'f') {
+                  echo "> <i class='text-c-red'>p3</i></a> ";
+                }
+                if ($value->PRINTED == 't') {
+                  echo "> <i class='text-c-red'>p3</i></a> ";
+                }
+
+                echo "<script>";
+                echo "function p_3_" . $key . "()";
+                echo "{";
+                echo "window.open('laporan_pdf/c_penjualan_jasa_print_3/index/" . $value->ID . "');";
+                echo "}";
+                echo "</script>";
+
+
+
+
+
+
+
+
+
+
+
+
                 if($value->ENABLE_EDIT==0)
                 {
                   echo "<a class='fa text-c-green'>Sudah Ditagih</a>";

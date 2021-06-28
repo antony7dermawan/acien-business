@@ -73,6 +73,29 @@ class C_penjualan_jasa_print_1 extends MY_Controller
         }
         //$pdf->Image('assets/images/logo-jo.jpg',10,10,0);
 
+
+     
+
+        $pdf->SetFont('','I',9);
+        
+
+        $pdf->Cell(120, 4, "", '0', 0, 'L');
+        $pdf->Cell(57, 4, "PT. Cahaya Baru Gemilang", '0', 1, 'R');
+
+        
+        $pdf->Image('assets/images/logo-cbg.jpeg',186,8,14);
+
+        $pdf->Cell(120, 4, "", '0', 0, 'L');
+        $pdf->Cell(57, 4, "Pekanbaru, Riau - Indonesia", '0', 1, 'R');
+
+
+
+
+
+        $x_value = $pdf->GetX();
+        $y_value = $pdf->GetY();
+        $pdf->SetXY($x_value, $y_value-10);
+
         $pdf->SetFont('','B',16);
     
         $pdf->Cell(190, 11, "Invoice", '0', 1, 'L');

@@ -78,13 +78,18 @@ class C_penjualan_jasa_print_2 extends MY_Controller
         //$pdf->Image('assets/images/logo-jo.jpg',10,10,0);
 
         $pdf->SetFont('','B',16);
-    
+        
+        $pdf->SetTextColor(194,8,8);
         $pdf->Cell(190, 10, "PT. CAHAYA BARU GEMILANG", '0', 1, 'C');
 
+
+        $pdf->SetTextColor(0, 0, 255);
         $pdf->SetFont('','',12);
         $pdf->Cell(190, 5, "Perum. Villa Duyung Blok A No. 5 RT. 006 RW. 004 Tangkerang Barat", '0', 1, 'C');
         $pdf->Cell(190, 8, "Marpoyan Damai, Pekanbaru RIAU", 'B', 1, 'C');
 
+
+        $pdf->SetTextColor(0,0,0);
 
         $pdf->Cell( 190,3,'','0',1,'L');
 
