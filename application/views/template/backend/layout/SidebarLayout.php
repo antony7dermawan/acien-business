@@ -652,47 +652,47 @@ if($level_user_id==1 or $level_user_id==6)
         </a>
         <ul class="pcoded-submenu">
             <li class="">
-                <a href="<?= base_url("c_ak_m_db_k"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_personal"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Personal</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_family"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_religion"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master Religion</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_type"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_gender"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master Gender</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_marital"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master Marital</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_permanen"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master Permanen</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_departmen"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master Departemen</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_position"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master Posisi</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_bank"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master Bank</span>
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_bpjs_tk"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master BPJS TK</span>
                 </a>
             </li>
