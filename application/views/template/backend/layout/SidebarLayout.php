@@ -735,23 +735,23 @@ if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id
         </a>
         <ul class="pcoded-submenu">
             <li class="">
-                <a href="<?= base_url("c_t_ak_jurnal_create"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Update Slip Gaji</span>
+                <a href="<?= base_url("c_t_p_t_potongan_lain"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Potongan Lain-Lain</span>
                 </a>
             </li>
         </ul>
         <ul class="pcoded-submenu">
             <li class="">
-                <a href="<?= base_url("c_t_ak_jurnal"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Transaksi Potongan</span>
+                <a href="<?= base_url("c_t_p_t_tunjangan_lain"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Tunjangan Lain-Lain</span>
                 </a>
             </li>
         </ul>
 
         <ul class="pcoded-submenu">
             <li class="">
-                <a href="<?= base_url("c_t_ak_jurnal"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Transaksi Tunjangan</span>
+                <a href="<?= base_url("c_t_p_t_pinjaman"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Input Pinjaman</span>
                 </a>
             </li>
         </ul>
