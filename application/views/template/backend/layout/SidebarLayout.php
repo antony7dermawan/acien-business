@@ -697,7 +697,7 @@ if($level_user_id==1 or $level_user_id==6)
                 </a>
             </li>
             <li class="">
-                <a href="<?= base_url("c_ak_m_coa"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_p_bpjs_kes"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Master BPJS Kes</span>
                 </a>
             </li>
@@ -755,7 +755,21 @@ if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id
                 </a>
             </li>
         </ul>
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_t_p_t_angsuran"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">Angsuran Pinjaman</span>
+                </a>
+            </li>
+        </ul>
 
+        <ul class="pcoded-submenu">
+            <li class="">
+                <a href="<?= base_url("c_t_t_payroll"); ?>" class="submenu waves-effect waves-dark">
+                    <span class="pcoded-mtext">T Payroll</span>
+                </a>
+            </li>
+        </ul>
 
 
         

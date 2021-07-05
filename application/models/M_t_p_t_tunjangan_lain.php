@@ -20,7 +20,18 @@ public function select_id($id)
 }
 
 
+  public function sum_value_by_date($from_date,$to_date)
+  {
+    $this->db->select("sum (\"VALUE\") as \"SUM_TUNJANGAN_LAIN\"");
+    $this->db->from('T_P_T_TUNJANGAN_LAIN');
 
+
+    $this->db->where('MARK_FOR_DELETE',FALSE);
+    $this->db->where("DATE<='{$to_date}' and DATE>='{$from_date}'");
+    
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
 
 
   public function select()

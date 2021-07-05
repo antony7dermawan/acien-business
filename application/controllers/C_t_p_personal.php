@@ -119,6 +119,7 @@ class C_t_p_personal extends MY_Controller
     $position_id = intval($this->input->post("position_id"));
     $bpjs_tk_id = intval($this->input->post("bpjs_tk_id"));
     $bpjs_kes_id = intval($this->input->post("bpjs_kes_id"));
+    $gp = intval($this->input->post("gp"));
 
     $nik_ktp = substr($this->input->post("nik_ktp"), 0, 100);
     $email = substr($this->input->post("email"), 0, 50);
@@ -151,6 +152,7 @@ class C_t_p_personal extends MY_Controller
       'POSITION_ID' => $position_id,
       'BPJS_TK_ID' => $bpjs_tk_id,
       'BPJS_KES_ID' => $bpjs_kes_id,
+      'GP' => $gp,
 
 
       'CREATED_BY' => $this->session->userdata('username'),
@@ -210,7 +212,9 @@ class C_t_p_personal extends MY_Controller
     $position = ($this->input->post("position"));
     $bpjs_tk = ($this->input->post("bpjs_tk"));
     $bpjs_kes = ($this->input->post("bpjs_kes"));
+    $gp = intval($this->input->post("gp"));
 
+    
     $nik_ktp = substr($this->input->post("nik_ktp"), 0, 100);
     $email = substr($this->input->post("email"), 0, 50);
     $address = substr($this->input->post("address"), 0, 100);
@@ -301,7 +305,7 @@ class C_t_p_personal extends MY_Controller
       'POSITION_ID' => $position_id,
       'BPJS_TK_ID' => $bpjs_tk_id,
       'BPJS_KES_ID' => $bpjs_kes_id,
-
+      'GP' => $gp,
 
       'UPDATED_BY' => $this->session->userdata('username'),
 

@@ -54,7 +54,7 @@ class Auth extends MY_Controller {
           'date_pembayaran_supplier'=>date('Y-m-d'),
           'date_from_select_pembelian'=>date('Y-m-d'),
           'date_to_select_pembelian'=>date('Y-m-d'),
-          
+          'choosed_month'=>date('m'),
 
 
 

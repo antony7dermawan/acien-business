@@ -52,6 +52,7 @@ public function select_id($id)
     $this->db->select('T_M_D_ANGGOTA.UPDATED_BY');
     $this->db->select('T_M_D_ANGGOTA.MARK_FOR_DELETE');
     $this->db->select('T_M_D_ANGGOTA.ANGGOTA');
+    $this->db->select('T_M_D_ANGGOTA.GP');
 
     $this->db->select('T_P_RELIGION.RELIGION');
     $this->db->select('T_P_GENDER.GENDER');
@@ -60,9 +61,12 @@ public function select_id($id)
     $this->db->select('T_P_DEPARTMEN.DEPARTMEN');
     $this->db->select('T_P_BANK.BANK');
     $this->db->select('T_P_POSITION.POSITION');
-    $this->db->select('T_P_BPJS_TK.BPJS_TK');
-    $this->db->select('T_P_BPJS_KES.BPJS_KES');
+    $this->db->select('T_P_POSITION.VALUE as POSITION_VALUE');
 
+    $this->db->select('T_P_BPJS_TK.BPJS_TK');
+    $this->db->select('T_P_BPJS_TK.VALUE as BPJS_TK_VALUE');
+    $this->db->select('T_P_BPJS_KES.BPJS_KES');
+    $this->db->select('T_P_BPJS_KES.VALUE as BPJS_KES_VALUE');
 
     $this->db->from('T_M_D_ANGGOTA');
 
@@ -87,6 +91,11 @@ public function select_id($id)
     $akun = $this->db->get ();
     return $akun->result ();
   }
+
+  
+
+  
+
 
   public function delete($id)
   {

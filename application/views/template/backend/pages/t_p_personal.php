@@ -101,6 +101,11 @@
               <input type='text' class='form-control' placeholder='Input Text' name='anggota'>
             </div>
 
+            <div class="form-group">
+              <label>Gaji Pokok</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='gp'>
+            </div>
+
             
             <div class="row">
               <div class="col-md-6">
@@ -420,6 +425,11 @@
             <div class="form-group">
               <label>Nama Anggota</label>
               <input type='text' class='form-control' placeholder='Input Text' name='anggota'>
+            </div>
+
+            <div class="form-group">
+              <label>Gaji Pokok</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='gp'>
             </div>
 
             
@@ -799,6 +809,7 @@
         POSITION : position,
         BPJS_TK : bpjs_tk,
         BPJS_KES : bpjs_kes,
+        GP : gp,
 
 
         CREATED_BY : created_by,
@@ -826,6 +837,7 @@
       elModalEdit.querySelector("[name=position]").value = position;
       elModalEdit.querySelector("[name=bpjs_tk]").value = bpjs_tk;
       elModalEdit.querySelector("[name=bpjs_kes]").value = bpjs_kes;
+      elModalEdit.querySelector("[name=gp]").value = gp;
 
 
       elModalEdit.querySelector("[name=created_by]").text = created_by;
