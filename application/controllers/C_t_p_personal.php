@@ -219,7 +219,7 @@ class C_t_p_personal extends MY_Controller
     $email = substr($this->input->post("email"), 0, 50);
     $address = substr($this->input->post("address"), 0, 100);
     $phone_number = substr($this->input->post("phone_number"), 0, 50);
-    $bank = substr($this->input->post("bank_id"), 0, 50);
+    $bank = substr($this->input->post("bank"), 0, 50);
     $bank_account_number = substr($this->input->post("bank_account_number"), 0, 50);
 
 

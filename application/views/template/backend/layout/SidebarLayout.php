@@ -808,31 +808,7 @@ if($level_user_id==1)
 ?>
 
 
-<?php
-if($level_user_id==1 or $level_user_id==6)
-{
-    ?>
-    <li class="pcoded-hasmenu">
-        <a href="javascript:void(0)" class="waves-effect waves-dark">
-            <span class="pcoded-micon"><i class="feather icon-layers"></i></span>
-            <span class="pcoded-mtext">Laporan</span>
-        </a>
-        <ul class="pcoded-submenu">
-            <li class="">
-                <a href="<?= base_url("c_laporan2"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Detail</span>
-                </a>
-            </li>
-            
-        </ul>
-    </li>
 
-
-    
-    <?php
-}
-
-?>
 
 
 

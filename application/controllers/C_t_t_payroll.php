@@ -78,8 +78,7 @@ class C_t_t_payroll extends MY_Controller
 
   public function update_slip_gaji()
   {
-    $choosed_month = ($this->input->post("month_value"));
-    $this->session->set_userdata('choosed_month', $choosed_month);
+    $choosed_month = $this->session->userdata('choosed_month');
 
     $from_cut_off = 28;
     $to_cut_off = 27;

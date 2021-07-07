@@ -66,6 +66,8 @@
 
     <form action='<?php echo base_url("c_t_t_payroll/update_slip_gaji"); ?>' class='' method="post" id=''>
       <input type="submit" class="btn btn-primary waves-effect waves-light" name="update_slip_gaji" value="Update Slip Gaji">
+
+      <input type="button" onclick=" window.open('laporan_excel/Lap_slip_gaji','_blank')" class="btn btn-success waves-effect waves-light" name="update_slip_gaji" value="Download Slip Gaji">
     </form>
 
     
@@ -113,7 +115,7 @@
               echo "<td>".number_format($value->BPJS_VALUE)."</td>";
             
               $total = $sub_total - intval($value->POTONGAN_VALUE) - intval($value->ANGSURAN_VALUE) - intval($value->BPJS_VALUE);
-              
+
               echo "<td>".number_format($total)."</td>";
 
               echo "</tr>";
