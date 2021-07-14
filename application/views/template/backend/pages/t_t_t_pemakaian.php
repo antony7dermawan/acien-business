@@ -218,7 +218,7 @@
               <label>Anggota</label>
               <select name="anggota_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
               <?php
-              foreach ($c_t_m_p_anggota as $key => $value) 
+              foreach ($c_t_m_d_anggota as $key => $value) 
               {
                 echo "<option value='".$value->ID."'>".$value->ANGGOTA."</option>";
 
@@ -382,7 +382,7 @@
                   <input type="text" name='anggota' placeholder="search" onkeyup="filterFunction(this,event)">
                   <ul>
                     <?php
-                    foreach ($c_t_m_p_anggota as $key => $value) 
+                    foreach ($c_t_m_d_anggota as $key => $value) 
                     {
                       echo "<li>".$value->ANGGOTA."</li>";
                     }

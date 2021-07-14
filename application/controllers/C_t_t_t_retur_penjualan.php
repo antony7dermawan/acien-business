@@ -12,11 +12,19 @@ class C_t_t_t_retur_penjualan extends MY_Controller
     $this->load->model('m_t_t_t_penjualan');
     $this->load->model('m_t_m_d_company');
     $this->load->model('m_t_t_t_retur_penjualan');
-  
+    $this->load->model('m_t_t_t_po_auto');
   }
 
   public function index()
   {
+    $po_auto_notif = 0;
+    $read_select = $this->m_t_t_t_po_auto->select_one_day(date('Y-m-d'));
+    foreach ($read_select as $key => $value) 
+    {
+      $po_auto_notif = $po_auto_notif + 1;
+    }
+    $this->session->set_userdata('po_auto_notif', $po_auto_notif);
+
     $this->session->set_userdata('t_t_t_retur_penjualan_delete_logic', '1');
 
 

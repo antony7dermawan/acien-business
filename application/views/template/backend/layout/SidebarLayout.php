@@ -36,6 +36,7 @@
 
 <?php
 $level_user_id = $this->session->userdata('level_user_id');
+$po_auto_notif = $this->session->userdata('po_auto_notif');
 if($level_user_id==1)
 {
     ?>
@@ -87,11 +88,7 @@ if($level_user_id==1)
                     <span class="pcoded-mtext">Nama Supir</span>
                 </a>
             </li>
-            <li class="">
-                <a href="<?= base_url("c_t_m_d_sales"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Nama Sales</span>
-                </a>
-            </li>
+           
             <li class="">
                 <a href="<?= base_url("c_t_m_d_supplier"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Nama Supplier</span>
@@ -159,6 +156,14 @@ if($level_user_id==1)
             <li class="">
                 <a href="<?= base_url("c_t_t_t_po_auto"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">PO Auto</span>
+            <?php
+            if($po_auto_notif>0)
+            {
+                echo "<span class='pcoded-badge label label-danger'>".$po_auto_notif."+</span>";
+            }
+            
+            ?>
+                    
                 </a>
             </li>
             

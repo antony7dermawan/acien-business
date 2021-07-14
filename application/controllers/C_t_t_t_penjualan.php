@@ -20,10 +20,22 @@ class C_t_t_t_penjualan extends MY_Controller
 
     $this->load->model('m_t_m_d_barang');
     $this->load->model('m_t_m_d_lokasi');
+
+    $this->load->model('m_t_t_t_po_auto');
   }
 
   public function index()
   {
+    $po_auto_notif = 0;
+    $read_select = $this->m_t_t_t_po_auto->select_one_day(date('Y-m-d'));
+    foreach ($read_select as $key => $value) 
+    {
+      $po_auto_notif = $po_auto_notif + 1;
+    }
+    $this->session->set_userdata('po_auto_notif', $po_auto_notif);
+
+
+
     $this->session->set_userdata('t_t_t_penjualan_delete_logic', '1');
     $this->session->set_userdata('t_m_d_payment_method_delete_logic', '0');
     $this->session->set_userdata('t_m_d_pelanggan_delete_logic', '0');
@@ -104,7 +116,7 @@ class C_t_t_t_penjualan extends MY_Controller
     $inv_head = substr($this->input->post("inv_head"), 0, 50);
     $no_polisi_id = intval($this->input->post("no_polisi_id"));
     $supir_id = intval($this->input->post("supir_id"));
-    $sales_id = intval($this->input->post("sales_id"));
+    $sales_id = 0;
 
     $lokasi_id = intval($this->input->post("lokasi_id"));
 
@@ -134,7 +146,7 @@ class C_t_t_t_penjualan extends MY_Controller
     $date_penjualan = $date;
     $this->session->set_userdata('date_penjualan', $date_penjualan);
 
-    if($pelanggan_id!=0 and $payment_method_id!=0 and $no_polisi_id!=0 and $supir_id!=0  and $sales_id!=0 )
+    if($pelanggan_id!=0 and $payment_method_id!=0 and $no_polisi_id!=0 and $supir_id!=0   )
     {
       $data = array(
         'DATE' => $date,
@@ -195,7 +207,7 @@ class C_t_t_t_penjualan extends MY_Controller
 
     $no_polisi = $this->input->post("no_polisi");
     $supir = $this->input->post("supir");
-    $sales = $this->input->post("sales");
+    //$sales = $this->input->post("sales");
     $lokasi = $this->input->post("lokasi");
 
     $supplier_id = 0;
@@ -212,10 +224,8 @@ class C_t_t_t_penjualan extends MY_Controller
       $supir_id = $value->ID;
     }
 
-    $read_select = $this->m_t_m_d_sales->select_id($sales);
-    foreach ($read_select as $key => $value) {
-      $sales_id = $value->ID;
-    }
+    $sales_id = 0;
+
 
     $read_select = $this->m_t_m_d_lokasi->select_id($lokasi);
     foreach ($read_select as $key => $value) {
@@ -234,7 +244,7 @@ class C_t_t_t_penjualan extends MY_Controller
     }
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
 
-    if($pelanggan_id!=0 and $payment_method_id!=0 and $no_polisi_id!=0 and $supir_id!=0  and $sales_id!=0 and $lokasi_id!=0 )
+    if($pelanggan_id!=0 and $payment_method_id!=0 and $no_polisi_id!=0 and $supir_id!=0   and $lokasi_id!=0 )
     {
       $data = array(
         'PAYMENT_METHOD_ID' => $payment_method_id,

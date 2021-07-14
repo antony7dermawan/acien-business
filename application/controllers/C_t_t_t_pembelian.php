@@ -12,12 +12,21 @@ class C_t_t_t_pembelian extends MY_Controller
     $this->load->model('m_t_t_t_pembelian');
     $this->load->model('m_t_m_d_company');
     $this->load->model('m_t_m_d_payment_method');
-    $this->load->model('m_t_m_d_supplier');    
+    $this->load->model('m_t_m_d_supplier');
+    $this->load->model('m_t_t_t_po_auto'); 
   }
 
 
   public function index()
   {
+    $po_auto_notif = 0;
+    $read_select = $this->m_t_t_t_po_auto->select_one_day(date('Y-m-d'));
+    foreach ($read_select as $key => $value) 
+    {
+      $po_auto_notif = $po_auto_notif + 1;
+    }
+    $this->session->set_userdata('po_auto_notif', $po_auto_notif);
+    
     $this->session->set_userdata('t_m_d_payment_method_delete_logic', '0');
     $this->session->set_userdata('t_m_d_supplier_delete_logic', '0');
 

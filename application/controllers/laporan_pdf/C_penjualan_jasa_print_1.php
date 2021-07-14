@@ -106,13 +106,13 @@ class C_penjualan_jasa_print_1 extends MY_Controller
         $pdf->SetFont('','B',12);
         $pdf->Cell( 190,10,'','0',1,'C'); //judul
 
-        $pdf->SetFont('','',11);
+        $pdf->SetFont('','',9);
         $pdf->Cell( 40,5,'No Invoice','0',0,'L');
-        $pdf->Cell( 100,5,':'.$no_faktur,'0',1,'L');
+        $pdf->Cell( 100,5,':  '.$no_faktur,'0',1,'L');
         $pdf->Cell( 40,5,'Tanggal Faktur','0',0,'L');
-        $pdf->Cell( 100,5,':'.date('d-m-Y', strtotime($tgl_faktur)),'0',1,'L');
+        $pdf->Cell( 100,5,':  '.date('d-m-Y', strtotime($tgl_faktur)),'0',1,'L');
         $pdf->Cell( 40,5,'Klien','0',0,'L');
-        $pdf->Cell( 100,5,':'.$nama,'0',1,'L');
+        $pdf->Cell( 100,5,':  '.$nama,'0',1,'L');
         
 
         $pdf->Cell( 40,5,'Alamat','0',0,'L');
@@ -122,7 +122,7 @@ class C_penjualan_jasa_print_1 extends MY_Controller
 
         $pdf->Cell( 100,3,'','0',1,'L');
 
-        $pdf->SetFont('','B',11);
+        $pdf->SetFont('','B',9);
         $size[0]=10;
         $size[1]=60;
         $size[2]=30;
@@ -141,7 +141,7 @@ class C_penjualan_jasa_print_1 extends MY_Controller
       }
       
       
-      $pdf->SetFont('','',10);
+      $pdf->SetFont('','',9);
       $pdf->Cell( $size[0],6,$key+1,'L',0,'C');
       $pdf->Cell( $size[1]+$size[2],6,$value->PRODUK,'L',0,'L');
 
@@ -174,59 +174,82 @@ class C_penjualan_jasa_print_1 extends MY_Controller
     #.............................paper head end
     $total_sub = round($total_sub);
 
-    $pdf->Cell( 0.1,8,'','L',0,'R');
-    $pdf->Cell( $size[0]+$size[1]-0.1,8,'Total','T',0,'L');
-    $pdf->Cell( $size[2],8,':','T',0,'L');
-    $pdf->Cell( $size[3]+$size[4]+$size[5]+$size[6]-0.1,8,number_format(intval($total_sub)),'T',0,'R');
-    $pdf->Cell( 0.1,8,'','L',1,'R');
+    $pdf->SetFont('','B',9);
+
+    $pdf->Cell( $size[0]+$size[1]+$size[2]+$size[3]+$size[4]+$size[5],5,'Total','TRL',0,'R');
+    $pdf->Cell( $size[6],5,number_format(intval($total_sub)),'TR',1,'R');
+
 
     $ppn = round(($total_sub * 10)/100);
 
-
-    $pdf->Cell( 0.1,8,'','L',0,'R');
-    $pdf->Cell( $size[0]+$size[1]-0.1,8,'Ppn 10%','T',0,'L');
-    $pdf->Cell( $size[2],8,':','T',0,'L');
-    $pdf->Cell( $size[3]+$size[4]+$size[5]+$size[6]-0.1,8,number_format(intval($ppn)),'T',0,'R');
-    $pdf->Cell( 0.1,8,'','L',1,'R');
+    $pdf->Cell( $size[0]+$size[1]+$size[2]+$size[3]+$size[4]+$size[5],5,'PPN 10%','TRL',0,'R');
+    $pdf->Cell( $size[6],5,number_format(intval($ppn)),'TR',1,'R');
 
     $total_harga = $total_sub  + $ppn;
-    
-    $pdf->Cell( 0.1,8,'','L',0,'R');
-    $pdf->Cell( $size[0]+$size[1]-0.1,8,'Total Harga','T',0,'L');
-    $pdf->Cell( $size[2],8,':','T',0,'L');
-    $pdf->Cell( $size[3]+$size[4]+$size[5]+$size[6]-0.1,8,number_format(intval($total_harga)),'T',0,'R');
-    $pdf->Cell( 0.1,8,'','L',1,'R');
+
+    $pdf->Cell( $size[0]+$size[1]+$size[2]+$size[3]+$size[4]+$size[5],5,'Jumlah','TRL',0,'R');
+    $pdf->Cell( $size[6],5,number_format(intval($total_harga)),'TR',1,'R');
 
 
+    $pdf->Cell( $size[0]+$size[1]+$size[2]+$size[3]+$size[4]+$size[5],5,'Penalti','TRL',0,'R');
+    $pdf->Cell( $size[6],5,number_format(intval(0)),'TR',1,'R');
 
-    $pdf->Cell( 0.1,8,'','L',0,'R');
-    $pdf->Cell( $size[0]+$size[1]-0.1,8,'Penalti','T',0,'L');
-    $pdf->Cell( $size[2],8,':','T',0,'L');
-    $pdf->Cell( $size[3]+$size[4]+$size[5]+$size[6]-0.1,8,'-','T',0,'R');
-    $pdf->Cell( 0.1,8,'','L',1,'R');
 
     $total_tagihan = $total_harga;
-    $pdf->Cell( 0.1,8,'','L',0,'R');
-    $pdf->Cell( $size[0]+$size[1]-0.1,8,'Grand Total (Rp.)','T',0,'L');
-    $pdf->Cell( $size[2],8,':','T',0,'L');
-    $pdf->Cell( $size[3]+$size[4]+$size[5]+$size[6]-0.1,8,number_format(intval($total_tagihan)),'T',0,'R');
-    $pdf->Cell( 0.1,8,'','L',1,'R');
+
+    $pdf->Cell( $size[0]+$size[1]+$size[2]+$size[3]+$size[4]+$size[5],5,'Grand Total (Rp.)','TRL',0,'R');
+    $pdf->Cell( $size[6],5,number_format(intval($total_tagihan)),'TR',1,'R');
 
 
+
+    $pdf->SetFont('','',9);
 
     $pdf->MultiCell(190 ,20,'Terbilang : '.ucwords($this->terbilang($total_tagihan)).'.','T','L');
-
+ 
 
     
 
-    $pdf->SetFont('','B',10);
+    
+    
+    $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(12);
+    foreach ($read_select as $key => $value) 
+    {
+      $setting_value=$value->SETTING_VALUE;
+    }
+    $pdf->Cell( 140,5,'','0',0,'L');
+    $pdf->Cell( 50,5,$setting_value.','.date('d-m-Y'),'0',1,'R');
+
+
+
+
+    $pdf->Cell( 140,4,'','0',0,'L');
+    $pdf->Cell( 50,4,'Hormat kami,','0',1,'R');
+
+    $pdf->Cell( 140,15,'','0',1,'L');
+
+
+  
+
+
+
+    $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(10);
+    foreach ($read_select as $key => $value) 
+    {
+      $setting_value=$value->SETTING_VALUE;
+    }
+    $pdf->Cell( 140,4,'','0',0,'L');
+    $pdf->Cell( 50,4,$setting_value,'0',1,'R');
+
+
+
+    $pdf->SetFont('','',10);
     $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(4);
     foreach ($read_select as $key => $value) 
     {
       $setting_value=$value->SETTING_VALUE;
     }
-    $pdf->Cell( 20,5,'Ket:','0',0,'L');
-    $pdf->Cell( 100,5,$setting_value,'0',1,'L');
+
+    $pdf->Cell( 120,5,$setting_value,'0',1,'L');
 
 
 
@@ -235,8 +258,7 @@ class C_penjualan_jasa_print_1 extends MY_Controller
     {
       $setting_value=$value->SETTING_VALUE;
     }
-    $pdf->Cell( 20,5,'','0',0,'L');
-    $pdf->Cell( 100,5,$setting_value,'0',1,'L');
+    $pdf->Cell( 120,5,$setting_value,'0',1,'L');
 
 
     $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(6);
@@ -244,8 +266,8 @@ class C_penjualan_jasa_print_1 extends MY_Controller
     {
       $setting_value=$value->SETTING_VALUE;
     }
-    $pdf->Cell( 20,5,'','0',0,'L');
-    $pdf->Cell( 100,5,$setting_value,'0',1,'L');
+
+    $pdf->Cell( 120,5,$setting_value,'0',1,'L');
 
 
 
@@ -256,48 +278,6 @@ class C_penjualan_jasa_print_1 extends MY_Controller
       $setting_value=$value->SETTING_VALUE;
     }
     $pdf->MultiCell(190 ,10,$setting_value,0,'L');
-
-
-
-    $pdf->SetFont('','',9);
-    $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(11);
-    foreach ($read_select as $key => $value) 
-    {
-      $setting_value=$value->SETTING_VALUE;
-    }
-    $pdf->Cell( 140,5,'','0',0,'L');
-    $pdf->Cell( 50,5,$setting_value.','.date('d-m-Y'),'0',1,'C');
-
-
-
-    $pdf->Cell( 140,5,'','0',1,'L');
-    $pdf->Cell( 140,5,'','0',1,'L');
-
-
-    $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(8);
-    foreach ($read_select as $key => $value) 
-    {
-      $setting_value=$value->SETTING_VALUE;
-    }
-    $pdf->Cell( 140,4,'','0',0,'L');
-    $pdf->Cell( 50,4,$setting_value,'0',1,'C');
-
-
-    $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(9);
-    foreach ($read_select as $key => $value) 
-    {
-      $setting_value=$value->SETTING_VALUE;
-    }
-    $pdf->Cell( 140,4,'','0',0,'L');
-    $pdf->Cell( 50,4,$setting_value,'0',1,'C');
-
-    $read_select = $this->m_t_ak_faktur_penjualan_print_setting->select_id(10);
-    foreach ($read_select as $key => $value) 
-    {
-      $setting_value=$value->SETTING_VALUE;
-    }
-    $pdf->Cell( 140,4,'','0',0,'L');
-    $pdf->Cell( 50,4,$setting_value,'0',1,'C');
 
     
 

@@ -133,14 +133,13 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
 
         $pdf->SetFont('','',8);
         $pdf->Cell(130, 4, "", 0, 0, 'C');
-        $pdf->Cell(30, 4, $company.', '.date('d-m-y', strtotime($date)), 0, 1, 'L');
+        $pdf->Cell(30, 4, $company.', '.date('d-m-Y', strtotime($date)), 0, 1, 'L');
 
         $pdf->SetFont('','',8);
         $pdf->Cell(130, 4, "", 0, 0, 'C');
         $pdf->Cell(20, 4, "No. Faktur", 0, 0, 'L');
         $pdf->Cell(20, 4, ': '.$inv, 0, 1, 'L');
 
-        $jatuh_tempo = date('Y-m-d',(strtotime ( '+30 day' , strtotime ( $date) ) ));
         $pdf->Cell(130, 4, "", 0, 1, 'C');
         
 
@@ -152,13 +151,13 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
         $y_value =5;
         $pdf->SetXY($x_value, $y_value);
         
-        $pdf->SetFont('','',10);
+        $pdf->SetFont('','',9);
         $pdf->Cell(25, 6, "Pelanggan", 0, 0, 'L');
-        $pdf->Cell(90, 6, $pelanggan, 0, 1, 'L');
-        $pdf->Cell(25, 6, "", 0, 0, 'C');
-        $pdf->MultiCell(90, 6, substr($alamat, 0, 50), '0', 'L',0,1);
-        $pdf->Cell(25, 6, "", 0, 0, 'C');
-        $pdf->MultiCell(90, 6, substr($no_telp, 0, 50), '0', 'L',0,1);
+        $pdf->Cell(90, 6, ':  '.$pelanggan, 0, 1, 'L');
+        $pdf->Cell(25, 6, "Alamat", 0, 0, 'L');
+        $pdf->MultiCell(90, 6, ':  '.substr($alamat, 0, 50), '0', 'L',0,1);
+        $pdf->Cell(25, 6, "No Telp", 0, 0, 'L');
+        $pdf->MultiCell(90, 6, ':  '.substr($no_telp, 0, 50), '0', 'L',0,1);
 
 
         $x_value = $pdf->GetX();
@@ -166,7 +165,7 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
         $pdf->SetXY($x_value, $y_value+1);
 
         $pdf->MultiCell(25, 6,'Keterangan', '0', 'L',0,0);
-        $pdf->MultiCell(90, 6,':'. substr($ket, 0, 200), '0', 'L',0,1);
+        $pdf->MultiCell(90, 6,':  '. substr($ket, 0, 200), '0', 'L',0,1);
 
 
 
@@ -176,12 +175,11 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
 
         $pdf->SetFont('','',8);
         $pdf->Cell($colom_width[0], 8, "NO", 'B', 0, 'C');
-        $pdf->Cell($colom_width[1], 8, "KODE", 'B', 0, 'C');
-        $pdf->Cell($colom_width[2], 8, "NAMA BARANG", 'B', 0, 'C');
-        $pdf->Cell($colom_width[3], 8, "BANYAKNYA", 'B', 0, 'C');
-        $pdf->Cell($colom_width[4], 8, "HARGA", 'B', 0, 'C');
-        $pdf->Cell($colom_width[5], 8, "JUMLAH", 'B', 0, 'C');
-        $pdf->Cell($colom_width[6], 8, "SISA QTY", 'B', 1, 'C');
+        $pdf->Cell($colom_width[1], 8, "KODE", 'BL', 0, 'C');
+        $pdf->Cell($colom_width[2], 8, "NAMA BARANG", 'BL', 0, 'C');
+        $pdf->Cell($colom_width[3], 8, "BANYAKNYA", 'BL', 0, 'C');
+        $pdf->Cell($colom_width[4], 8, "HARGA", 'BL', 0, 'C');
+        $pdf->Cell($colom_width[5]+$colom_width[6], 8, "JUMLAH", 'BL', 1, 'C');
 
       }
 
@@ -189,19 +187,19 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
 
       $pdf->SetFont('','',8);
 
-      $pdf->MultiCell($colom_width[0], $baris_height, ($i+1).'.', '0', 'L',0,0);
-      $pdf->MultiCell($colom_width[1], $baris_height, substr($kode_barang[$i], 0, 12), '0', 'L',0,0);
-      $pdf->MultiCell($colom_width[2], $baris_height, substr($barang[$i], 0, 20), '0', 'L',0,0);
-      $pdf->MultiCell($colom_width[3], $baris_height, number_format(round($qty[$i])).' '.$satuan[$i], '0', 'R',0,0);
+      $pdf->MultiCell($colom_width[0], $baris_height, ($i+1).'.', '0', 'C',0,0);
+      $pdf->MultiCell($colom_width[1], $baris_height, substr($kode_barang[$i], 0, 12), 'L', 'L',0,0);
+      $pdf->MultiCell($colom_width[2], $baris_height, substr($barang[$i], 0, 20), 'L', 'L',0,0);
+      $pdf->MultiCell($colom_width[3], $baris_height, number_format(round($qty[$i])).' '.$satuan[$i], 'L', 'C',0,0);
 
-      $pdf->MultiCell($colom_width[4], $baris_height, number_format(round($harga[$i])), '0', 'C',0,0);
+      $pdf->MultiCell($colom_width[4], $baris_height, number_format(round($harga[$i])), 'L', 'C',0,0);
 
       
 
 
-      $pdf->MultiCell($colom_width[5], $baris_height, number_format(round($sub_total[$i])), '0', 'R',0,0);
+      $pdf->MultiCell($colom_width[5]+$colom_width[6], $baris_height, number_format(round($sub_total[$i])), 'L', 'R',0,0);
       
-      $pdf->MultiCell($colom_width[6], $baris_height, number_format(round($sisa_qty_tt[$i])).' '.$satuan[$i], '0', 'C',0,0);
+    
 
       $pdf->Cell(0.01, $baris_height, "", '0', 1, 'C');
 
@@ -250,6 +248,12 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
     {
       for($x=0;$x<($total_baris_1_bon-$i);$x++)
       {
+        $pdf->MultiCell($colom_width[0], $baris_height,'', '0', 'C',0,0);
+        $pdf->MultiCell($colom_width[1], $baris_height, '', 'L', 'L',0,0);
+        $pdf->MultiCell($colom_width[2], $baris_height, '', 'L', 'L',0,0);
+        $pdf->MultiCell($colom_width[3], $baris_height, '', 'L', 'C',0,0);
+        $pdf->MultiCell($colom_width[4], $baris_height, '', 'L', 'C',0,0);
+        $pdf->MultiCell($colom_width[5]+$colom_width[6], $baris_height, '', 'L', 'R',0,0);
         $pdf->Cell(0.01, $baris_height, "", '0', 1, 'C');
       }
     }
@@ -260,6 +264,12 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
       for($x=0;$x<($total_baris_1_bon-$rmd);$x++)
       {
         
+        $pdf->MultiCell($colom_width[0], $baris_height,'', '0', 'C',0,0);
+        $pdf->MultiCell($colom_width[1], $baris_height, '', 'L', 'L',0,0);
+        $pdf->MultiCell($colom_width[2], $baris_height, '', 'L', 'L',0,0);
+        $pdf->MultiCell($colom_width[3], $baris_height, '', 'L', 'C',0,0);
+        $pdf->MultiCell($colom_width[4], $baris_height, '', 'L', 'C',0,0);
+        $pdf->MultiCell($colom_width[5]+$colom_width[6], $baris_height, '', 'L', 'R',0,0);
         $pdf->Cell(0.01, $baris_height, "", '0', 1, 'C');
       }
     }
@@ -271,27 +281,27 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
     
 
         $pdf->Cell(40, 6, "DITERIMA OLEH:", 0, 0, 'C');
-        $pdf->Cell(5, 6, "", 0, 0, 'C');
+        $pdf->Cell(10, 6, "", 0, 0, 'C');
         $pdf->Cell(40, 6, "DIPERIKSA OLEH:", 0, 0, 'C');
-        $pdf->Cell(5, 6, "", 0, 0, 'C');
+        $pdf->Cell(10, 6, "", 0, 0, 'C');
         $pdf->Cell(40, 6, "DIKIRIM OLEH:", 0, 0, 'C');
-        $pdf->Cell(5, 6, "", 0, 0, 'C');
+        $pdf->Cell(10, 6, "", 0, 0, 'C');
         $pdf->Cell(40, 6, "HORMAT KAMI:", 0, 1, 'C');
 
         $pdf->Cell(40, 12, "", 0, 0, 'C');
-        $pdf->Cell(5, 12, "", 0, 0, 'C');
+        $pdf->Cell(10, 12, "", 0, 0, 'C');
         $pdf->Cell(40, 12, "", 0, 0, 'C');
-        $pdf->Cell(5, 12, "", 0, 0, 'C');
+        $pdf->Cell(10, 12, "", 0, 0, 'C');
         $pdf->Cell(40, 12, "", 0, 0, 'C');
-        $pdf->Cell(5, 12, "", 0, 0, 'C');
+        $pdf->Cell(10, 12, "", 0, 0, 'C');
         $pdf->Cell(40, 12, "", 0, 1, 'C');
 
         $pdf->Cell(40, 6, "Tgl:", 'T', 0, 'C');
-        $pdf->Cell(5, 6, "", 0, 0, 'C');
+        $pdf->Cell(10, 6, "", 0, 0, 'C');
         $pdf->Cell(40, 6, "Tgl:", 'T', 0, 'C');
-        $pdf->Cell(5, 6, "", 0, 0, 'C');
+        $pdf->Cell(10, 6, "", 0, 0, 'C');
         $pdf->Cell(40, 6, "Tgl:", 'T', 0, 'C');
-        $pdf->Cell(5, 6, "", 0, 0, 'C');
+        $pdf->Cell(10, 6, "", 0, 0, 'C');
         $pdf->Cell(40, 6, "Tgl:", 'T', 1, 'C');
 
 
@@ -301,7 +311,7 @@ class C_t_t_t_retur_penjualan_print extends MY_Controller
           $dibuat_oleh = $updated_by;
         }
         $pdf->Cell(20, 12, "Dibuat Oleh", 0, 0, 'L');
-        $pdf->Cell(20, 12,': '. $dibuat_oleh.' / '. date('d-m-y', strtotime($date)). ' / '.date('H:i', strtotime($time)), 0, 1, 'L');
+        $pdf->Cell(20, 12,': '. $dibuat_oleh.' / '. date('d-m-Y', strtotime($date)). ' / '.date('H:i', strtotime($time)), 0, 1, 'L');
 
 
 
