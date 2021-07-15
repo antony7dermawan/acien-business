@@ -406,6 +406,7 @@ public function select_range_date($from_date,$to_date,$kredit_logic)
     $this->db->select("T_T_T_PEMBELIAN.PRINTED");
     $this->db->select("T_T_T_PEMBELIAN.INV_SUPPLIER");
     $this->db->select("T_T_T_PEMBELIAN.PAYMENT_T");
+    $this->db->select("T_T_T_PEMBELIAN.COMPANY_ID_FROM");
 
 
 

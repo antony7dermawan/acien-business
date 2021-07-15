@@ -105,6 +105,7 @@
             {
               echo "<a href='" . site_url('c_t_ak_terima_pelanggan/update_enable_edit/' . $value->ID) . "/" . round($value->SUM_TOTAL_PENJUALAN) . "/" . round($value->SUM_JUMLAH) . "/" . round($value->SUM_DISKON) . "/" . $value->ENABLE_EDIT . "/" . round($value->SUM_ADM_BANK) . "/" . round($value->SUM_PAYMENT_T) . "'"; #/1 ini artinya kena pajak
 
+
               echo "onclick= 'p_1_" . $key . "()'";
               if ($value->ENABLE_EDIT == 1) {
                 echo "> <i class='fa fa-print text-c-black'></i></a> ";

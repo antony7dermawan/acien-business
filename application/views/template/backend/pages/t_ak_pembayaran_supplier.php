@@ -32,7 +32,7 @@
             <th>Total Tagihan</th>
             <th>Sudah Dibayarkan</th>
             <th>Jumlah Pembayaran</th>
-     
+            <th>Diskon</th>
             <th>Action</th>
           </tr>
         </thead>
@@ -73,6 +73,24 @@
 
 
             echo "Rp" . number_format(round($value->SUM_JUMLAH)) . "</td>";
+
+
+
+
+            echo "<td>";
+
+            if(round($value->SUM_JUMLAH)>0)
+            {
+              echo "<a href='" . site_url('c_t_ak_pembayaran_supplier_diskon/index/' . $value->ID) . "/" . $value->SUPPLIER_ID . "' ";
+              echo "onclick=\"return confirm('Isi Rincian?')\"";
+              echo "> <i class='fa fa-search-plus text-c-blue'></i></a> ";
+            }
+            
+
+
+
+
+            echo "Rp" . number_format(round($value->SUM_DISKON)) . "</td>";
 
 
             

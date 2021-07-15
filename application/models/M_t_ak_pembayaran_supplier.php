@@ -76,6 +76,8 @@ public function select_no_faktur()
 
     $this->db->select("SUM_ADM_BANK");
 
+    $this->db->select("SUM_DISKON");
+
     $this->db->from('T_AK_PEMBAYARAN_SUPPLIER');
 
     $this->db->join('T_M_D_SUPPLIER', 'T_M_D_SUPPLIER.ID = T_AK_PEMBAYARAN_SUPPLIER.SUPPLIER_ID', 'left');
@@ -96,6 +98,10 @@ public function select_no_faktur()
     $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"JUMLAH\")\"SUM_JUMLAH\" from \"T_AK_PEMBAYARAN_SUPPLIER_METODE_BAYAR\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_3", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_3.PEMBAYARAN_SUPPLIER_ID', 'left');
 
     $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"ADM_BANK\")\"SUM_ADM_BANK\" from \"T_AK_PEMBAYARAN_SUPPLIER_METODE_BAYAR\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_4", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_4.PEMBAYARAN_SUPPLIER_ID', 'left');
+
+
+
+    $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"JUMLAH\")\"SUM_DISKON\" from \"T_AK_PEMBAYARAN_SUPPLIER_DISKON\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_5", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_5.PEMBAYARAN_SUPPLIER_ID', 'left');
     
     
     $date_before = date('Y-m-d',(strtotime ( '-30 day' , strtotime ( $date_pembayaran_supplier) ) ));
@@ -144,6 +150,7 @@ public function select_no_faktur()
 
     $this->db->select("SUM_ADM_BANK");
 
+    $this->db->select("SUM_DISKON");
 
 
     $this->db->from('T_AK_PEMBAYARAN_SUPPLIER');
@@ -166,6 +173,7 @@ public function select_no_faktur()
     $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"ADM_BANK\")\"SUM_ADM_BANK\" from \"T_AK_PEMBAYARAN_SUPPLIER_METODE_BAYAR\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_4", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_4.PEMBAYARAN_SUPPLIER_ID', 'left');
     
 
+    $this->db->join("(select \"PEMBAYARAN_SUPPLIER_ID\",sum(\"JUMLAH\")\"SUM_DISKON\" from \"T_AK_PEMBAYARAN_SUPPLIER_DISKON\" group by \"PEMBAYARAN_SUPPLIER_ID\") as t_sum_5", 'T_AK_PEMBAYARAN_SUPPLIER.ID = t_sum_5.PEMBAYARAN_SUPPLIER_ID', 'left');
 
 
     $this->db->where('T_AK_PEMBAYARAN_SUPPLIER.ID',$id);

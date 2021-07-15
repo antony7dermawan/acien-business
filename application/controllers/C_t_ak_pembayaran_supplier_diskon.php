@@ -1,14 +1,14 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
+class C_t_ak_pembayaran_supplier_diskon extends MY_Controller
 {
 
   public function __construct()
   {
     parent::__construct();
 
-    $this->load->model('m_t_ak_pembayaran_supplier_metode_bayar');
+    $this->load->model('m_t_ak_pembayaran_supplier_diskon');
     $this->load->model('m_t_ak_pembayaran_supplier');
     $this->load->model('m_t_ak_faktur_penjualan');
     $this->load->model('m_ak_m_coa');
@@ -21,7 +21,7 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
   public function index($id, $supplier_id)
   {
     $data = [
-      "c_t_ak_pembayaran_supplier_metode_bayar" => $this->m_t_ak_pembayaran_supplier_metode_bayar->select($id),
+      "c_t_ak_pembayaran_supplier_diskon" => $this->m_t_ak_pembayaran_supplier_diskon->select($id),
       "c_t_ak_pembayaran_supplier" => $this->m_t_ak_pembayaran_supplier-> select_by_id($id),
       "pembayaran_supplier_id" => $id,
       "no_akun_option" => $this->m_ak_m_coa->select_no_akun(),
@@ -30,7 +30,7 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
       "title" => "Rincian Metode Bayar",
       "description" => "Isi Rincian Metode Bayar"
     ];
-    $this->render_backend('template/backend/pages/t_ak_pembayaran_supplier_metode_bayar', $data);
+    $this->render_backend('template/backend/pages/t_ak_pembayaran_supplier_diskon', $data);
   }
 
 
@@ -40,10 +40,10 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
   {
     $jumlah_dihapus = 0;
     $db_logic = 0;
-    $read_select = $this->m_t_ak_pembayaran_supplier_metode_bayar->select_by_id($id);
+    $read_select = $this->m_t_ak_pembayaran_supplier_diskon->select_by_id($id);
     foreach ($read_select as $key => $value) 
     {
-      $jumlah_dihapus = floatval($value->JUMLAH)+floatval($value->ADM_BANK);
+      $jumlah_dihapus = floatval($value->JUMLAH);
     }
 
 
@@ -93,10 +93,10 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
         
       }
     }
-    $this->m_t_ak_pembayaran_supplier_metode_bayar->delete($id);
+    $this->m_t_ak_pembayaran_supplier_diskon->delete($id);
     $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Success!</strong> Data Berhasil DIhapus!</p></div>');
 
-    redirect('c_t_ak_pembayaran_supplier_metode_bayar/index/' . $pembayaran_supplier_id . '/' . $supplier_id);
+    redirect('c_t_ak_pembayaran_supplier_diskon/index/' . $pembayaran_supplier_id . '/' . $supplier_id);
   }
 
 
@@ -106,9 +106,8 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
   {
     $jumlah = floatval($this->input->post("jumlah"));
     $coa_id = floatval($this->input->post("coa_id"));
-    $adm_bank = floatval($this->input->post("adm_bank"));
 
-    $sum_payment_t_saldo_awal = 0;
+
     $db_logic = 0;
     $read_select = $this->m_t_ak_pembayaran_supplier_rincian->select($pembayaran_supplier_id);
     foreach ($read_select as $key => $value) 
@@ -125,20 +124,19 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
 
 
 
-    if(($sum_payment_t_saldo_awal+$jumlah+$adm_bank)<=$sum_total_penjualan)
+    if(($sum_payment_t_saldo_awal+$jumlah)<=$sum_total_penjualan)
     {
       $data = array(
         'PEMBAYARAN_SUPPLIER_ID' => $pembayaran_supplier_id,
         'COA_ID' => $coa_id,
         'JUMLAH' => $jumlah,
         'CREATED_BY' => $this->session->userdata('username'),
-        'UPDATED_BY' => '',
-        'ADM_BANK' => $adm_bank
+        'UPDATED_BY' => ''
       );
 
-      $this->m_t_ak_pembayaran_supplier_metode_bayar->tambah($data);
+      $this->m_t_ak_pembayaran_supplier_diskon->tambah($data);
 
-      $saldo_diskon = $jumlah+$adm_bank;
+      $saldo_diskon = $jumlah;
       $db_logic = 0;
       $read_select = $this->m_t_ak_pembayaran_supplier_rincian->select($pembayaran_supplier_id);
       foreach ($read_select as $key => $value) 
@@ -204,15 +202,15 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
           
         }
       }
-
+      
       $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
       
     }
-    if(($sum_payment_t_saldo_awal+$jumlah+$adm_bank)>$sum_total_penjualan)
+    if(($sum_payment_t_saldo_awal+$jumlah)>$sum_total_penjualan)
     {
       $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Sukses!</strong> Kelebihan Bayar!</p></div>');
     }
     
-    redirect('c_t_ak_pembayaran_supplier_metode_bayar/index/' . $pembayaran_supplier_id . '/' . $supplier_id);
+    redirect('c_t_ak_pembayaran_supplier_diskon/index/' . $pembayaran_supplier_id . '/' . $supplier_id);
   }
 }

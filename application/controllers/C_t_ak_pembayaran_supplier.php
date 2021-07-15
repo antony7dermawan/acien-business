@@ -19,6 +19,9 @@ class C_t_ak_pembayaran_supplier extends MY_Controller
     $this->load->model('m_ak_m_coa');
     $this->load->model('m_t_ak_pembayaran_supplier_print_setting');
     $this->load->model('m_t_ak_jurnal');
+
+    $this->load->model('m_t_ak_pembayaran_supplier_diskon');
+
   }
 
   public function index()
@@ -92,8 +95,10 @@ class C_t_ak_pembayaran_supplier extends MY_Controller
       $sum_adm_bank = round($value->SUM_ADM_BANK);
       $sum_payment_t = $value->SUM_PAYMENT_T;
       $sum_jumlah = round($value->SUM_JUMLAH);
+      $sum_diskon = round($value->SUM_DISKON);
 
-      $sum_pembayaran_supplier = $sum_jumlah + $sum_adm_bank;
+
+      $sum_pembayaran_supplier = $sum_jumlah + $sum_adm_bank - $sum_diskon;
       $no_faktur = $value->NO_FAKTUR;
 
       $enable_edit= $value->ENABLE_EDIT;
@@ -220,6 +225,71 @@ class C_t_ak_pembayaran_supplier extends MY_Controller
           }
           $this->m_t_ak_jurnal->tambah($data);
           $sum_all_payment = floatval($sum_all_payment) + floatval($jumlah_per_bank);
+        }
+      }
+
+      #.....................................................................................done
+
+
+
+
+
+
+      $sum_all_diskon = 0;
+      $read_select = $this->m_t_ak_pembayaran_supplier_diskon->select($id);
+      foreach ($read_select as $key => $value) 
+      {
+        $coa_id = $value->COA_ID;
+        $jumlah_per_diskon = $value->JUMLAH;
+
+        $db_k_id =1;
+
+        $read_select_in = $this->m_ak_m_coa->select_coa_id($coa_id);
+        foreach ($read_select_in as $key_in => $value_in) 
+        {
+          
+          if ($db_k_id == 1) #kode 1 debit / 2 kredit
+          {
+            $data = array(
+              'DATE' => $date_move,
+              'TIME' => $time_move,
+              'CREATED_BY' => $this->session->userdata('username'),
+              'UPDATED_BY' => '',
+              'COA_ID' => $coa_id,
+              'DEBIT' => round($jumlah_per_diskon),
+              'KREDIT' => 0,
+              'CATATAN' => 'Pembayaran Supplier : ' . $supplier,
+              'DEPARTEMEN' => '0',
+              'NO_VOUCER' => $no_faktur,
+              'CREATED_ID' => $created_id,
+              'CHECKED_ID' => 1,
+              'SPECIAL_ID' => 0,
+              'COMPANY_ID' => $this->session->userdata('company_id')
+            );
+            $sum_all_diskon = floatval($sum_all_diskon) + floatval($jumlah_per_diskon);
+          }
+          if ($db_k_id == 2) #kode 1 debit / 2 kredit
+          {
+            $data = array(
+              'DATE' => $date_move,
+              'TIME' => $time_move,
+              'CREATED_BY' => $this->session->userdata('username'),
+              'UPDATED_BY' => '',
+              'COA_ID' => $coa_id,
+              'DEBIT' => 0,
+              'KREDIT' => round($jumlah_per_diskon),
+              'CATATAN' => 'Pembayaran Supplier : ' . $supplier,
+              'DEPARTEMEN' => '0',
+              'NO_VOUCER' => $no_faktur,
+              'CREATED_ID' => $created_id,
+              'CHECKED_ID' => 1,
+              'SPECIAL_ID' => 0,
+              'COMPANY_ID' => $this->session->userdata('company_id')
+            );
+            $sum_all_diskon = floatval($sum_all_diskon) - floatval($jumlah_per_diskon);
+          }
+          $this->m_t_ak_jurnal->tambah($data);
+          
         }
       }
 

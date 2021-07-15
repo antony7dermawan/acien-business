@@ -21,6 +21,18 @@ public function select_id($id)
 
 
 
+
+public function select_by_id($company_id)
+{
+  $this->db->select('*');
+  $this->db->from('T_M_D_COMPANY');
+  $this->db->where('ID', $company_id);
+  $akun = $this->db->get ();
+  return $akun->result ();
+}
+
+
+
   public function select_by_company_id()
   {
     $this->db->select('*');

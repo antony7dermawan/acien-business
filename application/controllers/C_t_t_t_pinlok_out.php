@@ -61,8 +61,8 @@ class C_t_t_t_pinlok_out extends MY_Controller
       "c_t_m_d_no_polisi" => $this->m_t_m_d_no_polisi->select(),
       "c_t_m_d_supir" => $this->m_t_m_d_supir->select(),
 
-      "title" => "Transaksi Pemakaian",
-      "description" => "form Pemakaian"
+      "title" => "Transaksi Pindah Lokasi Keluar",
+      "description" => "form Pinlok"
     ];
     $this->render_backend('template/backend/pages/t_t_t_pinlok_out', $data);
   }
