@@ -26,12 +26,11 @@
 
         echo "<option value='laporan_excel/lap_flow_barang_per_item/index/' >Laporan Flow Barang (per Item)</option>";
         echo "<option value='laporan_excel/lap_flow_barang_per_kategori/index/' >Laporan Flow Barang (per Kategori)</option>";
-        echo "<option value='laporan_excel/lap_ranking_sales/index/' >Laporan Ranking Sales</option>";
+        
         echo "<option value='laporan_excel/lap_ranking_pelanggan/index/' >Laporan Ranking Pelanggan</option>";
 
 
-        echo "<option value='laporan_excel/lap_penjualan_per_sales/index/' >Laporan Penjualan Per Sales</option>";
-
+        
 
         echo "<option value='laporan_excel/lap_penjualan_per_pelanggan/index/' >Laporan Penjualan Per Pelanggan</option>";
 

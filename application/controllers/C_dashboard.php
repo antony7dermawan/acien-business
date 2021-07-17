@@ -8,6 +8,7 @@ class C_dashboard extends MY_Controller
   {
     parent::__construct();
     $this->load->model('m_t_t_t_penjualan_rincian');
+    $this->load->model('m_t_t_t_pembelian');
   }
 
   public function index()
@@ -17,7 +18,7 @@ class C_dashboard extends MY_Controller
 
       "select_rekap_sales" => $this->m_t_t_t_penjualan_rincian->select_rekap_sales($this->session->userdata('date_from_dashboard_2'),$this->session->userdata('date_to_dashboard_2')),
 
-
+      "c_t_t_t_pembelian" => $this->m_t_t_t_pembelian->select_dashboard(date('Y-m-d')),
       "title" => "Dashboard",
       "description" => "Web Version:21-01-26 22:11"
     ];
