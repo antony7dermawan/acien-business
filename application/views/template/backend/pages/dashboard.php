@@ -7,7 +7,16 @@
 
 
 
+<?php
 
+$level_user_id = $this->session->userdata('level_user_id');
+
+
+if($level_user_id==1)
+{
+
+
+?>
 
 
 
@@ -150,6 +159,11 @@
 
 
 
+
+
+
+
+
           <!-- !-->
           <div class="col-md-12">
             <div class="card">
@@ -239,7 +253,9 @@
 
 
 
-
+<?php
+}
+?>
 
 
 
