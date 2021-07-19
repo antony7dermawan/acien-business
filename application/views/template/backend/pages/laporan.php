@@ -14,7 +14,7 @@
 
 
 
-
+        echo "<option value='laporan_excel/lap_beli_per_supplier/index/' >Laporan Pembelian Per Supplier</option>";
 
         echo "<option value='laporan_excel/lap_jual/index/' >Laporan Penjualan</option>";
 
@@ -102,6 +102,19 @@
       </div>
 
 
+      <div class='supplier' id='supplier'>
+        <label>Pilih Supplier</label>
+            <select name="supplier_id" class='' id='supplier_id' placeholder='Pick a state...'>
+            
+            <?php
+            foreach ($c_t_m_d_supplier as $key => $value) 
+            {
+              echo "<option value='".$value->ID."'>".$value->SUPPLIER."</option>";
+            }
+            ?>
+          </select>
+      </div>
+
 
       <table>
         <tr>
@@ -150,15 +163,25 @@ $(document).ready(function()
     {
       document.getElementById('barang').style.display = 'block';
       document.getElementById('kategori').style.display = 'none';
-
+      document.getElementById('supplier').style.display = 'none';
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'none';
     }
 
+    else if(pilih_laporan=="laporan_excel/lap_beli_per_supplier/index/")
+    {
+      document.getElementById('barang').style.display = 'none';
+      document.getElementById('kategori').style.display = 'none';
+      document.getElementById('supplier').style.display = 'block';
+
+      document.getElementById('sales').style.display = 'none';
+      document.getElementById('pelanggan').style.display = 'none';
+    }
     else if(pilih_laporan=="laporan_excel/lap_flow_barang_per_kategori/index/")
     {
       document.getElementById('barang').style.display = 'none';
       document.getElementById('kategori').style.display = 'block';
+      document.getElementById('supplier').style.display = 'none';
 
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'none';
@@ -169,6 +192,7 @@ $(document).ready(function()
     {
       document.getElementById('barang').style.display = 'none';
       document.getElementById('kategori').style.display = 'none';
+      document.getElementById('supplier').style.display = 'none';
 
       document.getElementById('sales').style.display = 'block';
       document.getElementById('pelanggan').style.display = 'none';
@@ -178,6 +202,7 @@ $(document).ready(function()
     {
       document.getElementById('barang').style.display = 'none';
       document.getElementById('kategori').style.display = 'none';
+      document.getElementById('supplier').style.display = 'none';
 
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'block';
@@ -188,6 +213,7 @@ $(document).ready(function()
     {
       document.getElementById('barang').style.display = 'none';
       document.getElementById('kategori').style.display = 'none';
+      document.getElementById('supplier').style.display = 'none';
 
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'none';
@@ -212,9 +238,10 @@ $(document).ready(function()
     var link_5 = parseInt(document.getElementById("kategori_id").value);
     var link_6 = parseInt(document.getElementById("sales_id").value);
     var link_7 = parseInt(document.getElementById("pelanggan_id").value);
+    var link_8 = parseInt(document.getElementById("supplier_id").value);
     var slash = "/";
 
-    var link = link_1.concat(link_2, slash, link_3, slash, link_4, slash, link_5,slash, link_6,slash, link_7);
+    var link = link_1.concat(link_2, slash, link_3, slash, link_4, slash, link_5,slash, link_6,slash, link_7,slash,link_8);
     window.open(link);
   }
 </script>
@@ -254,7 +281,10 @@ $(document).ready(function()
 {
   display: none;
 }
-
+.supplier
+{
+  display: none;
+}
 .sales
 {
   display: none;

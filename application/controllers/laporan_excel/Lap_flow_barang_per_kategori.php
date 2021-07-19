@@ -45,7 +45,7 @@
 
 
 
-            public function index($date_from_laporan,$date_to_laporan,$barang_id,$kategori_id,$sales_id,$pelanggan_id)
+            public function index($date_from_laporan,$date_to_laporan,$barang_id,$kategori_id,$sales_id,$pelanggan_id,$supplier_id)
             {
               $this->session->set_userdata('t_t_t_penjualan_delete_logic', '0');
               $this->session->set_userdata('t_t_t_retur_penjualan_delete_logic', '0');
@@ -86,7 +86,7 @@
                   $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                   $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':J'.$row);
                   $sheet = $spreadsheet->getActiveSheet();
-                  $sheet->setCellValue('A'.$row, 'CV Jaya Abadi');
+                  $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
                   $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
 
 

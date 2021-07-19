@@ -31,7 +31,7 @@
 
 
 
-            public function index($date_from_laporan,$date_to_laporan,$barang_id,$kategori_id,$sales_id,$pelanggan_id)
+            public function index($date_from_laporan,$date_to_laporan,$barang_id,$kategori_id,$sales_id,$pelanggan_id,$supplier_id)
             {
               
 
@@ -56,7 +56,7 @@
                   $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                   $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':D'.$row);
                   $sheet = $spreadsheet->getActiveSheet();
-                  $sheet->setCellValue('A'.$row, 'CV Jaya Abadi');
+                  $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
                   $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
 
 

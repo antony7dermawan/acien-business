@@ -11,6 +11,7 @@ class C_laporan extends MY_Controller {
 
     	$this->load->model('m_t_m_d_sales');
     	$this->load->model('m_t_m_d_pelanggan');
+    	$this->load->model('m_t_m_d_supplier');
 	}
 
 	public function index(){
@@ -35,6 +36,7 @@ class C_laporan extends MY_Controller {
 			"c_t_m_d_barang" => $this->m_t_m_d_barang->select(),
 			"c_t_m_d_kategori" => $this->m_t_m_d_kategori->select(),
 			"c_t_m_d_pelanggan" => $this->m_t_m_d_pelanggan->select(),
+			"c_t_m_d_supplier" => $this->m_t_m_d_supplier->select(),
 			"c_t_m_d_sales" => $this->m_t_m_d_sales->select(),
 			"title" => "Laporan",
 			"description" => "Pilih Detail"

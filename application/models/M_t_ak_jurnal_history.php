@@ -23,6 +23,21 @@ public function select_no_voucer()
 }
 
 
+
+
+public function select_old_data($date_from,$coa_id)
+{
+    $this->db->select_sum('KREDIT');
+    $this->db->select_sum('DEBIT');
+    $this->db->from('T_AK_JURNAL');
+
+    $this->db->where("COA_ID='{$coa_id}'");
+    $this->db->where("DATE<'{$date_from}'");
+
+    $akun = $this->db->get ();
+    return $akun->result ();
+}
+
 public function select_sum_kredit_detail($coa_id)
 {
     $this->db->select_sum('KREDIT');
@@ -79,6 +94,8 @@ public function select_created_id($created_id)
 
   public function select($date_from_select_jurnal,$date_to_select_jurnal,$coa_id_jurnal_history)
   {
+    $company_id = $this->session->userdata('company_id');
+
     $this->db->select("T_AK_JURNAL.ID");
     $this->db->select("AK_M_COA.NO_AKUN_1");
     $this->db->select("AK_M_COA.NO_AKUN_2");
@@ -103,7 +120,14 @@ public function select_created_id($created_id)
     $this->db->where("T_AK_JURNAL.DATE>='{$date_from_select_jurnal}'");
     $this->db->where("T_AK_JURNAL.DATE<='{$date_to_select_jurnal}'");
     $this->db->where("T_AK_JURNAL.COA_ID='{$coa_id_jurnal_history}'");
-    $this->db->order_by("T_AK_JURNAL.ID", "asc");
+
+    if($company_id==2)
+    {
+        $this->db->where("T_AK_JURNAL.COMPANY_ID='{$company_id}'");
+    }
+
+
+    $this->db->order_by("T_AK_JURNAL.DATE,T_AK_JURNAL.TIME", "asc");
 
     $akun = $this->db->get ();
     return $akun->result ();

@@ -13,6 +13,8 @@ class C_t_t_t_retur_pembelian_rincian extends MY_Controller
     $this->load->model('m_t_m_d_company');
     $this->load->model('m_t_m_d_barang');
     
+
+    $this->load->model('m_t_t_t_pembelian');
     $this->load->model('m_t_t_t_pembelian_rincian'); 
     $this->load->model('m_t_t_t_retur_pembelian_rincian'); 
   }
@@ -51,6 +53,8 @@ class C_t_t_t_retur_pembelian_rincian extends MY_Controller
 
   public function delete($id,$retur_pembelian_id)
   {
+
+
     $data = array(
         'UPDATED_BY' => $this->session->userdata('username'),
         'MARK_FOR_DELETE' => TRUE
@@ -63,7 +67,32 @@ class C_t_t_t_retur_pembelian_rincian extends MY_Controller
       $r_qty_rb = $value->QTY;
       $r_barang_id_rb = $value->BARANG_ID;
       $r_pembelian_rincian_id = $value->PEMBELIAN_RINCIAN_ID;
+      $r_sub_total = $value->SUB_TOTAL;
     }
+
+
+    $read_select = $this->m_t_t_t_retur_pembelian->select_by_id($retur_pembelian_id);
+    foreach ($read_select as $key => $value) 
+    {
+      $read_pembelian_id = $value->PEMBELIAN_ID;
+    }
+
+    $read_select = $this->m_t_t_t_pembelian->select_by_id($read_pembelian_id);
+    foreach ($read_select as $key => $value) 
+    {
+      $payment_t =  $value->PAYMENT_T;
+      $total_pembelian = $value->SUM_SUB_TOTAL;
+    }
+
+    $data = array(
+      'PAYMENT_T' => $payment_t-$r_sub_total
+    );
+    $this->m_t_t_t_pembelian->update($data,$read_pembelian_id);
+
+
+
+
+
 
     $read_select = $this->m_t_t_t_retur_pembelian_rincian->select_barang_id_only_one($retur_pembelian_id,$r_barang_id_rb);
     foreach ($read_select as $key => $value) 
@@ -170,66 +199,91 @@ class C_t_t_t_retur_pembelian_rincian extends MY_Controller
 
     $new_sisa_qty = $r_sisa_qty - $qty;
 
-    if($barang_id!=0 and $qty<=$sisa_qty_tt and $qty<=$read_pembelian_sisa_qty)
+
+    $read_select = $this->m_t_t_t_pembelian->select_by_id($read_pembelian_id);
+    foreach ($read_select as $key => $value) 
     {
-      $data = array(
-        'RETUR_PEMBELIAN_ID' => $retur_pembelian_id,
-        'BARANG_ID' => $barang_id,
-        'QTY' => $qty,
-        
-        'HARGA' => $r_harga,
-        'SUB_TOTAL' => $sub_total,
-        'SISA_QTY_TT' => $sisa_qty_tt,
-        
-        'CREATED_BY' => $this->session->userdata('username'),
-        'UPDATED_BY' => '',
-        'MARK_FOR_DELETE' => FALSE,
-        'COMPANY_ID' => $this->session->userdata('company_id'),
-        'PEMBELIAN_RINCIAN_ID' => $r_pembelian_rincian_id
-      );
-
-      $this->m_t_t_t_retur_pembelian_rincian->tambah($data);
-
-
-      $data = array(
-        
-        'SISA_QTY_RB' => $new_sisa_qty
-      );
-      $this->m_t_t_t_pembelian_rincian->update($data,$r_pembelian_rincian_id);
-
-
-      $vivo_qty = $qty;
-      $read_select = $this->m_t_t_t_pembelian_rincian->select_sisa_qty($barang_id);
-      foreach ($read_select as $key => $value) 
+      $payment_t =  $value->PAYMENT_T;
+      $total_pembelian = $value->SUM_SUB_TOTAL;
+    }
+    if(($payment_t+$sub_total)<=$total_pembelian)
+    {
+      if($barang_id!=0 and $qty<=$sisa_qty_tt and $qty<=$read_pembelian_sisa_qty)
       {
-        if($vivo_qty<=$value->SISA_QTY)
+        $data = array(
+          'PAYMENT_T' => $payment_t+$sub_total
+        );
+        $this->m_t_t_t_pembelian->update($data,$read_pembelian_id);
+
+        $data = array(
+          'RETUR_PEMBELIAN_ID' => $retur_pembelian_id,
+          'BARANG_ID' => $barang_id,
+          'QTY' => $qty,
+          
+          'HARGA' => $r_harga,
+          'SUB_TOTAL' => $sub_total,
+          'SISA_QTY_TT' => $sisa_qty_tt,
+          
+          'CREATED_BY' => $this->session->userdata('username'),
+          'UPDATED_BY' => '',
+          'MARK_FOR_DELETE' => FALSE,
+          'COMPANY_ID' => $this->session->userdata('company_id'),
+          'PEMBELIAN_RINCIAN_ID' => $r_pembelian_rincian_id
+        );
+
+        $this->m_t_t_t_retur_pembelian_rincian->tambah($data);
+
+        //update pembelian payment T
+        
+
+        $data = array(
+          
+          'SISA_QTY_RB' => $new_sisa_qty
+        );
+        $this->m_t_t_t_pembelian_rincian->update($data,$r_pembelian_rincian_id);
+
+
+        $vivo_qty = $qty;
+        $read_select = $this->m_t_t_t_pembelian_rincian->select_sisa_qty($barang_id);
+        foreach ($read_select as $key => $value) 
         {
-          $live_sisa_qty = $value->SISA_QTY - $vivo_qty;
-          $data = array(
-            'SISA_QTY' => $live_sisa_qty
-          );
-          $this->m_t_t_t_pembelian_rincian->update($data,$value->ID);
-          $vivo_qty = 0;
+          if($vivo_qty<=$value->SISA_QTY)
+          {
+            $live_sisa_qty = $value->SISA_QTY - $vivo_qty;
+            $data = array(
+              'SISA_QTY' => $live_sisa_qty
+            );
+            $this->m_t_t_t_pembelian_rincian->update($data,$value->ID);
+            $vivo_qty = 0;
+          }
+
+          if($vivo_qty>$value->SISA_QTY)
+          {
+            $live_sisa_qty = 0;
+            $data = array(
+              'SISA_QTY' => $live_sisa_qty
+            );
+            $this->m_t_t_t_pembelian_rincian->update($data,$value->ID);
+            $vivo_qty = $vivo_qty - $value->SISA_QTY;
+          }
         }
 
-        if($vivo_qty>$value->SISA_QTY)
-        {
-          $live_sisa_qty = 0;
-          $data = array(
-            'SISA_QTY' => $live_sisa_qty
-          );
-          $this->m_t_t_t_pembelian_rincian->update($data,$value->ID);
-          $vivo_qty = $vivo_qty - $value->SISA_QTY;
-        }
+        $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
       }
 
-      $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
+      else
+      {
+        $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Gagal!</strong> Data Tidak Lengkap/Qty > Limit!</p></div>');
+      }
     }
 
+
     else
-    {
-      $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Gagal!</strong> Data Tidak Lengkap/Qty > Limit!</p></div>');
-    }
+      {
+        $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Gagal!</strong> Total Retur Lebih Besar Dari yang Sudah Dibayarkan ke Supplier!</p></div>');
+      }
+
+    
     
 
     
