@@ -124,10 +124,37 @@
               <input type='text' class='form-control' placeholder='Input Text' name='inv_rj'>
             </div>
 
+            <div class="form-group">
+              <label>Inv Penjualan Jasa</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_penjualan_jasa'>
+            </div>
+
 
             <div class="form-group">
               <label>Inv PO</label>
               <input type='text' class='form-control' placeholder='Input Text' name='inv_po'>
+            </div>
+
+
+            <div class="form-group">
+              <label>Inv Pindah Lokasi</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_pinlok'>
+            </div>
+
+            <div class="form-group">
+              <label>Inv Pemakaian</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_pemakaian'>
+            </div>
+
+            <div class="form-group">
+              <label>Inv Retur Pemakaian</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_retur_pemakaian'>
+            </div>
+
+
+            <div class="form-group">
+              <label>Inv Jurnal</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_jurnal'>
             </div>
 
             <div class="form-group">
@@ -138,6 +165,19 @@
               <label>Inv Terima Pelanggan</label>
               <input type='text' class='form-control' placeholder='Input Text' name='inv_terima_pelanggan'>
             </div>
+
+            <div class="form-group">
+              <label>Inv Pembayaran Supplier</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_pembayaran_supplier'>
+            </div>
+
+
+            <div class="form-group">
+              <label>Inv Pinjaman Anggota</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_hutang_karyawan'>
+            </div>
+
+
 
             
 
@@ -200,10 +240,37 @@
               <input type='text' class='form-control' placeholder='Input Text' name='inv_rj'>
             </div>
 
+            <div class="form-group">
+              <label>Inv Penjualan Jasa</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_penjualan_jasa'>
+            </div>
+
 
             <div class="form-group">
               <label>Inv PO</label>
               <input type='text' class='form-control' placeholder='Input Text' name='inv_po'>
+            </div>
+
+
+            <div class="form-group">
+              <label>Inv Pindah Lokasi</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_pinlok'>
+            </div>
+
+            <div class="form-group">
+              <label>Inv Pemakaian</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_pemakaian'>
+            </div>
+
+            <div class="form-group">
+              <label>Inv Retur Pemakaian</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_retur_pemakaian'>
+            </div>
+
+
+            <div class="form-group">
+              <label>Inv Jurnal</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_jurnal'>
             </div>
 
             <div class="form-group">
@@ -213,6 +280,17 @@
             <div class="form-group">
               <label>Inv Terima Pelanggan</label>
               <input type='text' class='form-control' placeholder='Input Text' name='inv_terima_pelanggan'>
+            </div>
+
+            <div class="form-group">
+              <label>Inv Pembayaran Supplier</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_pembayaran_supplier'>
+            </div>
+
+
+            <div class="form-group">
+              <label>Inv Pinjaman Anggota</label>
+              <input type='text' class='form-control' placeholder='Input Text' name='inv_hutang_karyawan'>
             </div>
 
 
@@ -260,11 +338,20 @@
         INV_PENJUALAN : inv_jual,
         INV_RETUR_PENJUALAN : inv_rj,
         INV_PO : inv_po,
-        INV_PINLOK : inv_pinlok,
-        CREATED_BY : created_by,
-        UPDATED_BY : updated_by,
         INV_FAKTUR_PENJUALAN : inv_faktur_penjualan,
-        INV_TERIMA_PELANGGAN : inv_terima_pelanggan
+        INV_TERIMA_PELANGGAN : inv_terima_pelanggan,
+        INV_PINLOK : inv_pinlok,
+        INV_PEMAKAIAN : inv_pemakaian,
+        INV_RETUR_PEMAKAIAN : inv_retur_pemakaian,
+        INV_PENJUALAN_JASA : inv_penjualan_jasa,
+        INV_JURNAL : inv_jurnal,
+        INV_PEMBAYARAN_SUPPLIER : inv_pembayaran_supplier,
+        INV_HUTANG_KARYAWAN : inv_hutang_karyawan,
+
+
+        
+        CREATED_BY : created_by,
+        UPDATED_BY : updated_by
       } = User[0];
 
       elModalEdit.querySelector("[name=id]").value = ID;
@@ -279,6 +366,15 @@
       elModalEdit.querySelector("[name=updated_by]").text = updated_by;
       elModalEdit.querySelector("[name=inv_faktur_penjualan]").value = inv_faktur_penjualan;
       elModalEdit.querySelector("[name=inv_terima_pelanggan]").value = inv_terima_pelanggan;
+
+
+      elModalEdit.querySelector("[name=inv_pemakaian]").value = inv_pemakaian;
+      elModalEdit.querySelector("[name=inv_retur_pemakaian]").value = inv_retur_pemakaian;
+      elModalEdit.querySelector("[name=inv_penjualan_jasa]").value = inv_penjualan_jasa;
+      elModalEdit.querySelector("[name=inv_jurnal]").value = inv_jurnal;
+      elModalEdit.querySelector("[name=inv_pembayaran_supplier]").value = inv_pembayaran_supplier;
+      elModalEdit.querySelector("[name=inv_hutang_karyawan]").value = inv_hutang_karyawan;
+
 
     })
   })

@@ -120,6 +120,31 @@
         <div class="modal-body">
           <div class="">
 
+            <div class="form-group">
+              <label>Pilih Kas</label>
+              <select name="coa_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
+              <?php
+              foreach ($no_akun_option as $key => $value) 
+              {
+                
+                if($value->NO_AKUN_3!='')
+                {
+                  $no_akun=$value->NO_AKUN_3;
+                }
+                elseif($value->NO_AKUN_2!='')
+                {
+                  $no_akun=$value->NO_AKUN_2;
+                }
+                else
+                {
+                  $no_akun=$value->NO_AKUN_1;
+                }
+                echo "<option value=".$value->ID.">".$no_akun." / ".$value->NAMA_AKUN."</option>";
+              }
+              ?>
+              </select>
+          </div>
+
 
             <div class="form-group">
               <label>Nama Anggota</label>

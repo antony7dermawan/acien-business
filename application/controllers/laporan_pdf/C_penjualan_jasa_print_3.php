@@ -80,7 +80,7 @@ Sebagai Bukti Pajak Keluaran';
       $ppn = 0;
       $pph_22 = 0;
       $total_tagihan = 0;
-      $total_row_1_bon = 10;
+      $total_row_1_bon = 12;
       $read_select = $this->m_t_t_t_penjualan_jasa_rincian->select($id);
       foreach ($read_select as $key => $value) 
       {
@@ -239,7 +239,16 @@ Sebagai Bukti Pajak Keluaran';
         $dpp = $total_sub;
       }
 
-      for($i=0;$i<=1;$i++)
+      if($key<$total_row_1_bon)
+      {
+        $added_row = $total_row_1_bon-$key;
+      }
+      if($key>=$total_row_1_bon)
+      {
+        $added_row = $total_row_1_bon-$rmd;
+      }
+
+      for($i=0;$i<=$added_row;$i++)
       {
         $pdf->Cell( $size[0],6,'','L',0,'C');
         $pdf->Cell( $size[1],6,'','L',0,'L');
@@ -292,7 +301,7 @@ Sebagai Bukti Pajak Keluaran';
 
       $pdf->Cell( 0.1,5,'','L',0,'R');
       $pdf->Cell( $size[0],5,'Dasar Pengenaan Pajak','T',0,'L');
-      $pdf->Cell( $size[1],5,':','T',0,'L');
+      $pdf->Cell( $size[1],5,'','T',0,'L');
       $pdf->Cell( $size[2]-0.1,5,number_format(intval($total_sub)),'TL',0,'R');
       $pdf->Cell( 0.1,5,'','L',1,'R');
 
@@ -305,7 +314,7 @@ Sebagai Bukti Pajak Keluaran';
 
       $pdf->Cell( 0.1,5,'','L',0,'R');
       $pdf->Cell( $size[0],5,'PPn = 10% x Dasar Pengenaan Pajak','TB',0,'L');
-      $pdf->Cell( $size[1],5,':','TB',0,'L');
+      $pdf->Cell( $size[1],5,'','TB',0,'L');
       $pdf->Cell( $size[2]-0.1,5,number_format(intval($ppn)),'LTB',0,'R');
       $pdf->Cell( 0.1,5,'','L',1,'R');
 

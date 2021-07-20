@@ -30,6 +30,24 @@ public function select_id($id)
   }
 
 
+
+  public function select_inv_int()
+  {
+    $this_year = date('Y-m').'-01';
+    $this->db->limit(1);
+    $this->db->select("INV_INT");
+    $this->db->from('T_P_T_PINJAMAN');
+
+    $this->db->where("DATE>='{$this_year}'");
+    $this->db->order_by("ID", "desc");
+
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
+
+
+
+
   public function select_sisa_value($anggota_id)
   {
       $this->db->select('*');
@@ -63,17 +81,26 @@ public function select_id($id)
     $this->db->select('T_P_T_PINJAMAN.CREATED_BY');
     $this->db->select('T_P_T_PINJAMAN.UPDATED_BY');
     $this->db->select('T_P_T_PINJAMAN.MARK_FOR_DELETE');
+    $this->db->select('T_P_T_PINJAMAN.COA_ID');
+    $this->db->select('T_P_T_PINJAMAN.INV');
+    $this->db->select('T_P_T_PINJAMAN.INV_INT');
   
     $this->db->select('T_M_D_ANGGOTA.ANGGOTA');
 
-
+    $this->db->select("AK_M_COA.NO_AKUN_1");
+    $this->db->select("AK_M_COA.NO_AKUN_2");
+    $this->db->select("AK_M_COA.NO_AKUN_3");
+    $this->db->select("AK_M_COA.NAMA_AKUN");
 
 
     $this->db->from('T_P_T_PINJAMAN');
 
     $this->db->join('T_M_D_ANGGOTA', 'T_M_D_ANGGOTA.ID = T_P_T_PINJAMAN.ANGGOTA_ID', 'left');
 
-   
+    
+
+
+    $this->db->join('AK_M_COA', 'AK_M_COA.ID = T_P_T_PINJAMAN.COA_ID', 'left');
 
 
     if($this->session->userdata('t_p_t_pinjaman_delete_logic')==0)
@@ -103,7 +130,9 @@ public function select_id($id)
   
     $this->db->select('T_M_D_ANGGOTA.ANGGOTA');
 
-
+    $this->db->select('T_P_T_PINJAMAN.COA_ID');
+    $this->db->select('T_P_T_PINJAMAN.INV');
+    $this->db->select('T_P_T_PINJAMAN.INV_INT');
 
 
     $this->db->from('T_P_T_PINJAMAN');

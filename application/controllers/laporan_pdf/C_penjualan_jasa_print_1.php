@@ -56,7 +56,17 @@ class C_penjualan_jasa_print_1 extends MY_Controller
     $ppn = 0;
     $pph_22 = 0;
     $total_tagihan = 0;
-    $total_row_1_bon = 10;
+    $total_row_1_bon = 18;
+    $pages=1;
+
+
+    $read_select = $this->m_t_t_t_penjualan_jasa_rincian->select($id);
+    foreach ($read_select as $key => $value) 
+    {
+      $total_sheet = intval($key/$total_row_1_bon)+1;
+    }
+
+
     $read_select = $this->m_t_t_t_penjualan_jasa_rincian->select($id);
     foreach ($read_select as $key => $value) 
     {
@@ -67,6 +77,7 @@ class C_penjualan_jasa_print_1 extends MY_Controller
       {
         if($key>=$total_row_1_bon and $rmd==0)
         {
+          $pages=$pages+1;
           $pdf->SetPrintHeader(false);
           $pdf->SetPrintFooter(false);
           $pdf->AddPage();
@@ -156,9 +167,24 @@ class C_penjualan_jasa_print_1 extends MY_Controller
 
       $total_sub = $total_sub+round($value->SUB_TOTAL);
       $dpp = $total_sub;
+
+      if(($key<$total_row_1_bon and ($key+1)==$total_row_1_bon) or ($key>=$total_row_1_bon and ($rmd+1)==$total_row_1_bon))
+      {
+        $pdf->Cell( 120,90,'','0',1,'L');
+        $pdf->Cell( 120,5,'Hal.'.$pages.'/'.$total_sheet,'0',1,'L');
+      }
+      
     }
 
-    for($i=0;$i<=1;$i++)
+    if($key<$total_row_1_bon)
+    {
+      $added_row = $total_row_1_bon-$key;
+    }
+    if($key>=$total_row_1_bon)
+    {
+      $added_row = $total_row_1_bon-$rmd;
+    }
+    for($i=0;$i<=$added_row;$i++)
     {
       $pdf->Cell( $size[0],6,'','L',0,'C');
       $pdf->Cell( $size[1],6,'','L',0,'L');
@@ -280,6 +306,7 @@ class C_penjualan_jasa_print_1 extends MY_Controller
     $pdf->MultiCell(190 ,10,$setting_value,0,'L');
 
     
+    $pdf->Cell( 120,5,'Hal.'.$pages.'/'.$total_sheet,'0',1,'L');
 
 
     $pdf->Output("penjualan_jasa_1_".$no_faktur.".pdf");

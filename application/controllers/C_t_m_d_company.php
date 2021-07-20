@@ -61,6 +61,16 @@ class C_t_m_d_company extends MY_Controller
     $inv_terima_pelanggan = substr($this->input->post("inv_terima_pelanggan"), 0, 50);
 
 
+    $inv_pinlok = substr($this->input->post("inv_pinlok"), 0, 50);
+    $inv_pemakaian = substr($this->input->post("inv_pemakaian"), 0, 50);
+    $inv_retur_pemakaian = substr($this->input->post("inv_retur_pemakaian"), 0, 50);
+    $inv_penjualan_jasa = substr($this->input->post("inv_penjualan_jasa"), 0, 50);
+    $inv_jurnal = substr($this->input->post("inv_jurnal"), 0, 50);
+    $inv_pembayaran_supplier = substr($this->input->post("inv_pembayaran_supplier"), 0, 50);
+    $inv_hutang_karyawan = substr($this->input->post("inv_hutang_karyawan"), 0, 50);
+
+
+
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
     $data = array(
       'COMPANY' => $company,
@@ -73,7 +83,14 @@ class C_t_m_d_company extends MY_Controller
       'INV_TERIMA_PELANGGAN' => $inv_terima_pelanggan,
       'CREATED_BY' => $this->session->userdata('username'),
       'UPDATED_BY' => '',
-      'MARK_FOR_DELETE' => FALSE
+      'MARK_FOR_DELETE' => FALSE,
+      'INV_PINLOK' => $inv_pinlok,
+      'INV_PEMAKAIAN' => $inv_pemakaian,
+      'INV_RETUR_PEMAKAIAN' => $inv_retur_pemakaian,
+      'INV_PENJUALAN_JASA' => $inv_penjualan_jasa,
+      'INV_JURNAL' => $inv_jurnal,
+      'INV_PEMBAYARAN_SUPPLIER' => $inv_pembayaran_supplier,
+      'INV_HUTANG_KARYAWAN' => $inv_hutang_karyawan
     );
 
     $this->m_t_m_d_company->tambah($data);
@@ -100,7 +117,13 @@ class C_t_m_d_company extends MY_Controller
     $inv_faktur_penjualan = substr($this->input->post("inv_faktur_penjualan"), 0, 50);
     $inv_terima_pelanggan = substr($this->input->post("inv_terima_pelanggan"), 0, 50);
 
-
+    $inv_pinlok = substr($this->input->post("inv_pinlok"), 0, 50);
+    $inv_pemakaian = substr($this->input->post("inv_pemakaian"), 0, 50);
+    $inv_retur_pemakaian = substr($this->input->post("inv_retur_pemakaian"), 0, 50);
+    $inv_penjualan_jasa = substr($this->input->post("inv_penjualan_jasa"), 0, 50);
+    $inv_jurnal = substr($this->input->post("inv_jurnal"), 0, 50);
+    $inv_pembayaran_supplier = substr($this->input->post("inv_pembayaran_supplier"), 0, 50);
+    $inv_hutang_karyawan = substr($this->input->post("inv_hutang_karyawan"), 0, 50);
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
     $data = array(
       'COMPANY' => $company,
@@ -111,7 +134,17 @@ class C_t_m_d_company extends MY_Controller
       'INV_PO' => $inv_po,
       'INV_FAKTUR_PENJUALAN' => $inv_faktur_penjualan,
       'INV_TERIMA_PELANGGAN' => $inv_terima_pelanggan,
-      'UPDATED_BY' => $this->session->userdata('username')
+
+      'UPDATED_BY' => $this->session->userdata('username'),
+
+      'MARK_FOR_DELETE' => FALSE,
+      'INV_PINLOK' => $inv_pinlok,
+      'INV_PEMAKAIAN' => $inv_pemakaian,
+      'INV_RETUR_PEMAKAIAN' => $inv_retur_pemakaian,
+      'INV_PENJUALAN_JASA' => $inv_penjualan_jasa,
+      'INV_JURNAL' => $inv_jurnal,
+      'INV_PEMBAYARAN_SUPPLIER' => $inv_pembayaran_supplier,
+      'INV_HUTANG_KARYAWAN' => $inv_hutang_karyawan
     );
 
     $this->m_t_m_d_company->update($data, $id);

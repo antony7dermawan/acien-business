@@ -31,7 +31,7 @@ public function select_inv_int()
     $this->db->from('T_AK_JURNAL');
     $this->db->where("COMPANY_ID={$this->session->userdata('company_id')}");
 
-
+    $this->db->where("NO_VOUCER_INT is not null");
     
     $this->db->where("DATE>='{$this_year}'");
     $this->db->order_by("ID", "desc");
