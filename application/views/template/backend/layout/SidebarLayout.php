@@ -779,7 +779,7 @@ if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id
 
         <ul class="pcoded-submenu">
             <li class="">
-                <a href="<?= base_url("c_t_t_payroll"); ?>" class="submenu waves-effect waves-dark">
+                <a href="<?= base_url("c_t_t_payroll_personal"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">T Payroll (Personal)</span>
                 </a>
             </li>

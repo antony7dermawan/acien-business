@@ -257,7 +257,7 @@ public function select_barang_with_supplier($barang_id)
     }
     
 
-    $this->db->where("T_M_D_BARANG.COMPANY_ID={$this->session->userdata('company_id')}");
+    //$this->db->where("T_M_D_BARANG.COMPANY_ID={$this->session->userdata('company_id')}");
     $this->db->where('T_T_T_PEMBELIAN_RINCIAN.PEMBELIAN_ID',$pembelian_id);
     $this->db->order_by("ID", "desc");
 

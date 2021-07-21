@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class C_t_t_t_pinlok_print extends MY_Controller
+class C_t_t_t_pinlok_in_print extends MY_Controller
 {
 
   public function __construct()
@@ -58,7 +58,6 @@ class C_t_t_t_pinlok_print extends MY_Controller
     {
       $company_from = $value->COMPANY;
     }
-
 
 
 

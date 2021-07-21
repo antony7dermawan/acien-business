@@ -53,7 +53,7 @@ class C_penjualan_jasa_print_2 extends MY_Controller
     }
 
     
-
+    $pages=1;
     $total_kuantitas = 0;
     $total_sub = 0;
     $dpp = 0;
@@ -71,6 +71,7 @@ class C_penjualan_jasa_print_2 extends MY_Controller
       {
         if($key>=$total_row_1_bon and $rmd==0)
         {
+          $pages=$pages+1;
           $pdf->SetPrintHeader(false);
           $pdf->SetPrintFooter(false);
           $pdf->AddPage();

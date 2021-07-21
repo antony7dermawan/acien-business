@@ -73,8 +73,9 @@ class Auth extends MY_Controller {
           'date_from_dashboard'=>date('Y-m-d'),
           'date_to_dashboard'=>date('Y-m-d'),
           'date_jurnal_create'=>date('Y-m-d'),
-          'date_po'=>date('Y-m-d')
-          
+          'date_po'=>date('Y-m-d'),
+          'date_from_payroll_personal'=>date('Y-m-d'),
+          'anggota_payroll_personal'=>1
 
           
           
