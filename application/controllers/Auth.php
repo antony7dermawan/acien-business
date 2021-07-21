@@ -57,6 +57,7 @@ class Auth extends MY_Controller {
           'choosed_month'=>date('m'),
 
           'po_auto_notif'=>0,
+          'no_polisi_notif'=>0,
 
 
 

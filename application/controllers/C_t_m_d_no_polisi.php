@@ -53,12 +53,41 @@ class C_t_m_d_no_polisi extends MY_Controller
     
     $no_polisi = substr($this->input->post("no_polisi"), 0, 50);
 
+
+    $stnk = $this->input->post("stnk");
+    if($stnk=='')
+    {
+      $stnk= date('Y-m-d');
+    }
+
+    $kir = $this->input->post("kir");
+    if($kir=='')
+    {
+      $kir= date('Y-m-d');
+    }
+
+    $service = $this->input->post("service");
+    if($service=='')
+    {
+      $service= date('Y-m-d');
+    }
+
+    $angsuran = $this->input->post("angsuran");
+    if($angsuran=='')
+    {
+      $angsuran= date('Y-m-d');
+    }
+
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
     $data = array(
       'NO_POLISI' => $no_polisi,
       'CREATED_BY' => $this->session->userdata('username'),
       'UPDATED_BY' => '',
-      'MARK_FOR_DELETE' => FALSE
+      'MARK_FOR_DELETE' => FALSE,
+      'KIR' => $kir,
+      'STNK' => $stnk,
+      'SERVICE' => $service,
+      'ANGSURAN' => $angsuran
     );
 
     $this->m_t_m_d_no_polisi->tambah($data);
@@ -77,10 +106,38 @@ class C_t_m_d_no_polisi extends MY_Controller
     $id = $this->input->post("id");
     $no_polisi = substr($this->input->post("no_polisi"), 0, 50);
 
+    $stnk = $this->input->post("stnk");
+    if($stnk=='')
+    {
+      $stnk= date('Y-m-d');
+    }
+
+    $kir = $this->input->post("kir");
+    if($kir=='')
+    {
+      $kir= date('Y-m-d');
+    }
+
+    $service = $this->input->post("service");
+    if($service=='')
+    {
+      $service= date('Y-m-d');
+    }
+
+    $angsuran = $this->input->post("angsuran");
+    if($angsuran=='')
+    {
+      $angsuran= date('Y-m-d');
+    }
+
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
     $data = array(
       'NO_POLISI' => $no_polisi,
-      'UPDATED_BY' => $this->session->userdata('username')
+      'UPDATED_BY' => $this->session->userdata('username'),
+      'KIR' => $kir,
+      'STNK' => $stnk,
+      'SERVICE' => $service,
+      'ANGSURAN' => $angsuran
     );
 
     $this->m_t_m_d_no_polisi->update($data, $id);

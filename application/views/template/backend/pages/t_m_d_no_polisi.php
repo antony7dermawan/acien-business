@@ -14,11 +14,17 @@
           <tr>
             <th>No</th>
             <th>No Polisi</th>
+            <th>STNK</th>
+            <th>KIR</th>
+            <th>Service</th>
+            <th>Angsuran</th>
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <?php
+          $no_polisi_notif = 0;
+          $date_plus_7 = date('Y-m-d',(strtotime ( '+7 day' , strtotime (date('Y-m-d')) ) ));
           foreach ($c_t_m_d_no_polisi as $key => $value) 
           {
             if($value->MARK_FOR_DELETE == 'f')
@@ -26,7 +32,54 @@
               echo "<tr>";
               echo "<td>".($key + 1)."</td>";
               echo "<td>".$value->NO_POLISI."</td>";
-            
+              
+              if(strtotime($value->STNK)>strtotime($date_plus_7))
+              {
+                echo "<td>" . date('d-m-Y', strtotime($value->STNK)) . "</td>";
+              }
+              if(strtotime($value->STNK)<=strtotime($date_plus_7))
+              {
+                echo "<td class='text-c-red'>" . date('d-m-Y', strtotime($value->STNK)) . "</td>";
+                $no_polisi_notif = $no_polisi_notif +1;
+                $this->session->set_userdata('no_polisi_notif', $no_polisi_notif);
+              }
+
+              if(strtotime($value->KIR)>strtotime($date_plus_7))
+              {
+                echo "<td>" . date('d-m-Y', strtotime($value->KIR)) . "</td>";
+              }
+              if(strtotime($value->KIR)<=strtotime($date_plus_7))
+              {
+                echo "<td class='text-c-red'>" . date('d-m-Y', strtotime($value->KIR)) . "</td>";
+                $no_polisi_notif = $no_polisi_notif +1;
+                $this->session->set_userdata('no_polisi_notif', $no_polisi_notif);
+              }
+
+              if(strtotime($value->SERVICE)>strtotime($date_plus_7))
+              {
+                echo "<td>" . date('d-m-Y', strtotime($value->SERVICE)) . "</td>";
+              }
+              if(strtotime($value->SERVICE)<=strtotime($date_plus_7))
+              {
+                echo "<td class='text-c-red'>" . date('d-m-Y', strtotime($value->SERVICE)) . "</td>";
+                $no_polisi_notif = $no_polisi_notif +1;
+                $this->session->set_userdata('no_polisi_notif', $no_polisi_notif);
+              }
+
+              if(strtotime($value->ANGSURAN)>strtotime($date_plus_7))
+              {
+                echo "<td>" . date('d-m-Y', strtotime($value->ANGSURAN)) . "</td>";
+              }
+              if(strtotime($value->ANGSURAN)<=strtotime($date_plus_7))
+              {
+                echo "<td class='text-c-red'>" . date('d-m-Y', strtotime($value->ANGSURAN)) . "</td>";
+                $no_polisi_notif = $no_polisi_notif +1;
+                $this->session->set_userdata('no_polisi_notif', $no_polisi_notif);
+              }
+              
+              
+
+
               echo "<td>";
                
               echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='".$value->ID."'>";
@@ -50,7 +103,13 @@
               echo "<tr>";
               echo "<td><s>".($key + 1)."</s></td>";
               echo "<td><s>".$value->NO_POLISI."</s></td>";
-            
+              
+              echo "<td><s>" . date('d-m-Y', strtotime($value->STNK)) . "<s></td>";
+              echo "<td><s>" . date('d-m-Y', strtotime($value->KIR)) . "<s></td>";
+              echo "<td><s>" . date('d-m-Y', strtotime($value->SERVICE)) . "<s></td>";
+              echo "<td><s>" . date('d-m-Y', strtotime($value->ANGSURAN)) . "<s></td>";
+
+
               echo "<td>";
                
               
@@ -101,6 +160,50 @@
               <input type='text' class='form-control' placeholder='Input Text' name='no_polisi'>
             </div>
 
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>STNK</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='stnk' value=''>
+                </fieldset>
+
+              </div><!-- Membungkus Row Kedua !-->
+
+
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>KIR</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='kir' value=''>
+              </div> <!-- Membungkus Row !-->
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>Service</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='service' value=''>
+                </fieldset>
+
+              </div><!-- Membungkus Row Kedua !-->
+
+
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>Angsuran</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='angsuran' value=''>
+              </div> <!-- Membungkus Row !-->
+            </div>
+
             
 
           </div>
@@ -137,6 +240,50 @@
             <div class="form-group">
               <label>No Polisi</label>
               <input type='text' class='form-control' placeholder='Input Text' name='no_polisi'>
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>STNK</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='stnk' value=''>
+                </fieldset>
+
+              </div><!-- Membungkus Row Kedua !-->
+
+
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>KIR</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='kir' value=''>
+              </div> <!-- Membungkus Row !-->
+            </div>
+
+
+            <div class="row">
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>Service</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='service' value=''>
+                </fieldset>
+
+              </div><!-- Membungkus Row Kedua !-->
+
+
+              <div class="col-md-6">
+
+                <fieldset class="form-group">
+                  <label>Angsuran</label>
+                  <form action='/action_page.php'>
+                  <input type='date' class='form-control' name='angsuran' value=''>
+              </div> <!-- Membungkus Row !-->
             </div>
 
 
@@ -178,12 +325,24 @@
       const {
         ID,
         NO_POLISI : no_polisi,
+
+        KIR : kir,
+        STNK : stnk,
+        SERVICE : service,
+        ANGSURAN : angsuran,
+
         CREATED_BY : created_by,
         UPDATED_BY : updated_by
       } = User[0];
 
       elModalEdit.querySelector("[name=id]").value = ID;
       elModalEdit.querySelector("[name=no_polisi]").value = no_polisi;
+
+      elModalEdit.querySelector("[name=kir]").value = kir;
+      elModalEdit.querySelector("[name=stnk]").value = stnk;
+      elModalEdit.querySelector("[name=service]").value = service;
+      elModalEdit.querySelector("[name=angsuran]").value = angsuran;
+
       elModalEdit.querySelector("[name=created_by]").text = created_by;
       elModalEdit.querySelector("[name=updated_by]").text = updated_by;
 

@@ -137,6 +137,22 @@
                 echo "window.open('laporan_pdf/c_t_t_t_po_print/index/" . $value->ID . "');";
                 echo "}";
                 echo "</script>";
+
+
+                echo "<a "; #/1 ini artinya kena pajak
+
+                echo "onclick= 'p_2_" . $key . "()'";
+                if ($value->PRINTED == 't') {
+                  echo "> <i class='fa fa-print text-c-blue'></i></a> ";
+                }
+                
+
+                echo "<script>";
+                echo "function p_2_" . $key . "()";
+                echo "{";
+                echo "window.open('laporan_pdf/c_t_t_t_po_print2/index/" . $value->ID . "');";
+                echo "}";
+                echo "</script>";
               }
               
 

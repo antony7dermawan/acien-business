@@ -104,7 +104,7 @@
                 echo "<script>";
                 echo "function p_1_" . $key . "()";
                 echo "{";
-                echo "window.open('laporan_pdf/c_t_t_t_pinlok_print/index/" . $value->ID . "');";
+                echo "window.open('laporan_pdf/c_t_t_t_pinlok_in_print/index/" . $value->ID . "');";
                 echo "}";
                 echo "</script>";
 

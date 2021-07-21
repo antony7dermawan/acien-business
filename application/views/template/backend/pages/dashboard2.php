@@ -120,54 +120,6 @@ if($level_user_id==1 or $level_user_id==6)
 
 
 
-          <!-- !-->
-          <div class="col-xl-8 col-md-12">
-            <div class="card">
-              <div class="card-header">
-                <h5>Hutang Supplier</h5>
-
-                
-              </div>
-              <div class="card-block">
-                <div class="dt-responsive table-responsive">
-                   <table id="order-table" class="table table-striped table-bordered nowrap">
-                    <thead>
-                      <th>Nama Akun</th>
-                      <th>Saldo</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <?php
-                      foreach ($c_setting_db_supplier_coa as $key => $value) {
-                        
-
-
-                        if ($value->DB_K_ID == 1) {
-                          $read_saldo = $value->SUM_DEBIT - $value->SUM_KREDIT;
-                        }
-                        if ($value->DB_K_ID == 2) {
-                          $read_saldo = $value->SUM_KREDIT - $value->SUM_DEBIT;
-                        }
-
-                        
-
-                        if($read_saldo>0)
-                        {
-                          echo "<tr>";
-                          echo "<td>" . $value->NAMA_AKUN . "</td>";
-                          echo "<td> Rp" . number_format(intval($read_saldo)) . "</td>";
-                          echo "</tr>";
-                        }
-                      }
-                      ?>
-                    </tbody>
-                  </table>
-                </div>
-              </div>
-            </div>
-          </div>
-
-
 
           
 

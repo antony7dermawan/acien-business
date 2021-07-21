@@ -37,6 +37,7 @@
 <?php
 $level_user_id = $this->session->userdata('level_user_id');
 $po_auto_notif = $this->session->userdata('po_auto_notif');
+$no_polisi_notif = $this->session->userdata('no_polisi_notif');
 if($level_user_id==1)
 {
     ?>
@@ -81,6 +82,13 @@ if($level_user_id==1)
             <li class="">
                 <a href="<?= base_url("c_t_m_d_no_polisi"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">No Polisi</span>
+                    <?php
+                    if($no_polisi_notif>0)
+                    {
+                        echo "<span class='pcoded-badge label label-danger'>".$no_polisi_notif."+</span>";
+                    }
+                    
+                    ?>
                 </a>
             </li>
             <li class="">
@@ -377,14 +385,7 @@ if($level_user_id==1 or $level_user_id==6)
             </li>
             
         </ul>
-        <ul class="pcoded-submenu">
-            <li class="">
-                <a href="<?= base_url("c_setting_db_supplier_coa"); ?>" class="submenu waves-effect waves-dark">
-                    <span class="pcoded-mtext">Setting Coa Supplier</span>
-                </a>
-            </li>
-            
-        </ul>
+        
     </li>
 
 

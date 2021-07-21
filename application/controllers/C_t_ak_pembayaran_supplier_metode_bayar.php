@@ -210,7 +210,7 @@ class C_t_ak_pembayaran_supplier_metode_bayar extends MY_Controller
     }
     if(($sum_payment_t_saldo_awal+$jumlah+$adm_bank)>$sum_total_penjualan)
     {
-      $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Sukses!</strong> Kelebihan Bayar!</p></div>');
+      $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Gagal!</strong> Kelebihan Bayar!</p></div>');
     }
     
     redirect('c_t_ak_pembayaran_supplier_metode_bayar/index/' . $pembayaran_supplier_id . '/' . $supplier_id);

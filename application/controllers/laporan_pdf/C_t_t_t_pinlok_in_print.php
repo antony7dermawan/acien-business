@@ -65,7 +65,7 @@ class C_t_t_t_pinlok_in_print extends MY_Controller
 
 
 
-    $read_select = $this->m_t_t_t_pembelian_rincian->select($pinlok_id);
+    $read_select = $this->m_t_t_t_pembelian_rincian->select_pinlok_in($pinlok_id,$company_id_from);
     foreach ($read_select as $key => $value) 
     {
       $kode_barang[$key]=$value->KODE_BARANG;
@@ -122,7 +122,7 @@ class C_t_t_t_pinlok_in_print extends MY_Controller
 
         $pdf->SetFont('','B',11);
         $pdf->Cell(130, 6, "", 0, 0, 'C');
-        $pdf->Cell(30, 6, "PINDAH LOKASI", 0, 1, 'L');
+        $pdf->Cell(30, 6, "PINDAH LOKASI (Masuk)", 0, 1, 'L');
 
         $pdf->SetFont('','',8);
         $pdf->Cell(130, 4, "", 0, 0, 'C');

@@ -38,7 +38,7 @@ if($level_user_id==1)
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5>Rekap Seluruh Pembelian
+                <h5>Rekap Seluruh Pembelian Harian
 
                 <?= $this->session->flashdata('notif') ?>
 
@@ -163,33 +163,17 @@ if($level_user_id==1)
 
 
 
+
+
+
+
           <!-- !-->
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5>Rekap Transaksi Pelanggan
+                <h5>Rekap Seluruh Pemakaian Harian
 
-                <form action='<?php echo base_url("c_dashboard/search_date_1"); ?>' class='no_voucer_area' method="post" id=''>
-                  <table>
-                    <tr>
-
-                      <th>
-                        <form action='/action_page.php'>
-                          <input type='date' class='form-control' name='date_from_dashboard_1' value='<?php echo $this->session->userdata('date_from_dashboard_1'); ?>'>
-                      </th>
-                      <th>-</th>
-                      <th>
-                        <form action='/action_page.php'>
-                          <input type='date' class='form-control' name='date_to_dashboard_1' value='<?php echo $this->session->userdata('date_to_dashboard_1'); ?>'>
-                      </th>
-                      <th>
-                        <input type="submit" name="submit_date" class='btn btn-primary waves-effect waves-light' value="Search">
-                      </th>
-                    </tr>
-                  </table>
-
-
-                </form>
+                <?= $this->session->flashdata('notif') ?>
 
                 </h5>
 
@@ -201,38 +185,119 @@ if($level_user_id==1)
                     <thead>
                       <tr>
                         <th>No</th>
-                        <th>Pelanggan</th>
-                        <th>QTY</th>
-                        <th>Total Penjualan</th>
-                        
+                        <th>INV</th>
+                        <th>Date</th>
+                        <th>Ket</th>
+                        <th>Anggota</th>
+                        <th>Payment Method</th>
+                        <th>Total</th>
+
+                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
                       <?php
-                      foreach ($select_rekap_pelanggan as $key => $value) {
-                       
-                        
-                        echo "<tr>";
-                        echo "<td>" . ($key + 1) . "</td>";
-                        echo "<td>" . $value->PELANGGAN . "</td>";
-                        echo "<td>" . (round($value->SUM_QTY)) . "</td>";
-                        echo "<td>" . number_format(round($value->SUM_SUB_TOTAL)) . "</td>";
+                      foreach ($c_t_t_t_pemakaian as $key => $value) {
+                        if($value->MARK_FOR_DELETE == 'f')
+                        {
+                          echo "<tr>";
+                          echo "<td>" . ($key + 1) . "</td>";
+                          echo "<td>" . $value->INV_HEAD.$value->INV . "</td>";
+                          echo "<td>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</td>";
+                          echo "<td>" . $value->KET . "</td>";
+                          echo "<td>" . $value->ANGGOTA . "</td>";
+                          echo "<td>" . $value->PAYMENT_METHOD . "</td>";
 
 
-                        /*
-            echo "<td>";
-              
 
-              echo "<a href='".site_url('c_t_ak_terima_pelanggan_no_faktur/delete/' . $value->ID)."' ";
-              
-              echo "onclick=\"return confirm('Apakah kamu yakin ingin menghapus data ini?')\"";
+                          //satu button
+                          echo "<td>";
+                          echo "<a href='" . site_url('c_t_t_t_pemakaian_rincian/index/' . $value->ID) . "' ";
+                          echo "onclick=\"return confirm('Lanjut?')\"";
+                          echo "> <i class='fa fa-search-plus text-c-blue'></i></a> ";
+                          echo " Rp" . number_format(intval($value->SUM_SUB_TOTAL)) . "</td>";
+                          //satu button
+
+                          
+                          echo "<td>";
 
 
-              echo "> <i class='feather icon-trash-2 f-w-600 f-16 text-c-red'></i></a>";
-            echo "</td>";
+                          if (intval($value->SUM_SUB_TOTAL) != 0)
+                          {
+                            echo "<a "; #/1 ini artinya kena pajak
 
-            echo "</tr>";
-            */
+                            echo "onclick= 'p_1_" . $key . "()'";
+                            if ($value->PRINTED == 'f') {
+                              echo "> <i class='fa fa-print text-c-black'></i></a> ";
+                            }
+                            if ($value->PRINTED == 't') {
+                              echo "> <i class='fa fa-print text-c-green'></i></a> ";
+                            }
+
+                            echo "<script>";
+                            echo "function p_1_" . $key . "()";
+                            echo "{";
+                            echo "window.open('laporan_pdf/c_t_t_t_pemakaian_print/index/" . $value->ID . "');";
+                            echo "}";
+                            echo "</script>";
+
+
+
+
+
+                            echo "<a "; #/1 ini artinya kena pajak
+
+                            echo "onclick= 'p_2_" . $key . "()'";
+                            if ($value->PRINTED == 'f') {
+                              echo "> <i class='fa fa-print text-c-blue'></i></a> ";
+                            }
+                            if ($value->PRINTED == 't') {
+                              echo "> <i class='fa fa-print text-c-green'></i></a> ";
+                              
+                            }
+
+                            echo "<script>";
+                            echo "function p_2_" . $key . "()";
+                            echo "{";
+                            echo "window.open('laporan_pdf/c_t_t_t_pemakaian2_print/index/" . $value->ID . "');";
+                            echo "}";
+                            echo "</script>";
+
+
+                            if($value->ENABLE_EDIT==0)
+                            {
+                              echo "<a class='fa text-c-green'>Sudah Ditagih</a>";
+                            }
+                          }
+                          
+
+
+
+                          if ($value->SUM_SUB_TOTAL == 0) {
+                            echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='" . $value->ID . "'>";
+                            echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
+                            echo "</a>";
+
+                            echo "<a href='" . site_url('c_t_t_t_pemakaian/delete/' . $value->ID) . "' ";
+
+                            echo "onclick=\"return confirm('Apakah kamu yakin ingin menghapus data ini?')\"";
+
+
+                            echo "> <i class='feather icon-trash-2 f-w-600 f-16 text-c-red'></i></a>";
+                          }
+                          echo "</td>";
+
+
+                          echo "</tr>";
+                        }
+
+
+
+
+
+
+
+
                       }
                       ?>
                     </tbody>
@@ -241,6 +306,10 @@ if($level_user_id==1)
               </div>
             </div>
           </div>
+
+
+
+
 
 
 
