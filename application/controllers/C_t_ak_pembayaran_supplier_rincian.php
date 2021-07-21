@@ -60,10 +60,10 @@ class C_t_ak_pembayaran_supplier_rincian extends MY_Controller
 
       $this->m_t_ak_pembayaran_supplier_rincian->tambah($data);
 
-      $data = array(
-        'ENABLE_EDIT' => 0
-      );
-      $this->m_t_t_t_pembelian->update($data, $pembelian_id);
+      // $data = array(
+      //   'ENABLE_EDIT' => 0
+      // );
+      // $this->m_t_t_t_pembelian->update($data, $pembelian_id);
     }
 
 
