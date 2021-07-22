@@ -191,7 +191,7 @@ if($level_user_id==1)
 
             <?php
             }
-            if($level_user_id==1 or $level_user_id==2 or $level_user_id==4)
+            if($level_user_id==1 or $level_user_id==2 or $level_user_id==10)
             {
 
             ?>
@@ -369,7 +369,7 @@ if($level_user_id==1 )
 
 <?php
 $level_user_id = $this->session->userdata('level_user_id');
-if($level_user_id==1 or $level_user_id==6)
+if($level_user_id==1 )
 {
     ?>
     <li class="pcoded-hasmenu">
@@ -454,7 +454,7 @@ if($level_user_id==1 or $level_user_id==6)
 
 
 <?php
-if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id==5 or $level_user_id==6)
+if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id==5)
 {
     ?>
     <!-- Menu ke dua -->
@@ -479,7 +479,7 @@ if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id
         </ul>
 
         <?php
-        if($level_user_id==1 or $level_user_id==2 or $level_user_id==5 or $level_user_id==6)
+        if($level_user_id==1 or $level_user_id==2 or $level_user_id==5)
         {
             ?>
             <ul class="pcoded-submenu">
@@ -552,7 +552,7 @@ if($level_user_id==1)
 
 
 <?php
-if($level_user_id==1 or $level_user_id==6)
+if($level_user_id==1)
 {
     ?>
     <li class="pcoded-hasmenu">
@@ -643,7 +643,7 @@ if($level_user_id==1 or $level_user_id==6)
 
 <?php
 $level_user_id = $this->session->userdata('level_user_id');
-if($level_user_id==1 or $level_user_id==6)
+if($level_user_id==1 )
 {
     ?>
     
@@ -730,7 +730,7 @@ if($level_user_id==1 or $level_user_id==6)
 
 
 <?php
-if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id==5 or $level_user_id==6)
+if($level_user_id==1 or $level_user_id==2)
 {
     ?>
     <!-- Menu ke dua -->

@@ -199,7 +199,11 @@ public function select_created_id($created_id)
     $this->db->where("T_AK_JURNAL.DATE>='{$date_from_select_jurnal}'");
     $this->db->where("T_AK_JURNAL.DATE<='{$date_to_select_jurnal}'");
 
-    $this->db->where("T_AK_JURNAL.COMPANY_ID={$this->session->userdata('company_id')}");
+    if($this->session->userdata('company_id')!=1)
+    {
+        $this->db->where("T_AK_JURNAL.COMPANY_ID={$this->session->userdata('company_id')}");
+    }
+    
 
     if($level_user_id==4)
     {
