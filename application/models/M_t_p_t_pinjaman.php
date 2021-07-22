@@ -114,6 +114,52 @@ public function select_id($id)
 
 
 
+  public function select_by_anggota_id($anggota_id)
+  {
+    $this->db->select('T_P_T_PINJAMAN.ID');
+
+    $this->db->select('T_P_T_PINJAMAN.DATE');
+    $this->db->select('T_P_T_PINJAMAN.KET');
+    $this->db->select('T_P_T_PINJAMAN.VALUE');
+    $this->db->select('T_P_T_PINJAMAN.SISA_VALUE');
+    $this->db->select('T_P_T_PINJAMAN.CREATED_BY');
+    $this->db->select('T_P_T_PINJAMAN.UPDATED_BY');
+    $this->db->select('T_P_T_PINJAMAN.MARK_FOR_DELETE');
+    $this->db->select('T_P_T_PINJAMAN.COA_ID');
+    $this->db->select('T_P_T_PINJAMAN.INV');
+    $this->db->select('T_P_T_PINJAMAN.INV_INT');
+  
+    $this->db->select('T_M_D_ANGGOTA.ANGGOTA');
+
+    $this->db->select("AK_M_COA.NO_AKUN_1");
+    $this->db->select("AK_M_COA.NO_AKUN_2");
+    $this->db->select("AK_M_COA.NO_AKUN_3");
+    $this->db->select("AK_M_COA.NAMA_AKUN");
+
+
+    $this->db->from('T_P_T_PINJAMAN');
+
+    $this->db->join('T_M_D_ANGGOTA', 'T_M_D_ANGGOTA.ID = T_P_T_PINJAMAN.ANGGOTA_ID', 'left');
+
+    
+
+
+    $this->db->join('AK_M_COA', 'AK_M_COA.ID = T_P_T_PINJAMAN.COA_ID', 'left');
+
+
+    $this->db->where('T_P_T_PINJAMAN.ANGGOTA_ID',$anggota_id);
+
+    $this->db->where('T_P_T_PINJAMAN.SISA_VALUE>0');
+
+    $this->db->where('T_P_T_PINJAMAN.MARK_FOR_DELETE',FALSE);
+    
+    $this->db->order_by("T_P_T_PINJAMAN.DATE", "asc");
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
+
+
+
 
 
   public function select_by_id($id)

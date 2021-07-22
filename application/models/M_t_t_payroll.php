@@ -80,6 +80,7 @@ public function select_id($id)
     $this->db->select('T_T_PAYROLL.UPDATED_BY');
 
     $this->db->select('T_M_D_ANGGOTA.ANGGOTA');
+    $this->db->select('T_M_D_ANGGOTA.ADDRESS');
     $this->db->select('T_M_D_ANGGOTA.BANK_ACCOUNT_NUMBER');
 
 

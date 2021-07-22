@@ -70,7 +70,7 @@
 
     <script type="text/javascript">
       function call_download() {
-        var link_1 = 'laporan_excel/lap_beli_kredit/index/';
+        var link_1 = 'laporan_excel/lap_slip_gaji_personal/index/';
         var link_2 = document.getElementById("date_from_payroll_personal").value;
         var link_3 = parseInt(document.getElementById("anggota_id").value);
        
