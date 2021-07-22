@@ -22,7 +22,8 @@ public function select_id($id)
 
 
 
-  public function sum_value_by_date($from_date,$to_date)
+
+  public function sum_value_by_date($from_date,$to_date,$anggota_id)
   {
     $this->db->select("sum (\"VALUE\") as \"SUM_ANGSURAN\"");
     $this->db->from('T_P_T_ANGSURAN');
@@ -30,6 +31,8 @@ public function select_id($id)
 
     $this->db->where('MARK_FOR_DELETE',FALSE);
     $this->db->where("DATE<='{$to_date}' and DATE>='{$from_date}'");
+
+    $this->db->where('ANGGOTA_ID',$anggota_id);
     
     $akun = $this->db->get ();
     return $akun->result ();

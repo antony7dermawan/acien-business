@@ -108,19 +108,19 @@ class C_t_t_payroll extends MY_Controller
       $anggota = $value->ANGGOTA;
 
 
-      $read_select_in = $this->m_t_p_t_angsuran->sum_value_by_date($from_date,$to_date);
+      $read_select_in = $this->m_t_p_t_angsuran->sum_value_by_date($from_date,$to_date,$anggota_id);
       foreach ($read_select_in as $key_in => $value_in) 
       {
         $sum_angsuran = $value_in->SUM_ANGSURAN;
       }
 
-      $read_select_in = $this->m_t_p_t_potongan_lain->sum_value_by_date($from_date,$to_date);
+      $read_select_in = $this->m_t_p_t_potongan_lain->sum_value_by_date($from_date,$to_date,$anggota_id);
       foreach ($read_select_in as $key_in => $value_in) 
       {
         $sum_potongan = $value_in->SUM_POTONGAN_LAIN;
       }
 
-      $read_select_in = $this->m_t_p_t_tunjangan_lain->sum_value_by_date($from_date,$to_date);
+      $read_select_in = $this->m_t_p_t_tunjangan_lain->sum_value_by_date($from_date,$to_date,$anggota_id);
       foreach ($read_select_in as $key_in => $value_in) 
       {
         $sum_tunjangan = $value_in->SUM_TUNJANGAN_LAIN;

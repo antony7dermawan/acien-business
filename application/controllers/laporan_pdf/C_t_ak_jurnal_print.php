@@ -32,7 +32,7 @@ class c_t_ak_jurnal_print extends MY_Controller
 
 
     $pdf->SetFont('','B',12);
-    $pdf->Cell(90, 9, "CV. JAYA MAKMUR", 0, 0, 'L');
+    $pdf->Cell(90, 9, "PT. CAHAYA BARU GEMILANG", 0, 0, 'L');
 
     $pdf->SetFont('','B',18);
     $pdf->Cell(90, 9, "Bukti Jurnal", 0, 1, 'R');

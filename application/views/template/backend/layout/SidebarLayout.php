@@ -38,7 +38,7 @@
 $level_user_id = $this->session->userdata('level_user_id');
 $po_auto_notif = $this->session->userdata('po_auto_notif');
 $no_polisi_notif = $this->session->userdata('no_polisi_notif');
-if($level_user_id==1)
+if($level_user_id==1 or $level_user_id==2)
 {
     ?>
     
@@ -49,6 +49,12 @@ if($level_user_id==1)
             <span class="pcoded-mtext" href="<?= base_url("c_t_login_user"); ?>">Master Data</span>
         </a>
         <ul class="pcoded-submenu">
+
+            <?php
+            if($level_user_id==1)
+            {
+
+            ?>
             <li class="">
                 <a href="<?= base_url("c_t_m_d_company"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Company</span>
@@ -59,6 +65,13 @@ if($level_user_id==1)
                     <span class="pcoded-mtext">Level User</span>
                 </a>
             </li>
+
+
+            <?php
+            }
+
+
+            ?>
             <li class="">
                 <a href="<?= base_url("c_t_m_d_jenis_barang"); ?>" class="submenu waves-effect waves-dark">
                     <span class="pcoded-mtext">Jenis Barang</span>
@@ -630,15 +643,7 @@ if($level_user_id==1)
 
 
 
-<!-- Diluar Grouping disini -->
-    <li <?php if($this->uri->segment(2)=="buku_besar"){echo 'class="pcoded-hasmenu"';}?>>
-        <a href="<?= base_url("c_dashboard2/"); ?>" class="waves-effect waves-dark">
-        <span class="pcoded-micon">
-        <i class="feather icon-credit-card"></i>
-        </span>
-        <span class="pcoded-mtext">Dashboard</span>
-        </a>
-    </li>
+
 
 
 <?php
