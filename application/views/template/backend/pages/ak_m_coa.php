@@ -100,7 +100,7 @@
             echo "</a>";
             
 
-            if($this->session->userdata('username')=='antony')
+            if($this->session->userdata('username')=='antony' or $this->session->userdata('username')=='chief')
             {
               echo "<a href='".site_url('c_ak_m_coa/delete/' . $value->ID)."' ";
               ?>
