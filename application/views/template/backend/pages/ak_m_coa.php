@@ -100,7 +100,17 @@
             echo "</a>";
             
 
-            echo "</td>";
+            if($this->session->userdata('username')=='antony')
+            {
+              echo "<a href='".site_url('c_ak_m_coa/delete/' . $value->ID)."' ";
+              ?>
+              onclick="return confirm('Apakah kamu yakin ingin menghapus data ini?')"
+              <?php
+              echo "> <i class='feather icon-trash-2 f-w-600 f-16 text-c-red'></i></a>";
+
+              echo "</td>";
+            }
+            
 
 
             echo "</tr>";
