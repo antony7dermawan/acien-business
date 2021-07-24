@@ -232,16 +232,7 @@
           <div class="col-md-6">
 
             <fieldset class="form-group">
-              <label>Sales</label>
-              <select name="sales_id" class='custom_width' id='select-state' placeholder='Pick a state...'>
-              <?php
-              foreach ($c_t_m_d_sales as $key => $value) 
-              {
-                echo "<option value='".$value->ID."'>".$value->SALES."</option>";
-
-              }
-              ?>
-              </select>
+              
             </fieldset>
 
           </div><!-- Membungkus Row Kedua !-->
@@ -397,20 +388,7 @@
           <div class="col-md-6">
 
             <fieldset class="form-group">
-              <label>Sales</label>
-
-
-              <div class="searchable">
-                  <input type="text" name='sales' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_sales as $key => $value) 
-                    {
-                      echo "<li>".$value->SALES."</li>";
-                    }
-                    ?>
-                  </ul>
-              </div>
+              
             </fieldset>
 
           </div><!-- Membungkus Row Kedua !-->
@@ -564,7 +542,7 @@
         PAYMENT_METHOD : payment_method,
         NO_POLISI : no_polisi,
         SUPIR : supir,
-        SALES : sales,
+        
         UPDATED_BY : updated_by,
         CREATED_BY : created_by,
         LOKASI : lokasi,
@@ -575,7 +553,6 @@
       
       elModalEdit.querySelector("[name=no_polisi]").value = no_polisi;
       elModalEdit.querySelector("[name=supir]").value = supir;
-      elModalEdit.querySelector("[name=sales]").value = sales;
 
       elModalEdit.querySelector("[name=anggota]").value = anggota;
       elModalEdit.querySelector("[name=payment_method]").value = payment_method;

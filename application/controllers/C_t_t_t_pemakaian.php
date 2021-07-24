@@ -115,7 +115,7 @@ class C_t_t_t_pemakaian extends MY_Controller
     $inv_head = substr($this->input->post("inv_head"), 0, 50);
     $no_polisi_id = intval($this->input->post("no_polisi_id"));
     $supir_id = intval($this->input->post("supir_id"));
-    $sales_id = intval($this->input->post("sales_id"));
+    $sales_id = 1;
 
     $lokasi_id = intval($this->input->post("lokasi_id"));
 
@@ -205,7 +205,7 @@ class C_t_t_t_pemakaian extends MY_Controller
 
     $no_polisi = $this->input->post("no_polisi");
     $supir = $this->input->post("supir");
-    $sales = $this->input->post("sales");
+    //$sales = $this->input->post("sales");
     $lokasi = $this->input->post("lokasi");
 
     $supplier_id = 0;
@@ -222,10 +222,7 @@ class C_t_t_t_pemakaian extends MY_Controller
       $supir_id = $value->ID;
     }
 
-    $read_select = $this->m_t_m_d_sales->select_id($sales);
-    foreach ($read_select as $key => $value) {
-      $sales_id = $value->ID;
-    }
+    $sales_id = 1;
 
     $read_select = $this->m_t_m_d_lokasi->select_id($lokasi);
     foreach ($read_select as $key => $value) {
