@@ -25,7 +25,9 @@ public function select_no_voucer()
 
 public function select_inv_int()
   {
-    $this_year = date('Y-m').'-01';
+    $date_before = date('Y-m',(strtotime ( '-30 day' , strtotime ( date('Y-m-d')) ) ));
+    $this_year = $date_before.'-01';
+    
     $this->db->limit(1);
     $this->db->select("NO_VOUCER_INT");
     $this->db->from('T_AK_JURNAL');

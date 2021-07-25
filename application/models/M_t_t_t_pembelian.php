@@ -569,7 +569,10 @@ public function select_range_date_per_supplier($from_date,$to_date,$supplier_id)
 
   public function select_inv_int()
   {
-    $this_year = date('Y-m').'-01';
+    $date_before = date('Y-m',(strtotime ( '-30 day' , strtotime ( date('Y-m-d')) ) ));
+    $this_year = $date_before.'-01';
+
+    
     $this->db->limit(1);
     $this->db->select("INV_INT");
     $this->db->from('T_T_T_PEMBELIAN');
