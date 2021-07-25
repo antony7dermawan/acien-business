@@ -124,7 +124,8 @@
             echo "<th></th>";
             echo "<th></th>";
             echo "<th></th>";
-
+            echo "<th></th>";
+            
             echo "</tr>";
             echo "</tfoot>";
           }
