@@ -492,7 +492,7 @@ if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id
         </ul>
 
         <?php
-        if($level_user_id==1 or $level_user_id==2 or $level_user_id==5)
+        if($level_user_id==1 or $level_user_id==2 or $level_user_id==5  or $level_user_id==4)
         {
             ?>
             <ul class="pcoded-submenu">
@@ -502,28 +502,34 @@ if($level_user_id==1 or $level_user_id==2 or $level_user_id==4 or $level_user_id
                 </a>
             </li>
             </ul>
-            <ul class="pcoded-submenu">
-                <li class="">
-                    <a href="<?= base_url("c_t_ak_faktur_penjualan"); ?>" class="submenu waves-effect waves-dark">
-                        <span class="pcoded-mtext">Faktur Penjualan</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="pcoded-submenu">
-                <li class="">
-                    <a href="<?= base_url("c_t_ak_terima_pelanggan"); ?>" class="submenu waves-effect waves-dark">
-                        <span class="pcoded-mtext">Terima Pelanggan</span>
-                    </a>
-                </li>
-            </ul>
-            <ul class="pcoded-submenu">
-                <li class="">
-                    <a href="<?= base_url("c_t_ak_pembayaran_supplier"); ?>" class="submenu waves-effect waves-dark">
-                        <span class="pcoded-mtext">Pembayaran Supplier</span>
-                    </a>
-                </li>
-            </ul>
+
             <?php
+            if($level_user_id!=4)
+            {
+                ?>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="<?= base_url("c_t_ak_faktur_penjualan"); ?>" class="submenu waves-effect waves-dark">
+                            <span class="pcoded-mtext">Faktur Penjualan</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="<?= base_url("c_t_ak_terima_pelanggan"); ?>" class="submenu waves-effect waves-dark">
+                            <span class="pcoded-mtext">Terima Pelanggan</span>
+                        </a>
+                    </li>
+                </ul>
+                <ul class="pcoded-submenu">
+                    <li class="">
+                        <a href="<?= base_url("c_t_ak_pembayaran_supplier"); ?>" class="submenu waves-effect waves-dark">
+                            <span class="pcoded-mtext">Pembayaran Supplier</span>
+                        </a>
+                    </li>
+                </ul>
+            <?php
+            }
         }
 
         ?>
