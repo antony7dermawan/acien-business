@@ -132,31 +132,38 @@ class C_t_ak_jurnal_create extends MY_Controller
       $no_voucer = $inv_jurnal.date('y-m').'.'.sprintf('%05d', $inv_int);
     }
 
-    
-      $data = array(
-        'DATE' => $date,
-        'TIME' => date('H:i:s'),
-        'CREATED_BY' => $this->session->userdata('username'),
-        'UPDATED_BY' => $this->session->userdata('username'),
-        'COA_ID' => $coa_id,
-        'DEBIT' => $debit,
-        'KREDIT' => $kredit,
-        'CATATAN' => $catatan,
-        'DEPARTEMEN' => $departemen,
-        'NO_VOUCER' => $no_voucer,
-        'NO_VOUCER_INT' => $inv_int
+      if($no_voucer!='')
+      {
+          $data = array(
+          'DATE' => $date,
+          'TIME' => date('H:i:s'),
+          'CREATED_BY' => $this->session->userdata('username'),
+          'UPDATED_BY' => $this->session->userdata('username'),
+          'COA_ID' => $coa_id,
+          'DEBIT' => $debit,
+          'KREDIT' => $kredit,
+          'CATATAN' => $catatan,
+          'DEPARTEMEN' => $departemen,
+          'NO_VOUCER' => $no_voucer,
+          'NO_VOUCER_INT' => $inv_int
 
-      );
+        );
 
-      $this->m_t_ak_jurnal_create->tambah($data);
+        $this->m_t_ak_jurnal_create->tambah($data);
 
-      $data = array(
-        'DATE' => $date
-      );
+        $data = array(
+          'DATE' => $date
+        );
 
-      $this->m_t_ak_jurnal_create->update_all($data);
+        $this->m_t_ak_jurnal_create->update_all($data);
 
-      $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
+        $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Ditambahkan!</strong></p></div>');
+      }
+      if($no_voucer=='')
+      {
+        $this->session->set_flashdata('notif', '<div class="alert alert-danger icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"><i class="icofont icofont-close-line-circled"></i></button><p><strong>Gagal!</strong>Silahkan Logout!</p></div>');
+      }
+      
     
 
     redirect('c_t_ak_jurnal_create');
