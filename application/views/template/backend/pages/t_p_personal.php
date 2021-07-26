@@ -45,28 +45,7 @@
               echo "</tr>";
             }
             
-            if($value->MARK_FOR_DELETE == 't')
-            {
-              echo "<tr>";
-              echo "<td><s>".($key + 1)."</s></td>";
-              echo "<td><s>".$value->PERSONAL."</s></td>";
             
-              echo "<td>";
-               
-              
-
-              echo "<a href='".site_url('c_t_p_personal/undo_delete/' . $value->ID)."' ";
-              ?>
-              onclick="return confirm('Apakah kamu yakin ingin mengembalikan data ini?')"
-              <?php
-              echo "> <i class='fa fa-refresh f-w-600 f-16 text-c-red'></i></a>";
-
-              echo ' '.$value->UPDATED_BY;
-              echo "</td>";
-
-
-              echo "</tr>";
-            }
             
 
           }
