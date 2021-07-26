@@ -53,12 +53,12 @@ class C_t_p_position extends MY_Controller
     
     $position = substr($this->input->post("position"), 0, 50);
 
-    $value = intval($this->input->post("value"));
+    $nominal = intval($this->input->post("nominal"));
 
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
     $data = array(
       'POSITION' => $position,
-      'VALUE' => $value,
+      'VALUE' => $nominal,
       'CREATED_BY' => $this->session->userdata('username'),
       'UPDATED_BY' => '',
       'MARK_FOR_DELETE' => FALSE
@@ -79,10 +79,12 @@ class C_t_p_position extends MY_Controller
   {
     $id = $this->input->post("id");
     $position = substr($this->input->post("position"), 0, 50);
+    $nominal = intval($this->input->post("nominal"));
 
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
     $data = array(
       'POSITION' => $position,
+      'VALUE' => $nominal,
       'UPDATED_BY' => $this->session->userdata('username')
     );
 

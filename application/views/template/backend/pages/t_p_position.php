@@ -108,7 +108,7 @@
 
             <div class="form-group">
               <label>Nilai Tunjangan</label>
-              <input type='text' class='form-control' placeholder='Input Text' name='value'>
+              <input type='text' class='form-control' placeholder='Input Text' name='nominal'>
             </div>
 
             
@@ -152,7 +152,7 @@
 
             <div class="form-group">
               <label>Nilai Tunjangan</label>
-              <input type='text' class='form-control' placeholder='Input Text' name='value'>
+              <input type='text' class='form-control' placeholder='Input Text' name='nominal'>
             </div>
 
           </div>
