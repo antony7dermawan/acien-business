@@ -83,10 +83,9 @@ public function select_id($id)
     $this->db->join('T_P_BPJS_KES', 'T_P_BPJS_KES.ID = T_M_D_ANGGOTA.BPJS_KES_ID', 'left');
 
 
-    if($this->session->userdata('t_p_personal_delete_logic')==0)
-    {
+
       $this->db->where('T_M_D_ANGGOTA.MARK_FOR_DELETE',FALSE);
-    }
+    
     $this->db->order_by("ID", "asc");
     $akun = $this->db->get ();
     return $akun->result ();

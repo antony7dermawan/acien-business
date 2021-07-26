@@ -101,6 +101,7 @@ class C_t_t_payroll extends MY_Controller
 
     $this->m_t_t_payroll->delete_by_date($from_date,$to_date);
 
+
     $read_select = $this->m_t_p_personal->select();
     foreach ($read_select as $key => $value) 
     {
