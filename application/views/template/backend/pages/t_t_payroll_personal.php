@@ -54,7 +54,7 @@
       }
       ?>
     </select>
-    <input type="submit" class="btn btn-primary waves-effect waves-light" name="update_button" value="Search">
+    <!--<input type="submit" class="btn btn-primary waves-effect waves-light" name="update_button" value="Search">!-->
 
 
 
@@ -83,61 +83,7 @@
     
 
     <div class="table-responsive dt-responsive">
-      <table id="dom-jqry" class="table table-striped table-bordered nowrap">
-        <thead>
-          <tr>
-            <th>No</th>
-            <th>From Date</th>
-            <th>To Date</th>
-            <th>Anggota</th>
-            <th>Gp</th>
-            <th>Tj. Posisi</th>
-            <th>Tj. Lain-Lain</th>
-
-            <th>Sub Total</th>
-            <th>Pot. Lain-Lain</th>
-            <th>Pot. Angsuran</th>
-            <th>Pot. BPJS</th>
-            <th>Total</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-          foreach ($c_t_t_payroll as $key => $value) 
-          {
-            
-              echo "<tr>";
-              echo "<td>".($key+1)."</td>";
-              echo "<td>".$value->FROM_DATE."</td>";
-              echo "<td>".$value->TO_DATE."</td>";
-
-              echo "<td>".$value->ANGGOTA."</td>";
-
-              echo "<td>".number_format($value->GP_VALUE)."</td>";
-              echo "<td>".number_format($value->POSITION_VALUE)."</td>";
-              echo "<td>".number_format($value->TUNJANGAN_VALUE)."</td>";
-
-              $sub_total = intval($value->GP_VALUE)+intval($value->POSITION_VALUE)+intval($value->TUNJANGAN_VALUE);
-              echo "<td>".number_format($sub_total)."</td>";
-
-              echo "<td>".number_format($value->POTONGAN_VALUE)."</td>";
-              echo "<td>".number_format($value->ANGSURAN_VALUE)."</td>";
-              echo "<td>".number_format($value->BPJS_VALUE)."</td>";
-            
-              $total = $sub_total - intval($value->POTONGAN_VALUE) - intval($value->ANGSURAN_VALUE) - intval($value->BPJS_VALUE);
-
-              echo "<td>".number_format($total)."</td>";
-
-              echo "</tr>";
-           
-            
-            
-            
-
-          }
-          ?>
-        </tbody>
-      </table>
+      
     </div>
   </div>
 </div>
