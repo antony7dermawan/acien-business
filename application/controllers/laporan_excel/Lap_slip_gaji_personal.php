@@ -207,11 +207,9 @@
                     $sheet->setCellValue('E'.$row, 'Pot. Angsuran');
                     $sheet->getStyle('E'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('F'.$row, 'Pot. BPJS');
-                    $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('G'.$row, 'Nominal');
-                    $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
+                    $sheet->setCellValue('F'.$row, 'Nominal');
+                    $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
                           $alp='A';
                           $total_alp=7;
@@ -253,15 +251,13 @@
                       $sheet->setCellValue('E'.$row, $r_angsuran_value[$i]);
                       $sheet->getStyle('E'.$row)->getAlignment()->setHorizontal('center');
 
-                      $sheet->setCellValue('F'.$row, $r_bpjs_value[$i]);
-                      $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
                       $nominal = $r_gp_value[$i] + $r_position_value[$i] + $r_tunjangan_value[$i] - $r_potongan_value[$i] - $r_angsuran_value[$i] - $r_bpjs_value[$i];
 
                       $sum_nominal = $sum_nominal + $nominal;
 
-                      $sheet->setCellValue('G'.$row, $nominal);
-                      $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
+                      $sheet->setCellValue('F'.$row, $nominal);
+                      $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
 
                           $alp='A';
@@ -287,11 +283,11 @@
                     }
                     
                     $row=$row+1;
-                    $sheet->setCellValue('F'.$row, 'Total Gaji');
-                      $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
+                    $sheet->setCellValue('E'.$row, 'Total Gaji');
+                      $sheet->getStyle('E'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('G'.$row, $sum_nominal);
-                      $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
+                    $sheet->setCellValue('F'.$row, $sum_nominal);
+                      $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
                     $spreadsheet->getActiveSheet()
                                   ->getStyle('B'.$row.':H'.$row)
@@ -433,7 +429,7 @@
                     $sheet->setCellValue('C'.$row, 'Total');
                     $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('D'.$row, $sum_nominal);
+                    $sheet->setCellValue('D'.$row, $sum_nominal_utang);
                     $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
 
                     $sheet->setCellValue('E'.$row, $sum_sudah_bayar);
