@@ -39,15 +39,19 @@
                   $spreadsheet = new Spreadsheet();
 
                   $alp='A';
-                  $total_colom=7;
-                  for($x=0;$x<=$total_colom;$x++)
-                  {
-                    $spreadsheet->getActiveSheet()
-                          ->getColumnDimension($alp)
-                          ->setAutoSize(true);
-                    $last_colom_alp = $alp;
-                    $alp++;
-                  }
+
+                  $spreadsheet->getActiveSheet()->getColumnDimension($alp)->setWidth(22);
+                  $alp++;
+                  $spreadsheet->getActiveSheet()->getColumnDimension($alp)->setWidth(15);
+                  $alp++;
+                  $spreadsheet->getActiveSheet()->getColumnDimension($alp)->setWidth(20);
+                  $alp++;
+                  $spreadsheet->getActiveSheet()->getColumnDimension($alp)->setWidth(20);
+                  $alp++;
+                  $spreadsheet->getActiveSheet()->getColumnDimension($alp)->setWidth(20);
+                  $alp++;
+                  $spreadsheet->getActiveSheet()->getColumnDimension($alp)->setWidth(20);
+                  $alp++;
 
 
                   $row=1;
@@ -73,7 +77,7 @@
                     {
                       $r_anggota=$value->ANGGOTA;
                       $r_from_date=$value->FROM_DATE;
-                      $r_no_slip_gaji = 'PPJM/SG/'.$value->ID;
+                      $r_no_slip_gaji = 'CBG/SG/'.date('y-m').'/'.$value->ID;
                       $r_alamat = $value->ADDRESS;
                     }
                         
@@ -113,7 +117,7 @@
                   
 
                     $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
-                    $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':H'.$row);
+                    $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':F'.$row);
                     $sheet = $spreadsheet->getActiveSheet();
                     $sheet->setCellValue('A'.$row, 'SLIP GAJI');
                     $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
@@ -181,7 +185,7 @@
 
                     $row=$row+2;
                     $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
-                    $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':H'.$row);
+                    $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':F'.$row);
                     $sheet = $spreadsheet->getActiveSheet();
                     $sheet->setCellValue('A'.$row, 'PERIODE GAJI dari '.date('d-m-Y',strtotime($r_from_date)).' sampai '.date('d-m-Y',strtotime($r_to_date)));
                     $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
@@ -212,18 +216,18 @@
                     $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
                           $alp='A';
-                          $total_alp=7;
+                          $total_alp=5;
                           for($n=0;$n<=$total_alp;$n++)
                           {
                                 $area = $alp.$row;
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $alp++;
                           }
 
@@ -261,7 +265,7 @@
 
 
                           $alp='A';
-                          $total_alp=7;
+                          $total_alp=5;
                           for($n=0;$n<=$total_alp;$n++)
                           {
                                 $area = $alp.$row;
@@ -298,14 +302,14 @@
                             
                         
                         $alp='A';
-                        $total_alp=7;
+                        $total_alp=5;
                         for($n=0;$n<=$total_alp;$n++)
                         {
                               $area = $alp.$row;
                               $spreadsheet->getActiveSheet()->getStyle($area)
-                                        ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                        ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                               $spreadsheet->getActiveSheet()->getStyle($area)
-                                        ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                        ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                               
                               $alp++;
                         }
@@ -351,13 +355,13 @@
                           {
                                 $area = $alp.$row;
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $spreadsheet->getActiveSheet()->getStyle($area)
-                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                                 $alp++;
                           }
 
@@ -451,9 +455,9 @@
                         {
                               $area = $alp.$row;
                               $spreadsheet->getActiveSheet()->getStyle($area)
-                                        ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                        ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                               $spreadsheet->getActiveSheet()->getStyle($area)
-                                        ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THICK);
+                                        ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
                               
                               $alp++;
                         }
