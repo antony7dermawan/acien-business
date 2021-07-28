@@ -196,23 +196,22 @@
                     $sheet->setCellValue('B'.$row, 'Gaji Pokok');
                     $sheet->getStyle('B'.$row)->getAlignment()->setHorizontal('center');
                     
-                    $sheet->setCellValue('C'.$row, 'Tj. Posisi');
+                    
+
+                    $sheet->setCellValue('C'.$row, 'Tj. Lain-Lain');
                     $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('D'.$row, 'Tj. Lain-Lain');
+                    $sheet->setCellValue('D'.$row, 'Pot. Lain-Lain');
                     $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('E'.$row, 'Pot. Lain-Lain');
+                    $sheet->setCellValue('E'.$row, 'Pot. Angsuran');
                     $sheet->getStyle('E'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('F'.$row, 'Pot. Angsuran');
+                    $sheet->setCellValue('F'.$row, 'Pot. BPJS');
                     $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('G'.$row, 'Pot. BPJS');
+                    $sheet->setCellValue('G'.$row, 'Nominal');
                     $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
-
-                    $sheet->setCellValue('H'.$row, 'Nominal');
-                    $sheet->getStyle('H'.$row)->getAlignment()->setHorizontal('center');
 
                           $alp='A';
                           $total_alp=7;
@@ -246,24 +245,23 @@
                       $sheet->setCellValue('C'.$row, $r_position_value[$i]);
                       $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
 
-                      $sheet->setCellValue('D'.$row, $r_tunjangan_value[$i]);
+                      
+
+                      $sheet->setCellValue('D'.$row, $r_potongan_value[$i]);
                       $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
 
-                      $sheet->setCellValue('E'.$row, $r_potongan_value[$i]);
+                      $sheet->setCellValue('E'.$row, $r_angsuran_value[$i]);
                       $sheet->getStyle('E'.$row)->getAlignment()->setHorizontal('center');
 
-                      $sheet->setCellValue('F'.$row, $r_angsuran_value[$i]);
+                      $sheet->setCellValue('F'.$row, $r_bpjs_value[$i]);
                       $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
-
-                      $sheet->setCellValue('G'.$row, $r_bpjs_value[$i]);
-                      $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
 
                       $nominal = $r_gp_value[$i] + $r_position_value[$i] + $r_tunjangan_value[$i] - $r_potongan_value[$i] - $r_angsuran_value[$i] - $r_bpjs_value[$i];
 
                       $sum_nominal = $sum_nominal + $nominal;
 
-                      $sheet->setCellValue('H'.$row, $nominal);
-                      $sheet->getStyle('H'.$row)->getAlignment()->setHorizontal('center');
+                      $sheet->setCellValue('G'.$row, $nominal);
+                      $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
 
 
                           $alp='A';
@@ -289,11 +287,11 @@
                     }
                     
                     $row=$row+1;
-                    $sheet->setCellValue('G'.$row, 'Total Gaji');
-                      $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
+                    $sheet->setCellValue('F'.$row, 'Total Gaji');
+                      $sheet->getStyle('F'.$row)->getAlignment()->setHorizontal('center');
 
-                    $sheet->setCellValue('H'.$row, $sum_nominal);
-                      $sheet->getStyle('H'.$row)->getAlignment()->setHorizontal('center');
+                    $sheet->setCellValue('G'.$row, $sum_nominal);
+                      $sheet->getStyle('G'.$row)->getAlignment()->setHorizontal('center');
 
                     $spreadsheet->getActiveSheet()
                                   ->getStyle('B'.$row.':H'.$row)
