@@ -95,6 +95,10 @@ class C_t_ak_jurnal_create extends MY_Controller
 
     $date = $this->input->post("date");
 
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
 
     $data_id = 0;
     $read_select = $this->m_t_ak_jurnal_create->select();
@@ -287,6 +291,13 @@ class C_t_ak_jurnal_create extends MY_Controller
     $id = $this->input->post("id");
 
     $date = $this->input->post("date");
+
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+
+    
     $debit = intval($this->input->post("debit"));
     $kredit = intval($this->input->post("kredit"));
     $catatan = ($this->input->post("catatan"));

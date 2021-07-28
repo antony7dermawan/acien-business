@@ -92,6 +92,13 @@ class C_t_t_t_retur_pembelian extends MY_Controller
     $ket = substr($this->input->post("ket"), 0, 200);
     $date = $this->input->post("date");
 
+
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+
+    
     $inv_int = 0;
     $read_select = $this->m_t_t_t_retur_pembelian->select_inv_int();
     foreach ($read_select as $key => $value) 

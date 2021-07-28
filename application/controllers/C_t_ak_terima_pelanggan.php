@@ -409,7 +409,10 @@ class C_t_ak_terima_pelanggan extends MY_Controller
     $no_form = substr($this->input->post("no_form"), 0, 50);
     $date = ($this->input->post("date"));
 
-
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
     $date_terima_pelanggan = $date;
     $this->session->set_userdata('date_terima_pelanggan', $date_terima_pelanggan);
 

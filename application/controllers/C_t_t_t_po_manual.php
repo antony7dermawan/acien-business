@@ -109,6 +109,13 @@ class C_t_t_t_po_manual extends MY_Controller
     $payment_method_id = intval($this->input->post("payment_method_id"));
     $ket = substr($this->input->post("ket"), 0, 200);
     $date = $this->input->post("date");
+
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+
+    
     $inv_supplier = substr($this->input->post("inv_supplier"), 0, 50);
     $inv_int = 0;
     $read_select = $this->m_t_t_t_po_manual->select_inv_int();

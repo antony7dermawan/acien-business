@@ -44,6 +44,13 @@ class C_t_ak_jurnal_edit extends MY_Controller
     $coa_id = intval($this->input->post("coa_id"));
     $date = ($this->input->post("date"));
 
+
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+
+    
     $debit = intval($this->input->post("debit"));
     $kredit = intval($this->input->post("kredit"));
     $catatan = ($this->input->post("catatan"));
@@ -231,6 +238,13 @@ class C_t_ak_jurnal_edit extends MY_Controller
     $id = $this->input->post("id");
 
     $date = $this->input->post("date");
+
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+
+
     $debit = intval($this->input->post("debit"));
     $kredit = intval($this->input->post("kredit"));
     $catatan = ($this->input->post("catatan"));

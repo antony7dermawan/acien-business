@@ -287,6 +287,11 @@ class C_t_ak_faktur_penjualan extends MY_Controller
 
     $date = ($this->input->post("date"));
 
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+    
     $date_faktur_penjualan = $date;
     $this->session->set_userdata('date_faktur_penjualan', $date_faktur_penjualan);
 

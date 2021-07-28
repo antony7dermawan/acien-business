@@ -380,6 +380,12 @@ class C_t_ak_pembayaran_supplier extends MY_Controller
     
     $date = ($this->input->post("date"));
 
+
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+    
     $date_pembayaran_supplier = $date;
     $this->session->set_userdata('date_pembayaran_supplier', $date_pembayaran_supplier);
 

@@ -121,6 +121,13 @@ class C_t_t_t_pinlok_out extends MY_Controller
     $ket = substr($this->input->post("ket"), 0, 200);
     $date = $this->input->post("date");
 
+
+    if($date=='')
+    {
+      $date = date('Y-m-d');
+    }
+
+    
     $inv_int = 0;
 
 
