@@ -123,7 +123,7 @@
                 echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
                 echo "</a>";
 
-                echo "<a href='" . site_url('c_t_t_t_pemakaian/delete/' . $value->ID) . "' ";
+                echo "<a href='" . site_url('c_t_t_t_pinlok_in/delete/' . $value->ID) . "' ";
 
                 echo "onclick=\"return confirm('Apakah kamu yakin ingin menghapus data ini?')\"";
 
