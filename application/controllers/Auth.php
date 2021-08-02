@@ -70,7 +70,7 @@ class Auth extends MY_Controller {
           'date_terima_pelanggan'=>date('Y-m-d'),
           'date_from_select_jurnal'=>date('Y-m-d'),
           'date_to_select_jurnal'=>date('Y-m-d'),
-          'coa_id_jurnal_history'=>46,
+          'coa_id_jurnal_history'=>431,
           'date_from_dashboard'=>date('Y-m-d'),
           'date_to_dashboard'=>date('Y-m-d'),
           'date_jurnal_create'=>date('Y-m-d'),
