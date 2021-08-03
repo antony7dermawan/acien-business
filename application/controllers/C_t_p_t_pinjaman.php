@@ -142,7 +142,7 @@ class C_t_p_t_pinjaman extends MY_Controller
         'TIME' => $time_move,
         'CREATED_BY' => $this->session->userdata('username'),
         'UPDATED_BY' => '',
-        'COA_ID' => 40,
+        'COA_ID' => 666,
         'DEBIT' => intval($nilai_hutang),
         'KREDIT' => 0,
         'CATATAN' => 'Hutang : '.$anggota,
