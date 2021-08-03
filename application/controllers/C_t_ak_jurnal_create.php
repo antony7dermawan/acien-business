@@ -321,7 +321,6 @@ class C_t_ak_jurnal_create extends MY_Controller
     $kredit = intval($this->input->post("kredit"));
     $catatan = ($this->input->post("catatan"));
     $departemen = ($this->input->post("departemen"));
-    $no_voucer = $this->session->userdata('now_no_voucer');
 
 
 
@@ -333,8 +332,7 @@ class C_t_ak_jurnal_create extends MY_Controller
       'DEBIT' => $debit,
       'KREDIT' => $kredit,
       'CATATAN' => $catatan,
-      'DEPARTEMEN' => $departemen,
-      'NO_VOUCER' => $no_voucer
+      'DEPARTEMEN' => $departemen
 
     );
 
