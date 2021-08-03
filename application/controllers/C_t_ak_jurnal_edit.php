@@ -249,13 +249,7 @@ class C_t_ak_jurnal_edit extends MY_Controller
     $kredit = intval($this->input->post("kredit"));
     $catatan = ($this->input->post("catatan"));
     $departemen = ($this->input->post("departemen"));
-    $no_voucer = '';
-    $read_select = $this->m_t_ak_jurnal_edit->select();
-    foreach ($read_select as $key => $value) {
-      if ($key == 0) {
-        $no_voucer = $value->NO_VOUCER;
-      }
-    }
+    
 
 
 
@@ -266,7 +260,6 @@ class C_t_ak_jurnal_edit extends MY_Controller
       'KREDIT' => $kredit,
       'CATATAN' => $catatan,
       'DEPARTEMEN' => $departemen,
-      'NO_VOUCER' => $no_voucer,
       'DATE' => $date
 
     );
