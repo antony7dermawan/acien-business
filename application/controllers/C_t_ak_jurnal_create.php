@@ -134,6 +134,24 @@ class C_t_ak_jurnal_create extends MY_Controller
       }
 
       $no_voucer = $inv_jurnal.date('y-m').'.'.sprintf('%05d', $inv_int);
+
+      for($n=0;$n<=10;$n++)
+      { 
+        $in_logic = 0;
+        $read_select = $this->m_t_ak_jurnal_create->select_by_no_voucer($no_voucer);
+        foreach ($read_select as $key => $value) 
+        {
+          $in_logic = 1;
+          $inv_int = $value->NO_VOUCER_INT+1;
+
+          $no_voucer = $inv_jurnal.date('y-m').'.'.sprintf('%05d', $inv_int);
+        }
+        if($in_logic == 0)
+        {
+          break;
+        }
+      }
+      
     }
 
       if($no_voucer!='')
@@ -149,7 +167,8 @@ class C_t_ak_jurnal_create extends MY_Controller
           'CATATAN' => $catatan,
           'DEPARTEMEN' => $departemen,
           'NO_VOUCER' => $no_voucer,
-          'NO_VOUCER_INT' => $inv_int
+          'NO_VOUCER_INT' => $inv_int,
+          'COMPANY_ID' => $this->session->userdata('company_id')
 
         );
 

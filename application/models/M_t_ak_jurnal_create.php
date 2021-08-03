@@ -17,7 +17,35 @@ public function update_all($data)
 }
 
 
+  public function select_by_no_voucer($no_voucer)
+  {
+    $this->db->select("T_AK_JURNAL_CREATE.ID");
+    $this->db->select("AK_M_COA.NO_AKUN_1");
+    $this->db->select("AK_M_COA.NO_AKUN_2");
+    $this->db->select("AK_M_COA.NO_AKUN_3");
+    $this->db->select("AK_M_COA.NAMA_AKUN");
+    $this->db->select("AK_M_COA.FAMILY_ID");
+    $this->db->select("T_AK_JURNAL_CREATE.COA_ID");
+    $this->db->select("T_AK_JURNAL_CREATE.DEBIT");
+    $this->db->select("T_AK_JURNAL_CREATE.KREDIT");
+    $this->db->select("T_AK_JURNAL_CREATE.CATATAN");
+    $this->db->select("T_AK_JURNAL_CREATE.DEPARTEMEN");
+    $this->db->select("T_AK_JURNAL_CREATE.NO_VOUCER");
+    $this->db->select("T_AK_JURNAL_CREATE.NO_VOUCER_INT");
+    $this->db->select("T_AK_JURNAL_CREATE.DATE");
+    $this->db->select("T_AK_JURNAL_CREATE.TIME");
+    $this->db->select("T_AK_JURNAL_CREATE.CREATED_BY");
+    $this->db->select("T_AK_JURNAL_CREATE.UPDATED_BY");
+    $this->db->select("T_AK_JURNAL_CREATE.COMPANY_ID");
 
+    $this->db->from('T_AK_JURNAL_CREATE');
+    $this->db->join('AK_M_COA', 'AK_M_COA.ID = T_AK_JURNAL_CREATE.COA_ID', 'left');
+
+    $this->db->where("T_AK_JURNAL_CREATE.NO_VOUCER='{$no_voucer}'");
+
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
 
 
   public function select()
@@ -39,6 +67,7 @@ public function update_all($data)
     $this->db->select("T_AK_JURNAL_CREATE.TIME");
     $this->db->select("T_AK_JURNAL_CREATE.CREATED_BY");
     $this->db->select("T_AK_JURNAL_CREATE.UPDATED_BY");
+    $this->db->select("T_AK_JURNAL_CREATE.COMPANY_ID");
 
     $this->db->from('T_AK_JURNAL_CREATE');
     $this->db->join('AK_M_COA', 'AK_M_COA.ID = T_AK_JURNAL_CREATE.COA_ID', 'left');
