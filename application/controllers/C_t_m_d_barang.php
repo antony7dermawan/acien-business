@@ -178,24 +178,35 @@ class C_t_m_d_barang extends MY_Controller
     $satuan_id = intval($this->input->post("satuan_id"));
 
     //Dikiri nama kolom pada database, dikanan hasil yang kita tangkap nama formnya.
-    $data = array(
-      'KODE_BARANG' => $kode_barang,
-      'BARANG' => $barang,
-      'PART_NUMBER' => $part_number,
-      'KATEGORI_ID' => $kategori_id,
-      'MERK_BARANG' => $merk_barang,
-      'POSISI' => $posisi,
-      'MINIMUM_STOK' => $minimum_stok,
-      'CREATED_BY' => $this->session->userdata('username'),
-      'UPDATED_BY' => '',
-      'MARK_FOR_DELETE' => FALSE,
-      'BARANG_ID' => strtotime(date('Y-m-d H:i:s')),
-      'HARGA_JUAL' => $harga_jual,
-      'SATUAN_ID' => $satuan_id,
-      'COMPANY_ID' => $this->session->userdata('company_id'),
-      'MAXIMUM_STOK' => $maximum_stok,
-      'JENIS_BARANG_ID' => $jenis_barang_id
-    );
+    $yes_logic=0;
+    $barang_id = strtotime(date('Y-m-d H:i:s'));
+    $read_select = $this->m_t_m_d_barang->select_existing_barang_id_in_company($barang_id,$this->session->userdata('company_id'));
+    foreach ($read_select as $key => $value) {
+      $yes_logic=1;
+    }
+
+    if($yes_logic==0)
+    {
+      $data = array(
+        'KODE_BARANG' => $kode_barang,
+        'BARANG' => $barang,
+        'PART_NUMBER' => $part_number,
+        'KATEGORI_ID' => $kategori_id,
+        'MERK_BARANG' => $merk_barang,
+        'POSISI' => $posisi,
+        'MINIMUM_STOK' => $minimum_stok,
+        'CREATED_BY' => $this->session->userdata('username'),
+        'UPDATED_BY' => '',
+        'MARK_FOR_DELETE' => FALSE,
+        'BARANG_ID' => $barang_id,
+        'HARGA_JUAL' => $harga_jual,
+        'SATUAN_ID' => $satuan_id,
+        'COMPANY_ID' => $this->session->userdata('company_id'),
+        'MAXIMUM_STOK' => $maximum_stok,
+        'JENIS_BARANG_ID' => $jenis_barang_id
+      );
+    }
+    
 
     $this->m_t_m_d_barang->tambah($data);
 
