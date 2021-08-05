@@ -244,7 +244,7 @@
                       $sheet->setCellValue('B'.$row, $r_gp_value[$i]);
                       $sheet->getStyle('B'.$row)->getAlignment()->setHorizontal('center');
                       
-                      $sheet->setCellValue('C'.$row, $r_position_value[$i]);
+                      $sheet->setCellValue('C'.$row, $r_tunjangan_value[$i]);
                       $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
 
                       
