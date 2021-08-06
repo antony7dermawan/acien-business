@@ -199,8 +199,8 @@ class C_t_t_t_po_print extends MY_Controller
       $pdf->SetFont('','',8);
 
       $pdf->MultiCell($colom_width[0], $baris_height, ($i+1).'.', '0', 'C',0,0);
-      $pdf->MultiCell($colom_width[1], $baris_height, substr($kode_barang[$i], 0, 12), 'L', 'L',0,0);
-      $pdf->MultiCell($colom_width[2]+$colom_width[3]+$colom_width[4], $baris_height, substr($barang[$i], 0, 20), 'L', 'L',0,0);
+      $pdf->MultiCell($colom_width[1], $baris_height, substr($kode_barang[$i], 0, 50), 'L', 'L',0,0);
+      $pdf->MultiCell($colom_width[2]+$colom_width[3]+$colom_width[4], $baris_height, substr($barang[$i], 0, 50), 'L', 'L',0,0);
       $pdf->MultiCell($colom_width[6]+$colom_width[5], $baris_height, number_format(round($qty[$i])).' '.$satuan[$i], 'L', 'C',0,0);
 
       
