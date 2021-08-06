@@ -63,6 +63,7 @@
               echo "<td>";
 
 
+              /*
               if (intval($value->SUM_SUB_TOTAL) != 0)
               {
                 echo "<a "; #/1 ini artinya kena pajak
@@ -88,6 +89,8 @@
                 echo "}";
                 echo "</script>";
               }
+
+              */
               
 
 
