@@ -39,7 +39,7 @@ class C_t_t_t_po_print2 extends MY_Controller
     $read_select = $this->m_t_t_t_pembelian->select_by_id($pembelian_id);
     foreach ($read_select as $key => $value) 
     {
-      $date = $value->DATE;
+      $date = $value->NEW_DATE;
       $time = $value->TIME;
       $inv = $value->INV;
       $supplier_id = $value->SUPPLIER_ID;

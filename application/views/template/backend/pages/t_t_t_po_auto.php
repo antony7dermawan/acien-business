@@ -101,7 +101,7 @@
 
 
 
-              echo "<td>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</td>";
+              echo "<td>" . date('d-m-Y', strtotime($value->NEW_DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</td>";
               echo "<td>" . $value->KET . "</td>";
               echo "<td>" . $value->SUPPLIER . "</td>";
               echo "<td>" . $value->INV_SUPPLIER . "</td>";
@@ -193,7 +193,7 @@
               echo "<td><s>" . ($key + 1) . "</s></td>";
               echo "<td><s> </s></td>";
               echo "<td><s>" . $value->INV . "</s></td>";
-              echo "<td><s>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</s></td>";
+              echo "<td><s>" . date('d-m-Y', strtotime($value->NEW_DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</s></td>";
               echo "<td><s>" . $value->KET . "</s></td>";
               echo "<td><s>" . $value->SUPPLIER . "</s></td>";
               echo "<td><s>" . $value->INV_SUPPLIER . "</s></td>";

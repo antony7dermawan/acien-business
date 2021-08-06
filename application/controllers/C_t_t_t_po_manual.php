@@ -137,6 +137,7 @@ class C_t_t_t_po_manual extends MY_Controller
 
 
 
+
     $live_inv = $inv_po.date('y-m').'.'.sprintf('%05d', $inv_int);
 
     $date_po_manual = $date;
