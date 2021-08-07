@@ -32,6 +32,7 @@
             <th>Date</th>
             <th>Ket</th>
             <th>Anggota</th>
+            <th>No Polisi</th>
             <th>Payment Method</th>
             <th>Total</th>
 
@@ -49,6 +50,7 @@
               echo "<td>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</td>";
               echo "<td>" . $value->KET . "</td>";
               echo "<td>" . $value->ANGGOTA . "</td>";
+              echo "<td>" . $value->NO_POLISI . "</td>";
               echo "<td>" . $value->PAYMENT_METHOD . "</td>";
 
 
@@ -151,6 +153,7 @@
               echo "<td><s>" . date('d-m-Y', strtotime($value->DATE)) . " / " . date('H:i', strtotime($value->TIME)) . "</s></td>";
               echo "<td><s>" . $value->KET . "</s></td>";
               echo "<td><s>" . $value->ANGGOTA . "</s></td>";
+              echo "<td><s>" . $value->NO_POLISI . "</s></td>";
               echo "<td><s>" . $value->PAYMENT_METHOD . "</s></td>";
 
 

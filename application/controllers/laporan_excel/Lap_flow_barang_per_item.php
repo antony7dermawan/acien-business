@@ -43,7 +43,7 @@
 
 
 
-            public function index($date_from_laporan,$date_to_laporan,$barang_id,$kategori_id,$sales_id,$pelanggan_id,$supplier_id)
+            public function index($date_from_laporan,$date_to_laporan,$barang_id,$kategori_id,$sales_id,$pelanggan_id,$supplier_id,$no_polisi_id,$anggota_id)
             {
               $kategori_id=0;
               $this->session->set_userdata('t_t_t_penjualan_delete_logic', '0');

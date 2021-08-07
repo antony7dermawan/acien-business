@@ -30,13 +30,48 @@
         echo "<option value='laporan_excel/lap_ranking_pelanggan/index/' >Laporan Ranking Pelanggan</option>";
 
 
-        
 
         echo "<option value='laporan_excel/lap_penjualan_per_pelanggan/index/' >Laporan Penjualan Per Pelanggan</option>";
 
 
+        echo "<option value='laporan_excel/lap_pemakaian_per_no_polisi/index/' >Laporan Pemakaian Per No Polisi</option>";
+
+        echo "<option value='laporan_excel/lap_pemakaian_per_anggota/index/' >Laporan Pemakaian Per Anggota</option>";
+
+
         ?>
       </select>
+
+
+      <div class='no_polisi' id='no_polisi'>
+        <label>No Polisi</label>
+            <select name="no_polisi_id" class='no_polisi_id' id='no_polisi_id' placeholder='Pick a state...'>
+              
+              <?php
+              foreach ($c_t_m_d_no_polisi as $key => $value) 
+              {
+                echo "<option value='".$value->ID."'>".$value->NO_POLISI."</option>";
+
+              }
+              ?>
+            </select>
+      </div>
+
+
+      <div class='anggota' id='anggota'>
+        <label>Anggota</label>
+            <select name="anggota_id" class='anggota_id' id='anggota_id' placeholder='Pick a state...'>
+              
+              <?php
+              foreach ($c_t_m_d_anggota as $key => $value) 
+              {
+                echo "<option value='".$value->ID."'>".$value->ANGGOTA."</option>";
+
+              }
+              ?>
+            </select>
+      </div>
+
 
       <div class='barang' id='barang'>
         <label>Kode Barang</label>
@@ -166,6 +201,10 @@ $(document).ready(function()
       document.getElementById('supplier').style.display = 'none';
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'none';
+
+
+      document.getElementById('no_polisi').style.display = 'none';
+      document.getElementById('anggota').style.display = 'none';
     }
 
     else if(pilih_laporan=="laporan_excel/lap_beli_per_supplier/index/")
@@ -176,6 +215,10 @@ $(document).ready(function()
 
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'none';
+
+
+      document.getElementById('no_polisi').style.display = 'none';
+      document.getElementById('anggota').style.display = 'none';
     }
     else if(pilih_laporan=="laporan_excel/lap_flow_barang_per_kategori/index/")
     {
@@ -185,6 +228,10 @@ $(document).ready(function()
 
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'none';
+
+
+      document.getElementById('no_polisi').style.display = 'none';
+      document.getElementById('anggota').style.display = 'none';
     }
 
 
@@ -196,6 +243,10 @@ $(document).ready(function()
 
       document.getElementById('sales').style.display = 'block';
       document.getElementById('pelanggan').style.display = 'none';
+
+
+      document.getElementById('no_polisi').style.display = 'none';
+      document.getElementById('anggota').style.display = 'none';
     }
 
     else if(pilih_laporan=="laporan_excel/lap_penjualan_per_pelanggan/index/")
@@ -206,6 +257,39 @@ $(document).ready(function()
 
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'block';
+
+
+      document.getElementById('no_polisi').style.display = 'none';
+      document.getElementById('anggota').style.display = 'none';
+    }
+
+
+    else if(pilih_laporan=="laporan_excel/lap_pemakaian_per_no_polisi/index/")
+    {
+      document.getElementById('barang').style.display = 'none';
+      document.getElementById('kategori').style.display = 'none';
+      document.getElementById('supplier').style.display = 'none';
+
+      document.getElementById('sales').style.display = 'none';
+      document.getElementById('pelanggan').style.display = 'none';
+
+      document.getElementById('no_polisi').style.display = 'block';
+      document.getElementById('anggota').style.display = 'none';
+    }
+
+
+
+    else if(pilih_laporan=="laporan_excel/lap_pemakaian_per_anggota/index/")
+    {
+      document.getElementById('barang').style.display = 'none';
+      document.getElementById('kategori').style.display = 'none';
+      document.getElementById('supplier').style.display = 'none';
+
+      document.getElementById('sales').style.display = 'none';
+      document.getElementById('pelanggan').style.display = 'none';
+
+      document.getElementById('no_polisi').style.display = 'none';
+      document.getElementById('anggota').style.display = 'block';
     }
 
 
@@ -217,6 +301,10 @@ $(document).ready(function()
 
       document.getElementById('sales').style.display = 'none';
       document.getElementById('pelanggan').style.display = 'none';
+
+
+      document.getElementById('no_polisi').style.display = 'none';
+      document.getElementById('anggota').style.display = 'none';
     }
     
   });
@@ -239,9 +327,11 @@ $(document).ready(function()
     var link_6 = parseInt(document.getElementById("sales_id").value);
     var link_7 = parseInt(document.getElementById("pelanggan_id").value);
     var link_8 = parseInt(document.getElementById("supplier_id").value);
+    var link_9 = parseInt(document.getElementById("no_polisi_id").value);
+    var link_10 = parseInt(document.getElementById("anggota_id").value);
     var slash = "/";
 
-    var link = link_1.concat(link_2, slash, link_3, slash, link_4, slash, link_5,slash, link_6,slash, link_7,slash,link_8);
+    var link = link_1.concat(link_2, slash, link_3, slash, link_4, slash, link_5,slash, link_6,slash, link_7,slash,link_8,slash,link_9,slash,link_10);
     window.open(link);
   }
 </script>
@@ -290,6 +380,14 @@ $(document).ready(function()
   display: none;
 }
 .pelanggan
+{
+  display: none;
+}
+.anggota
+{
+  display: none;
+}
+.no_polisi
 {
   display: none;
 }
