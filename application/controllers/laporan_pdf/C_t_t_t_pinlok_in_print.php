@@ -18,7 +18,7 @@ class C_t_t_t_pinlok_in_print extends MY_Controller
 
   public function index($pinlok_id)
   {
-    $this->session->set_userdata('t_t_t_penjualan_delete_logic', '0');
+    $this->session->set_userdata('t_t_t_pembelian_delete_logic', '0');
 
     $pdf = new \TCPDF();
     $pdf->SetPrintHeader(false);

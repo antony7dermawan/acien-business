@@ -44,6 +44,7 @@
             <th>No</th>
             <th>Kode Barang</th>
             <th>Barang</th>
+            <th>Merk</th>
             <th>Qty</th>
             <th>Sisa Qty</th>
             
@@ -63,6 +64,7 @@
               echo "<td>" . ($key + 1) . "</td>";
               echo "<td>" . $value->KODE_BARANG . "</td>";
               echo "<td>" . $value->BARANG . "</td>";
+              echo "<td>" . $value->MERK_BARANG . "</td>";
               
               echo "<td>" . number_format(floatval(round($value->QTY*100))/100) . "</td>";
 
@@ -100,6 +102,7 @@
               echo "<td><s>" . ($key + 1) . "</s></td>";
               echo "<td><s>" . $value->KODE_BARANG . "</s></td>";
               echo "<td><s>" . $value->BARANG . "</s></td>";
+              echo "<td><s>" . $value->MERK_BARANG . "</s></td>";
               
               echo "<td><s>" . number_format(floatval(round($value->QTY*100))/100) . "</s></td>";
 
