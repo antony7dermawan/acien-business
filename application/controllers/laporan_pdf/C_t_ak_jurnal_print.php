@@ -71,10 +71,10 @@ class c_t_ak_jurnal_print extends MY_Controller
 
 
 
-    $pdf->Cell(30, 6, "No Voucer", 1, 0, 'C');
-    $pdf->Cell(40, 6, $no_voucer, 1, 1, 'L');
-    $pdf->Cell(30, 6, "Tanggal", 1, 0, 'C');
-    $pdf->Cell(40, 6, $tanggal, 1, 1, 'L');
+    $pdf->Cell(25, 6, "No Voucer", 0, 0, 'C');
+    $pdf->Cell(40, 6, ': '.$no_voucer, 0, 1, 'L');
+    $pdf->Cell(25, 6, "Tanggal", 0, 0, 'C');
+    $pdf->Cell(40, 6, ': '.$tanggal, 0, 1, 'L');
 
 
     $pdf->Cell(30, 1, "", 0, 1, 'C');
