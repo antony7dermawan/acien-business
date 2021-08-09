@@ -93,6 +93,7 @@ class C_t_t_t_pinlok_in extends MY_Controller
 
 
 
+
    public function arrived_done($id)
   {
     $data = array(

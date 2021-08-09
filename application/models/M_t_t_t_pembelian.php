@@ -292,7 +292,8 @@ public function select_range_date_per_supplier($from_date,$to_date,$supplier_id)
 
 
 
-    $this->db->where("(T_T_T_PEMBELIAN.T_STATUS=50)");
+
+    $this->db->where("(T_T_T_PEMBELIAN.T_STATUS=50 or T_T_T_PEMBELIAN.T_STATUS=5)");
 
 
     $date_before = date('Y-m-d',(strtotime ( '-30 day' , strtotime ( $date_pembelian) ) ));
