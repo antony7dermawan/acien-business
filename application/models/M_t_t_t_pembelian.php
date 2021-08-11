@@ -523,6 +523,7 @@ public function select_range_date_per_supplier($from_date,$to_date,$supplier_id)
     $this->db->select("T_T_T_PEMBELIAN.INV");
     $this->db->select("T_T_T_PEMBELIAN.INV_INT");
     $this->db->select("T_T_T_PEMBELIAN.COMPANY_ID");
+    $this->db->select("T_T_T_PEMBELIAN.COMPANY_ID_FROM");
     $this->db->select("T_T_T_PEMBELIAN.PAYMENT_METHOD_ID");
     $this->db->select("T_T_T_PEMBELIAN.SUPPLIER_ID");
     $this->db->select("T_T_T_PEMBELIAN.CREATED_BY");
@@ -542,7 +543,10 @@ public function select_range_date_per_supplier($from_date,$to_date,$supplier_id)
     $this->db->select("T_M_D_COMPANY.COMPANY");
     $this->db->select("SUM_SUB_TOTAL");
 
-   
+    $this->db->select("T_M_D_NO_POLISI.NO_POLISI");
+    $this->db->select("T_M_D_SUPIR.SUPIR");
+
+    $this->db->select("T_M_D_LOKASI.LOKASI");
 
 
     $this->db->from('T_T_T_PEMBELIAN');
@@ -552,6 +556,14 @@ public function select_range_date_per_supplier($from_date,$to_date,$supplier_id)
     $this->db->join('T_M_D_PAYMENT_METHOD', 'T_M_D_PAYMENT_METHOD.ID = T_T_T_PEMBELIAN.PAYMENT_METHOD_ID', 'left');
     $this->db->join('T_M_D_SUPPLIER', 'T_M_D_SUPPLIER.ID = T_T_T_PEMBELIAN.SUPPLIER_ID', 'left');
 
+
+    $this->db->join('T_M_D_NO_POLISI', 'T_M_D_NO_POLISI.ID = T_T_T_PEMBELIAN.NO_POLISI_ID', 'left');
+
+    $this->db->join('T_M_D_SUPIR', 'T_M_D_SUPIR.ID = T_T_T_PEMBELIAN.SUPIR_ID', 'left');
+
+    $this->db->join('T_M_D_LOKASI', 'T_M_D_LOKASI.ID = T_T_T_PEMBELIAN.LOKASI_ID', 'left');
+
+    
     $this->db->join("(select \"PEMBELIAN_ID\",sum(\"SUB_TOTAL\")\"SUM_SUB_TOTAL\" from \"T_T_T_PEMBELIAN_RINCIAN\" where \"MARK_FOR_DELETE\"=false group by \"PEMBELIAN_ID\") as t_sum_1", 'T_T_T_PEMBELIAN.ID = t_sum_1.PEMBELIAN_ID', 'left');
 
     if($this->session->userdata('t_t_t_pembelian_delete_logic')==0)
