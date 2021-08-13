@@ -14,6 +14,7 @@
           <tr>
             <th>ID</th>
             <th>Date</th>
+            <th>INV</th>
             <th>Anggota</th>
             <th>Keterangan</th>
             <th>Pinjaman</th>
@@ -31,6 +32,7 @@
               echo "<td>".$value->ID."</td>";
               echo "<td>" . date('d-m-Y', strtotime($value->DATE)) . "</td>";
 
+              echo "<td>".$value->INV."</td>";
               echo "<td>".$value->ANGGOTA."</td>";
 
 
@@ -67,6 +69,7 @@
               echo "<td><s>".($key + 1)."</s></td>";
               echo "<td><s>" . date('d-m-Y', strtotime($value->DATE)) . "</s></td>";
 
+              echo "<td><s>".$value->INV."</s></td>";
               echo "<td><s>".$value->ANGGOTA."</s></td>";
 
 

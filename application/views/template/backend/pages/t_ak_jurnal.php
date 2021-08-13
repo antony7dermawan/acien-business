@@ -204,7 +204,7 @@
               echo "</script>";
 
 
-              if($value->CHECKED_ID == 1)
+              if($value->CHECKED_ID == 1 and $value->NO_VOUCER_INT != null)
               {
                 echo "<a href='" . site_url('c_t_ak_jurnal/delete/' . $value->CREATED_ID) . "' ";
                 ?>
