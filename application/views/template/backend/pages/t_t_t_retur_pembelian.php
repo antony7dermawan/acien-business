@@ -199,7 +199,7 @@
               <?php
               foreach ($select_inv_pembelian as $key => $value) 
               {
-                echo "<option value='".$value->ID."'>".$value->INV."</option>";
+                echo "<option value='".$value->ID."'>".$value->INV." / ".$value->SUPPLIER."</option>";
 
               }
               ?>
