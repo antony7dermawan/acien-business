@@ -156,12 +156,11 @@
               }
               
 
-              if ($value->T_STATUS != 1)
-              {
+              
                 echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='" . $value->ID . "'>";
                 echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
                 echo "</a>";
-              }
+              
 
               if ($value->SUM_SUB_TOTAL == 0) {
                 
@@ -367,15 +366,8 @@
 
 
               <div class="searchable">
-                  <input type="text" name='supplier' placeholder="search" onkeyup="filterFunction(this,event)">
-                  <ul>
-                    <?php
-                    foreach ($c_t_m_d_supplier as $key => $value) 
-                    {
-                      echo "<li>".$value->SUPPLIER."</li>";
-                    }
-                    ?>
-                  </ul>
+                  <input type="text" name='supplier' placeholder="search"  readOnly='true'>
+                  
               </div>
             </fieldset>
 
