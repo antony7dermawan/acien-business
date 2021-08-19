@@ -214,49 +214,49 @@ class C_t_t_t_retur_pembelian_print extends MY_Controller
       $total_all=$total_all+floatval($sub_total[$i]);
 
 
-      if($rmd==$total_baris_1_bon-1)
-      {
-        $pdf->MultiCell(150, 8, 'Terbilang : #'.ucwords($this->terbilang($total_all)).' Rupiah#' , 'T', 'L',0,0);
-        $pdf->MultiCell(15, 8, 'Total' , 'T', 'R',0,0);
-        $pdf->MultiCell(25, 8, number_format(round($total_all)) , 'T', 'R',0,1);
-        $total_all=0;
+      // if($rmd==$total_baris_1_bon-1)
+      // {
+      //   $pdf->MultiCell(150, 8, 'Terbilang : #'.ucwords($this->terbilang($total_all)).' Rupiah#' , 'T', 'L',0,0);
+      //   $pdf->MultiCell(15, 8, 'Total' , 'T', 'R',0,0);
+      //   $pdf->MultiCell(25, 8, number_format(round($total_all)) , 'T', 'R',0,1);
+      //   $total_all=0;
         
-        $pdf->Cell(40, 6, "NB: Barang yang sudah dibeli tidak dapat ditukar/dikembalikan", 0, 1, 'L');
+      //   $pdf->Cell(40, 6, "NB: Barang yang sudah dibeli tidak dapat ditukar/dikembalikan", 0, 1, 'L');
 
-            $pdf->Cell(40, 6, "DITERIMA OLEH:", 0, 0, 'C');
-            $pdf->Cell(10, 6, "", 0, 0, 'C');
-            $pdf->Cell(40, 6, "DIPERIKSA OLEH:", 0, 0, 'C');
-            $pdf->Cell(10, 6, "", 0, 0, 'C');
-            $pdf->Cell(40, 6, "", 0, 0, 'C');
-            $pdf->Cell(10, 6, "", 0, 0, 'C');
-            $pdf->Cell(40, 6, "HORMAT KAMI:", 0, 1, 'C');
+      //       $pdf->Cell(40, 6, "DITERIMA OLEH:", 0, 0, 'C');
+      //       $pdf->Cell(10, 6, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 6, "DIPERIKSA OLEH:", 0, 0, 'C');
+      //       $pdf->Cell(10, 6, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 6, "", 0, 0, 'C');
+      //       $pdf->Cell(10, 6, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 6, "HORMAT KAMI:", 0, 1, 'C');
 
-            $pdf->Cell(40, 12, "", 0, 0, 'C');
-            $pdf->Cell(10, 12, "", 0, 0, 'C');
-            $pdf->Cell(40, 12, "", 0, 0, 'C');
-            $pdf->Cell(10, 12, "", 0, 0, 'C');
-            $pdf->Cell(40, 12, "", 0, 0, 'C');
-            $pdf->Cell(10, 12, "", 0, 0, 'C');
-            $pdf->Cell(40, 12, "", 0, 1, 'C');
+      //       $pdf->Cell(40, 12, "", 0, 0, 'C');
+      //       $pdf->Cell(10, 12, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 12, "", 0, 0, 'C');
+      //       $pdf->Cell(10, 12, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 12, "", 0, 0, 'C');
+      //       $pdf->Cell(10, 12, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 12, "", 0, 1, 'C');
 
-            $pdf->Cell(40, 6, "Tgl:", 'T', 0, 'C');
-            $pdf->Cell(10, 6, "", 0, 0, 'C');
-            $pdf->Cell(40, 6, "Tgl:", 'T', 0, 'C');
-            $pdf->Cell(10, 6, "", 0, 0, 'C');
-            $pdf->Cell(40, 6, "", '0', 0, 'C');
-            $pdf->Cell(10, 6, "", 0, 0, 'C');
-            $pdf->Cell(40, 6, "Tgl:", 'T', 1, 'C');
+      //       $pdf->Cell(40, 6, "Tgl:", 'T', 0, 'C');
+      //       $pdf->Cell(10, 6, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 6, "Tgl:", 'T', 0, 'C');
+      //       $pdf->Cell(10, 6, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 6, "", '0', 0, 'C');
+      //       $pdf->Cell(10, 6, "", 0, 0, 'C');
+      //       $pdf->Cell(40, 6, "Tgl:", 'T', 1, 'C');
 
-        $dibuat_oleh = $created_by;
-        if($updated_by!='')
-        {
-          $dibuat_oleh = $updated_by;
-        }
-        $pdf->Cell(20, 12, "Dibuat Oleh", 0, 0, 'L');
-        $pdf->Cell(20, 12,': '. $dibuat_oleh.' / '. date('d-m-y', strtotime($date)). ' / '.date('H:i', strtotime($time)), 0, 1, 'L');
+      //   $dibuat_oleh = $created_by;
+      //   if($updated_by!='')
+      //   {
+      //     $dibuat_oleh = $updated_by;
+      //   }
+      //   $pdf->Cell(20, 12, "Dibuat Oleh", 0, 0, 'L');
+      //   $pdf->Cell(20, 12,': '. $dibuat_oleh.' / '. date('d-m-y', strtotime($date)). ' / '.date('H:i', strtotime($time)), 0, 1, 'L');
 
 
-      }
+      // }
 
     }
 

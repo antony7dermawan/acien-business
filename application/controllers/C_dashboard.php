@@ -19,8 +19,9 @@ class C_dashboard extends MY_Controller
     $data = [
 
 
-      "c_t_t_t_pembelian" => $this->m_t_t_t_pembelian->select_dashboard(date('Y-m-d')),
-      "c_t_t_t_pemakaian" => $this->m_t_t_t_pemakaian->select_dashboard(date('Y-m-d')),
+
+      "c_t_t_t_pembelian" => $this->m_t_t_t_pembelian->select_dashboard($this->session->userdata('date_to_dashboard')),
+      "c_t_t_t_pemakaian" => $this->m_t_t_t_pemakaian->select_dashboard($this->session->userdata('date_to_dashboard')),
 
       "title" => "Dashboard",
       "description" => "Web Version:21-01-26 22:11"
@@ -39,7 +40,13 @@ class C_dashboard extends MY_Controller
     redirect('/c_dashboard');
   }
 
+public function search_date()
+  {
 
+    $date_to_dashboard = ($this->input->post("date_to_dashboard"));
+    $this->session->set_userdata('date_to_dashboard', $date_to_dashboard);
+    redirect('/c_dashboard');
+  }
 
   public function search_date_2()
   {

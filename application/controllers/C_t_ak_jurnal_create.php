@@ -100,6 +100,12 @@ class C_t_ak_jurnal_create extends MY_Controller
       $date = date('Y-m-d');
     }
 
+    $time_send = date('H:i:s');
+    if($date!=date('Y-m-d'))
+    {
+      $time_send = '23:59';
+    }
+
     $data_id = 0;
     $read_select = $this->m_t_ak_jurnal_create->select();
     foreach ($read_select as $key => $value) {
@@ -158,7 +164,7 @@ class C_t_ak_jurnal_create extends MY_Controller
       {
           $data = array(
           'DATE' => $date,
-          'TIME' => date('H:i:s'),
+          'TIME' => $time_send,
           'CREATED_BY' => $this->session->userdata('username'),
           'UPDATED_BY' => $this->session->userdata('username'),
           'COA_ID' => $coa_id,

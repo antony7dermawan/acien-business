@@ -38,9 +38,29 @@ if($level_user_id==1 or $level_user_id==2)
           <div class="col-md-12">
             <div class="card">
               <div class="card-header">
-                <h5>Rekap Seluruh Pembelian Harian
+                <h5>
+                  Rekap Seluruh Pembelian Harian
+                  <form action='<?php echo base_url("c_dashboard/search_date"); ?>' class='no_voucer_area' method="post" id=''>
+                  <table>
+                    <tr>
 
-                <?= $this->session->flashdata('notif') ?>
+                      
+                      <th>
+                        <form action='/action_page.php'>
+                          <input type='date' class='form-control' name='date_to_dashboard' value='<?php echo $this->session->userdata('date_to_dashboard'); ?>'>
+                      </th>
+                      <th>
+                        <input type="submit" name="submit_date" class='btn btn-primary waves-effect waves-light' value="Search">
+                      </th>
+                    </tr>
+                  </table>
+
+
+                </form>
+
+                  
+
+                
 
                 </h5>
 
