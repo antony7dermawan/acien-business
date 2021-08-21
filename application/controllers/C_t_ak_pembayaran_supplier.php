@@ -40,7 +40,7 @@ class C_t_ak_pembayaran_supplier extends MY_Controller
 
       "c_t_m_d_supplier" => $this->m_t_m_d_supplier->select(),
 
-      "title" => "Pembayaran Supplier",
+      "title" => "Transaksi Pembayaran Supplier",
       "description" => "Membuat Payment ke Supplier"
     ];
     $this->render_backend('template/backend/pages/t_ak_pembayaran_supplier', $data);

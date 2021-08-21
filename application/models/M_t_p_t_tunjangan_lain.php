@@ -68,6 +68,40 @@ public function select_id($id)
     return $akun->result ();
   }
 
+
+
+  public function select_by_anggota_id($anggota_id,$r_from_date)
+  {
+    $this->db->select('T_P_T_TUNJANGAN_LAIN.ID');
+
+    $this->db->select('T_P_T_TUNJANGAN_LAIN.DATE');
+    $this->db->select('T_P_T_TUNJANGAN_LAIN.KET');
+    $this->db->select('T_P_T_TUNJANGAN_LAIN.VALUE');
+    $this->db->select('T_P_T_TUNJANGAN_LAIN.CREATED_BY');
+    $this->db->select('T_P_T_TUNJANGAN_LAIN.UPDATED_BY');
+    $this->db->select('T_P_T_TUNJANGAN_LAIN.MARK_FOR_DELETE');
+  
+    $this->db->select('T_M_D_ANGGOTA.ANGGOTA');
+
+
+
+
+    $this->db->from('T_P_T_TUNJANGAN_LAIN');
+
+    $this->db->join('T_M_D_ANGGOTA', 'T_M_D_ANGGOTA.ID = T_P_T_TUNJANGAN_LAIN.ANGGOTA_ID', 'left');
+
+   
+
+
+    
+    $this->db->where('T_P_T_TUNJANGAN_LAIN.MARK_FOR_DELETE',FALSE);
+    $this->db->where("T_P_T_TUNJANGAN_LAIN.DATE >='{$r_from_date}'");
+    $this->db->where('T_P_T_TUNJANGAN_LAIN.ANGGOTA_ID',$anggota_id);
+    
+    $akun = $this->db->get ();
+    return $akun->result ();
+  }
+
   public function delete($id)
   {
     $this->db->where('ID',$id);

@@ -27,7 +27,9 @@
                 $this->load->model('m_t_t_payroll');
                 $this->load->model('m_t_p_t_pinjaman');
                 
-                
+
+                $this->load->model('m_t_p_t_tunjangan_lain');
+                $this->load->model('m_t_p_t_potongan_lain');
 
             }
 
@@ -461,6 +463,273 @@
                               
                               $alp++;
                         }
+
+
+
+
+
+
+
+
+                  $row=$row+2;
+
+
+                  $sum_tunjangan_lain_lain = 0;
+
+
+                  $logic_true = 0;
+                  $read_select = $this->m_t_p_t_tunjangan_lain->select_by_anggota_id($anggota_id,$r_from_date);
+                  foreach ($read_select as $key => $value) 
+                  {
+                    $logic_true=1;
+                    $row=$row+1;
+
+                    if($key==0)
+                    {
+                      $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
+                      $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':F'.$row);
+                      $sheet = $spreadsheet->getActiveSheet();
+                      $sheet->setCellValue('A'.$row, 'Tunjangan-Tunjangan');
+                      $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
+
+                      $row=$row+1;
+
+                      $sheet->setCellValue('A'.$row, 'No.');
+                      $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
+
+
+                      $sheet->setCellValue('B'.$row, 'Tanggal Transaksi');
+                      $sheet->getStyle('B'.$row)->getAlignment()->setHorizontal('center');
+                      
+                      $sheet->setCellValue('C'.$row, 'Keterangan');
+                      $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
+
+                      $sheet->setCellValue('D'.$row, 'Nominal Tujangan (Rp.)');
+                      $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
+
+                     
+
+
+                          $alp='A';
+                          $total_alp=3;
+                          for($n=0;$n<=$total_alp;$n++)
+                          {
+                                $area = $alp.$row;
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $alp++;
+                          }
+                      $row=$row+1;
+                    }
+
+                    $sheet->setCellValue('A'.$row, ($key+1));
+                    $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
+
+
+                    $sheet->setCellValue('B'.$row, date('d-m-Y',strtotime($value->DATE)));
+                    $sheet->getStyle('B'.$row)->getAlignment()->setHorizontal('center');
+                    
+                    $sheet->setCellValue('C'.$row, $value->KET);
+                    $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('left');
+
+                    $sheet->setCellValue('D'.$row, $value->VALUE);
+                    $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
+                    
+                    $sum_tunjangan_lain_lain = $sum_tunjangan_lain_lain + $value->VALUE;
+
+
+                    $alp='A';
+                          $total_alp=3;
+                          for($n=0;$n<=$total_alp;$n++)
+                          {
+                                $area = $alp.$row;
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $alp++;
+                          }
+
+                    $spreadsheet->getActiveSheet()
+                                  ->getStyle('C'.$row.':F'.$row)
+                                  ->getNumberFormat()
+                                  ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+
+
+                  }
+
+                  if($logic_true==1)
+                  {
+                    $row=$row+1;
+
+                  
+                    
+                    $sheet->setCellValue('C'.$row, 'Total');
+                    $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
+
+                    $sheet->setCellValue('D'.$row, $sum_tunjangan_lain_lain);
+                    $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
+
+
+                    $spreadsheet->getActiveSheet()
+                                  ->getStyle('C'.$row.':F'.$row)
+                                  ->getNumberFormat()
+                                  ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+
+                    $alp='A';
+                        $total_alp=3;
+                        for($n=0;$n<=$total_alp;$n++)
+                        {
+                              $area = $alp.$row;
+                              $spreadsheet->getActiveSheet()->getStyle($area)
+                                        ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                              $spreadsheet->getActiveSheet()->getStyle($area)
+                                        ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                              
+                              $alp++;
+                        }
+                  }
+
+
+
+                  $row=$row+2;
+
+
+                  $sum_potongan_lain_lain = 0;
+
+
+                  $logic_true = 0;
+                  $read_select = $this->m_t_p_t_potongan_lain->select_by_anggota_id($anggota_id,$r_from_date);
+                  foreach ($read_select as $key => $value) 
+                  {
+                    $logic_true=1;
+                    $row=$row+1;
+
+                    if($key==0)
+                    {
+                      $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
+                      $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':F'.$row);
+                      $sheet = $spreadsheet->getActiveSheet();
+                      $sheet->setCellValue('A'.$row, 'Potongan-Potongan');
+                      $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
+
+                      $row=$row+1;
+
+                      $sheet->setCellValue('A'.$row, 'No.');
+                      $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
+
+
+                      $sheet->setCellValue('B'.$row, 'Tanggal Transaksi');
+                      $sheet->getStyle('B'.$row)->getAlignment()->setHorizontal('center');
+                      
+                      $sheet->setCellValue('C'.$row, 'Keterangan');
+                      $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
+
+                      $sheet->setCellValue('D'.$row, 'Nominal Tujangan (Rp.)');
+                      $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
+
+                     
+
+
+                          $alp='A';
+                          $total_alp=3;
+                          for($n=0;$n<=$total_alp;$n++)
+                          {
+                                $area = $alp.$row;
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $alp++;
+                          }
+                      $row=$row+1;
+                    }
+
+                    $sheet->setCellValue('A'.$row, ($key+1));
+                    $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('center');
+
+
+                    $sheet->setCellValue('B'.$row, date('d-m-Y',strtotime($value->DATE)));
+                    $sheet->getStyle('B'.$row)->getAlignment()->setHorizontal('center');
+                    
+                    $sheet->setCellValue('C'.$row, $value->KET);
+                    $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('left');
+
+                    $sheet->setCellValue('D'.$row, $value->VALUE);
+                    $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
+                    
+                    $sum_potongan_lain_lain = $sum_potongan_lain_lain + $value->VALUE;
+
+
+                    $alp='A';
+                          $total_alp=3;
+                          for($n=0;$n<=$total_alp;$n++)
+                          {
+                                $area = $alp.$row;
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getLeft()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $spreadsheet->getActiveSheet()->getStyle($area)
+                                          ->getBorders()->getRight()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                                $alp++;
+                          }
+
+                    $spreadsheet->getActiveSheet()
+                                  ->getStyle('C'.$row.':F'.$row)
+                                  ->getNumberFormat()
+                                  ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+
+
+                  }
+
+                  if($logic_true==1)
+                  {
+                    $row=$row+1;
+
+                  
+                    
+                    $sheet->setCellValue('C'.$row, 'Total');
+                    $sheet->getStyle('C'.$row)->getAlignment()->setHorizontal('center');
+
+                    $sheet->setCellValue('D'.$row, $sum_potongan_lain_lain);
+                    $sheet->getStyle('D'.$row)->getAlignment()->setHorizontal('center');
+
+
+                    $spreadsheet->getActiveSheet()
+                                  ->getStyle('C'.$row.':F'.$row)
+                                  ->getNumberFormat()
+                                  ->setFormatCode(NumberFormat::FORMAT_NUMBER_COMMA_SEPARATED1);
+
+                    $alp='A';
+                        $total_alp=3;
+                        for($n=0;$n<=$total_alp;$n++)
+                        {
+                              $area = $alp.$row;
+                              $spreadsheet->getActiveSheet()->getStyle($area)
+                                        ->getBorders()->getTop()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                              $spreadsheet->getActiveSheet()->getStyle($area)
+                                        ->getBorders()->getBottom()->setBorderStyle(\PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN);
+                              
+                              $alp++;
+                        }
+                  }
 
 
 

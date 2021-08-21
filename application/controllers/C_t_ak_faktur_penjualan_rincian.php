@@ -23,8 +23,8 @@ class C_t_ak_faktur_penjualan_rincian extends MY_Controller
       "faktur_penjualan_id" => $id,
       "pelanggan_id" => $pelanggan_id,
       
-      "title" => "Rincian Faktur Penjualan",
-      "description" => "Faktur Penjualan"
+      "title" => "Rincian Transaksi Faktur Penjualan",
+      "description" => ""
     ];
     $this->render_backend('template/backend/pages/t_ak_faktur_penjualan_rincian', $data);
   }
