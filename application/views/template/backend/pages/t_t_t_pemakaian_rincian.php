@@ -67,14 +67,14 @@
               echo "<td>" . $value->BARANG . "</td>";
               echo "<td>" . $value->MERK_BARANG . "</td>";
               
-              echo "<td>" . number_format($value->QTY, 2, '.', ',') . "</td>";
+              echo "<td>" . number_format($value->QTY) . "</td>";
 
-              echo "<td>" . number_format($value->SISA_QTY, 2, '.', ',') . "</td>";
+              echo "<td>" . number_format($value->SISA_QTY) . "</td>";
 
        
               
-              echo "<td>" . number_format($value->HARGA, 2, '.', ',') . "</td>";
-              echo "<td>" . number_format($value->SUB_TOTAL, 2, '.', ',') . "</td>";
+              echo "<td>" . number_format($value->HARGA) . "</td>";
+              echo "<td>" . number_format($value->SUB_TOTAL) . "</td>";
 
               
               echo "<td>";
@@ -105,14 +105,14 @@
               echo "<td><s>" . $value->BARANG . "</s></td>";
               echo "<td><s>" . $value->MERK_BARANG . "</s></td>";
               
-              echo "<td><s>" . number_format($value->QTY, 2, '.', ',') . "</s></td>";
+              echo "<td><s>" . number_format($value->QTY) . "</s></td>";
 
-              echo "<td><s>" . number_format($value->SISA_QTY, 2, '.', ',') . "</s></td>";
+              echo "<td><s>" . number_format($value->SISA_QTY) . "</s></td>";
 
 
 
-              echo "<td><s>" . number_format($value->HARGA, 2, '.', ',') . "</s></td>";
-              echo "<td><s>" . number_format($value->SUB_TOTAL, 2, '.', ',') . "</s></td>";
+              echo "<td><s>" . number_format($value->HARGA) . "</s></td>";
+              echo "<td><s>" . number_format($value->SUB_TOTAL) . "</s></td>";
 
               
               echo "<td>";
