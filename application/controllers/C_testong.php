@@ -13,17 +13,24 @@ class C_testong extends MY_Controller
 
   public function index()
   {
-    $barang_id = 1613537976;
-    $read_select = $this->m_t_t_t_pembelian_rincian->select_min_harga_barang($barang_id);
-    foreach ($read_select as $key => $value) 
-    {
-
-
-
+    
       
-      echo $value->HARGA_MIN;
-      
-    }
+    
+    $time_send = date('H:i:s');
+
+    $minute_send = (strtotime(date('Y-m-d H:i:s'))/1000000);
+
+    echo strtotime(date('23:59:59'));
+    echo "<br>";
+
+    echo strtotime(date('H:i:s'));
+
+    echo "<br>";
+    echo intval(substr(strtotime(date('H:i:s')), -5));
+
+    echo "<br>";
+
+    echo strtotime(date('Y-m-d H:i:s'));
   }
 
 

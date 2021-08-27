@@ -101,9 +101,11 @@ class C_t_ak_jurnal_create extends MY_Controller
     }
 
     $time_send = date('H:i:s');
+
+    $minute_send = intval(substr(strtotime(date('H:i:s')), -5));
     if($date!=date('Y-m-d'))
     {
-      $time_send = '23:59';
+      $time_send = '23:59:00.'.$minute_send;
     }
 
     $data_id = 0;
