@@ -67,7 +67,7 @@
                   $from_date = $date_from_payroll_personal;
 
 
-                 
+                  $r_from_date= $date_from_payroll_personal;
                
 
                   $read_select = $this->m_t_t_payroll->select_personal($from_date,$to_date,$anggota_id);
