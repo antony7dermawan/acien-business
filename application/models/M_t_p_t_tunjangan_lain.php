@@ -98,6 +98,8 @@ public function select_id($id)
     $this->db->where("T_P_T_TUNJANGAN_LAIN.DATE >='{$r_from_date}'");
     $this->db->where('T_P_T_TUNJANGAN_LAIN.ANGGOTA_ID',$anggota_id);
     
+    $this->db->order_by("T_P_T_TUNJANGAN_LAIN.DATE", "asc");
+    
     $akun = $this->db->get ();
     return $akun->result ();
   }
