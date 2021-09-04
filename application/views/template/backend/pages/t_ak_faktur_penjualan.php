@@ -69,7 +69,7 @@
             echo "<td>";
             if($value->PPH=='t')
             {
-              echo "0,25%";
+              echo "2%";
             }
             else
             {
@@ -198,7 +198,7 @@
 
                 <fieldset class="form-group">
                   <input type="checkbox" name="pph" >
-                  <label>PPH (0.25%)</label>
+                  <label>PPH 23(2%)</label>
                   
                 </fieldset>
               </div> <!-- Membungkus Row !-->
@@ -255,7 +255,7 @@
 
                 <fieldset class="form-group">
                   <input type="checkbox" name="pph" >
-                  <label>PPH (0.25%)</label>
+                  <label>PPH 23(2%)</label>
                   
                 </fieldset>
               </div> <!-- Membungkus Row !-->

@@ -170,15 +170,15 @@ class c_faktur_penjualan_print extends MY_Controller
     $pph_22 = 0;
     if($pph_logic=='t')
     {
-      $pph_22 = intval(0.25 * floatval($dpp))/100;
+      $pph_22 = intval(2 * floatval($dpp))/100;
     }
     $pdf->Cell( 0.1,8,'','L',0,'R');
-    $pdf->Cell( $size[0]+$size[1]-0.1,8,'PPH 22 (0.25%)','T',0,'L');
+    $pdf->Cell( $size[0]+$size[1]-0.1,8,'PPH 23 (2%)','T',0,'L');
     $pdf->Cell( $size[2],8,':','T',0,'L');
     $pdf->Cell( $size[3]+$size[4]+$size[5]+$size[6]-0.1,8,number_format(intval($pph_22)),'T',0,'R');
     $pdf->Cell( 0.1,8,'','L',1,'R');
 
-    $total_tagihan = $dpp + $ppn - $pph_22;
+    $total_tagihan = $dpp + $ppn + $pph_22;
     $pdf->Cell( 0.1,8,'','L',0,'R');
     $pdf->Cell( $size[0]+$size[1]-0.1,8,'Total Tagihan','T',0,'L');
     $pdf->Cell( $size[2],8,':','T',0,'L');
