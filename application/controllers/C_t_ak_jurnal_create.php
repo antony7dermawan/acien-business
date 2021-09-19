@@ -120,6 +120,7 @@ class C_t_ak_jurnal_create extends MY_Controller
     }
 
 
+
     if($data_id==0)
     {
       $inv_int = 0;

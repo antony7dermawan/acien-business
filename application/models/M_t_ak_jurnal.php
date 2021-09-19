@@ -31,7 +31,7 @@ public function select_inv_int()
     $this->db->limit(1);
     $this->db->select("NO_VOUCER_INT");
     $this->db->from('T_AK_JURNAL');
-    $this->db->where("COMPANY_ID={$this->session->userdata('company_id')}");
+    //$this->db->where("COMPANY_ID={$this->session->userdata('company_id')}");
 
     $this->db->where("NO_VOUCER_INT is not null");
     
