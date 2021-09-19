@@ -20,6 +20,14 @@ public function select_id($id)
 }
 
 
+public function update_done_payment($data, $anggota_id,$date_before)
+{
+    $this->db->where('ANGGOTA_ID', $anggota_id);
+
+    $this->db->where("T_T_PAYROLL.FROM_DATE>='{$date_before}'");
+    return $this->db->update('T_T_PAYROLL', $data);
+}
+
 
 
 
@@ -99,6 +107,7 @@ public function select_id($id)
     $this->db->where("T_T_PAYROLL.TO_DATE<='{$to_date}'");
 
 
+    $this->db->where("T_T_PAYROLL.DONE_PAYMENT=FALSE");
     $this->db->where("T_T_PAYROLL.ANGGOTA_ID='{$anggota_id}'");
     $this->db->order_by("FROM_DATE", "asc");
     $akun = $this->db->get ();

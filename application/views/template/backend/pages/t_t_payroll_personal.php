@@ -40,7 +40,7 @@
 
     ?>
 
-    <form action='<?php echo base_url("c_t_t_payroll_personal/change_data"); ?>' class='' method="post" id=''>
+    <form action='<?php echo base_url("c_t_t_payroll_personal/done_payment"); ?>' class='' method="post" id=''>
     <label>Pilih Kategori:</label>
 
     
@@ -64,7 +64,15 @@
     <input type='date' name='date_from_payroll_personal' id='date_from_payroll_personal' value='<?= $this->session->userdata('date_from_payroll_personal') ?>'>
 
     <button type='button' class='btn btn-success' onclick='call_download()'>Download</button>
+    <input type='submit' class='btn btn-primary' onclick='' value="Done Payment">
+
+
     </form>
+
+
+
+
+
 
     <br><br>
 

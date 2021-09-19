@@ -52,6 +52,31 @@ class C_t_t_payroll_personal extends MY_Controller
 
 
 
+
+
+  public function done_payment()
+  {
+    $date_from_payroll_personal = ($this->input->post("date_from_payroll_personal"));
+    $this->session->set_userdata('date_from_payroll_personal', $date_from_payroll_personal);
+
+    $anggota_payroll_personal = ($this->input->post("anggota_id"));
+    $this->session->set_userdata('anggota_payroll_personal', $anggota_payroll_personal);
+
+    $data = array(
+      'DONE_PAYMENT' => TRUE,
+      'UPDATED_BY' => $this->session->userdata('username')
+    );
+
+    $this->m_t_t_payroll->update_done_payment($data, $anggota_payroll_personal,$date_from_payroll_personal);
+
+    $this->session->set_flashdata('notif', '<div class="alert alert-info icons-alert"><button type="button" class="close" data-dismiss="alert" aria-label="Close"> <i class="icofont icofont-close-line-circled"></i></button><p><strong>Data Berhasil Diupdate!</strong></p></div>');
+
+    
+    redirect('/c_t_t_payroll_personal');
+  }
+
+
+
   public function update_slip_gaji()
   {
     $choosed_month = $this->session->userdata('choosed_month');

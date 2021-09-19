@@ -136,7 +136,10 @@ class C_t_t_payroll extends MY_Controller
         'TUNJANGAN_VALUE' => $sum_tunjangan,
         'POTONGAN_VALUE' => $sum_potongan,
         'ANGSURAN_VALUE' => $sum_angsuran,
-        'BPJS_VALUE' => $value->BPJS_TK_VALUE + $value->BPJS_KES_VALUE
+        'BPJS_VALUE' => $value->BPJS_TK_VALUE + $value->BPJS_KES_VALUE,
+        'CREATED_BY' => $this->session->userdata('username'),
+        'UPDATED_BY' => '',
+        'DONE_PAYMENT' => FALSE
       );
 
       $this->m_t_t_payroll->tambah($data);
