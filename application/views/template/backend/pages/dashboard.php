@@ -81,7 +81,7 @@ if($level_user_id==1 or $level_user_id==2)
                         
                         <th>Total</th>
                         <th>Sudah Dibayar</th>
-                        <th>Action</th>
+                        
                       </tr>
                     </thead>
                     <tbody>
@@ -102,9 +102,7 @@ if($level_user_id==1 or $level_user_id==2)
 
                           //satu button
                           echo "<td>";
-                          echo "<a href='" . site_url('c_t_t_t_pembelian_rincian/index/' . $value->ID) . "' ";
-                          echo "onclick=\"return confirm('Lanjut?')\"";
-                          echo "> <i class='fa fa-search-plus text-c-blue'></i></a> ";
+                          
                           echo " Rp" . number_format(intval($value->SUM_SUB_TOTAL)) . "</td>";
                           //satu button
 
@@ -113,45 +111,7 @@ if($level_user_id==1 or $level_user_id==2)
 
                           echo " Rp" . number_format(intval($value->PAYMENT_T)) . "</td>";
                           
-                          echo "<td>";
-
-
-                          if (intval($value->SUM_SUB_TOTAL) != 0)
-                          {
-                            echo "<a "; #/1 ini artinya kena pajak
-
-                            echo "onclick= 'p_1_" . $key . "()'";
-                       
-                              echo "> <i class='fa fa-print text-c-black'></i></a> ";
-                            
-                            
-
-                            echo "<script>";
-                            echo "function p_1_" . $key . "()";
-                            echo "{";
-                            echo "window.open('laporan_pdf/c_t_t_t_pembelian_print/index/" . $value->ID . "');";
-                            echo "}";
-                            echo "</script>";
-
-                            //echo " ".$value->UPDATED_BY;
-                          }
                           
-
-
-
-                          if ($value->SUM_SUB_TOTAL == 0) {
-                            echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='" . $value->ID . "'>";
-                            echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
-                            echo "</a>";
-
-                            echo "<a href='" . site_url('c_t_t_t_pembelian/delete/' . $value->ID) . "' ";
-
-                            echo "onclick=\"return confirm('Apakah kamu yakin ingin menghapus data ini?')\"";
-
-
-                            echo "> <i class='feather icon-trash-2 f-w-600 f-16 text-c-red'></i></a>";
-                          }
-                          echo "</td>";
 
 
                           echo "</tr>";
@@ -212,7 +172,6 @@ if($level_user_id==1 or $level_user_id==2)
                         <th>Payment Method</th>
                         <th>Total</th>
 
-                        <th>Action</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -232,80 +191,12 @@ if($level_user_id==1 or $level_user_id==2)
 
                           //satu button
                           echo "<td>";
-                          echo "<a href='" . site_url('c_t_t_t_pemakaian_rincian/index/' . $value->ID) . "' ";
-                          echo "onclick=\"return confirm('Lanjut?')\"";
-                          echo "> <i class='fa fa-search-plus text-c-blue'></i></a> ";
+                          
                           echo " Rp" . number_format(intval($value->SUM_SUB_TOTAL)) . "</td>";
                           //satu button
 
                           
-                          echo "<td>";
-
-
-                          if (intval($value->SUM_SUB_TOTAL) != 0)
-                          {
-                            echo "<a "; #/1 ini artinya kena pajak
-
-                            echo "onclick= 'p_1_" . $key . "()'";
-                            if ($value->PRINTED == 'f') {
-                              echo "> <i class='fa fa-print text-c-black'></i></a> ";
-                            }
-                            if ($value->PRINTED == 't') {
-                              echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                            }
-
-                            echo "<script>";
-                            echo "function p_1_" . $key . "()";
-                            echo "{";
-                            echo "window.open('laporan_pdf/c_t_t_t_pemakaian_print/index/" . $value->ID . "');";
-                            echo "}";
-                            echo "</script>";
-
-
-
-
-
-                            echo "<a "; #/1 ini artinya kena pajak
-
-                            echo "onclick= 'p_2_" . $key . "()'";
-                            if ($value->PRINTED == 'f') {
-                              echo "> <i class='fa fa-print text-c-blue'></i></a> ";
-                            }
-                            if ($value->PRINTED == 't') {
-                              echo "> <i class='fa fa-print text-c-green'></i></a> ";
-                              
-                            }
-
-                            echo "<script>";
-                            echo "function p_2_" . $key . "()";
-                            echo "{";
-                            echo "window.open('laporan_pdf/c_t_t_t_pemakaian2_print/index/" . $value->ID . "');";
-                            echo "}";
-                            echo "</script>";
-
-
-                            if($value->ENABLE_EDIT==0)
-                            {
-                              echo "<a class='fa text-c-green'>Sudah Ditagih</a>";
-                            }
-                          }
                           
-
-
-
-                          if ($value->SUM_SUB_TOTAL == 0) {
-                            echo "<a href='javascript:void(0);' data-toggle='modal' data-target='#Modal_Edit' class='btn-edit' data-id='" . $value->ID . "'>";
-                            echo "<i class='icon feather icon-edit f-w-600 f-16 m-r-15 text-c-green'></i>";
-                            echo "</a>";
-
-                            echo "<a href='" . site_url('c_t_t_t_pemakaian/delete/' . $value->ID) . "' ";
-
-                            echo "onclick=\"return confirm('Apakah kamu yakin ingin menghapus data ini?')\"";
-
-
-                            echo "> <i class='feather icon-trash-2 f-w-600 f-16 text-c-red'></i></a>";
-                          }
-                          echo "</td>";
 
 
                           echo "</tr>";
