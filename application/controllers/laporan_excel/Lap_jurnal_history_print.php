@@ -129,7 +129,7 @@
                   $kredit[$key]=$value->KREDIT;
                   $catatan[$key]=$value->CATATAN;
                   $no_voucer[$key]=$value->NO_VOUCER;
-                  $tanggal[$key]=date('d-m-Y', strtotime($value->DATE));
+                  $tanggal[$key]=date('d-m-Y', strtotime($value->DATE)).' '.date('H:i', strtotime($value->TIME));
 
                             if($value->NO_AKUN_3!='')
                             {
