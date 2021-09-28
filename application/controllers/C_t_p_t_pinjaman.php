@@ -117,7 +117,15 @@ class C_t_p_t_pinjaman extends MY_Controller
 
     $created_id = strtotime(date('Y-m-d H:i:s'));
 
+    
+
     $time_move = date('H:i:s');
+
+    $minute_send = intval(substr(strtotime(date('H:i:s')), -5));
+    if($date!=date('Y-m-d'))
+    {
+      $time_move = '23:59:00.'.$minute_send;
+    }
 
     $data = array(
         'DATE' => $date,
