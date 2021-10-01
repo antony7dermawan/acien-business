@@ -35,7 +35,7 @@
 
 
 
-            public function index($date_from_payroll_personal,$anggota_id)
+            public function index($date_from_payroll_personal,$anggota_id,$date_to_payroll_personal)
             {
              
                   $spreadsheet = new Spreadsheet();
@@ -63,7 +63,7 @@
                   $data_logic = 0;
                   $key=0;
 
-                  $to_date = date('Y').'-12-31';
+                  $to_date = $date_to_payroll_personal;
                   $from_date = $date_from_payroll_personal;
 
 

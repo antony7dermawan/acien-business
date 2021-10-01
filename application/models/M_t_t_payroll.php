@@ -20,11 +20,14 @@ public function select_id($id)
 }
 
 
-public function update_done_payment($data, $anggota_id,$date_before)
+public function update_done_payment($data, $anggota_id,$date_before,$date_after)
 {
     $this->db->where('ANGGOTA_ID', $anggota_id);
 
     $this->db->where("T_T_PAYROLL.FROM_DATE>='{$date_before}'");
+
+
+    $this->db->where("T_T_PAYROLL.TO_DATE<='{$date_after}'");
     return $this->db->update('T_T_PAYROLL', $data);
 }
 

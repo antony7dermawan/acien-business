@@ -62,6 +62,9 @@
 
     <form action='/action_page.php'>
     <input type='date' name='date_from_payroll_personal' id='date_from_payroll_personal' value='<?= $this->session->userdata('date_from_payroll_personal') ?>'>
+    ~
+    <form action='/action_page.php'>
+    <input type='date' name='date_to_payroll_personal' id='date_to_payroll_personal' value='<?= $this->session->userdata('date_to_payroll_personal') ?>'>
 
     <button type='button' class='btn btn-success' onclick='call_download()'>Download</button>
     <input type='submit' class='btn btn-primary' onclick='' value="Done Payment">
@@ -81,10 +84,11 @@
         var link_1 = 'laporan_excel/lap_slip_gaji_personal/index/';
         var link_2 = document.getElementById("date_from_payroll_personal").value;
         var link_3 = parseInt(document.getElementById("anggota_id").value);
+        var link_4 = document.getElementById("date_to_payroll_personal").value;
        
         var slash = "/";
 
-        var link = link_1.concat(link_2, slash, link_3);
+        var link = link_1.concat(link_2, slash, link_3, slash, link_4);
         window.open(link);
       }
     </script>
