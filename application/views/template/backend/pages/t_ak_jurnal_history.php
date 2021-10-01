@@ -181,6 +181,23 @@
               echo "</script>";
               //batas new window
 
+
+
+
+              echo "<a "; #/1 ini artinya kena pajak
+
+              echo "onclick= 'p_3_" . $key . "()'";
+
+              echo "> <i class='fa fa-file-excel-o text-c-blue'></i></a> ";
+
+              echo "<script>";
+              echo "function p_3_" . $key . "()";
+              echo "{";
+              echo "window.open('laporan_excel/lap_jurnal_history_print2');";
+              echo "}";
+              echo "</script>";
+              //batas new window
+
               echo "</td>";
               echo "</tr>";
 
