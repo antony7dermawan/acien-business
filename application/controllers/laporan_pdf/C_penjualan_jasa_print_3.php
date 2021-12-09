@@ -140,7 +140,7 @@ Sebagai Bukti Pajak Keluaran';
           $pdf->SetXY($x_value, $y_value-30);
 
           $pdf->Cell( 40,5,'Nama','L',0,'L');
-          $pdf->Cell( 150,5,': PT. CAHAYA BARU GEMILANG','R',1,'L');
+          $pdf->Cell( 150,5,': ACIEN GLOBAL INDONESIA','R',1,'L');
 
           $pdf->Cell( 40,5,'Alamat','L',0,'L');
           $pdf->MultiCell(150, 5, ': PERUM VILLA DUYUNG BLOK A NO.5 RT.006 RW.004

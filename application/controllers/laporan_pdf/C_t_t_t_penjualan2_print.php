@@ -133,7 +133,7 @@ class C_t_t_t_penjualan2_print extends MY_Controller
 
         $pdf->SetFont('','',9);
         $pdf->Cell(130, 4, "", 0, 0, 'C');
-        $pdf->Cell(30, 4, 'PT Cahaya Baru Gemilang', 0, 1, 'L');
+        $pdf->Cell(30, 4, 'ACIEN GLOBAL INDONESIA', 0, 1, 'L');
         
         $pdf->SetFont('','',8);
         $pdf->Cell(130, 4, "", 0, 0, 'C');

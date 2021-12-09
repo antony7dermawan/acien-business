@@ -70,7 +70,7 @@
                   $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                   $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                   $sheet = $spreadsheet->getActiveSheet();
-                  $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                  $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                   $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -321,7 +321,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -568,7 +568,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -814,7 +814,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -1059,7 +1059,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -1344,7 +1344,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -1587,7 +1587,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -1926,7 +1926,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -2168,7 +2168,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -2429,7 +2429,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 
@@ -2695,7 +2695,7 @@
                         $spreadsheet->getActiveSheet()->getStyle('A'.$row)->getFont()->setBold(true);
                         $spreadsheet->getActiveSheet()->mergeCells('A'.$row.':M'.$row);
                         $sheet = $spreadsheet->getActiveSheet();
-                        $sheet->setCellValue('A'.$row, 'PT CAHAYA BARU GEMILANG');
+                        $sheet->setCellValue('A'.$row, 'ACIEN GLOBAL INDONESIA');
                         $sheet->getStyle('A'.$row)->getAlignment()->setHorizontal('left');
 
 

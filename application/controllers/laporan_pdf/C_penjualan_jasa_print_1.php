@@ -91,7 +91,7 @@ class C_penjualan_jasa_print_1 extends MY_Controller
         
 
         $pdf->Cell(120, 4, "", '0', 0, 'L');
-        $pdf->Cell(57, 4, "PT. Cahaya Baru Gemilang", '0', 1, 'R');
+        $pdf->Cell(57, 4, "ACIEN GLOBAL INDONESIA", '0', 1, 'R');
 
         
         $pdf->Image('assets/images/logo-cbg.jpeg',186,8,14);

@@ -69,7 +69,7 @@ class c_faktur_penjualan_print extends MY_Controller
 
         $pdf->SetFont('','B',16);
     
-        $pdf->Cell(190, 11, "PT. CAHAYA BARU GEMILANG", 'B', 1, 'L');
+        $pdf->Cell(190, 11, "ACIEN GLOBAL INDONESIA", 'B', 1, 'L');
 
         
 

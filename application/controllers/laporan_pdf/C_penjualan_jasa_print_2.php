@@ -86,7 +86,7 @@ class C_penjualan_jasa_print_2 extends MY_Controller
         $pdf->SetFont('','B',22);
         
         $pdf->SetTextColor(255,8,8);
-        $pdf->Cell(190, 10, "PT. CAHAYA BARU GEMILANG", '0', 1, 'C');
+        $pdf->Cell(190, 10, "ACIEN GLOBAL INDONESIA", '0', 1, 'C');
 
 
         $pdf->SetTextColor(0, 0, 255);

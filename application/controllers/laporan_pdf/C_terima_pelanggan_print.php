@@ -35,7 +35,7 @@ class C_terima_pelanggan_print extends MY_Controller
     $pdf->SetXY($x_value, $y_value-5);
 
     $pdf->SetFont('','B',10);
-    $pdf->Cell(90, 8, "PT CAHAYA BARU GEMILANG", 0, 0, 'L');
+    $pdf->Cell(90, 8, "ACIEN GLOBAL INDONESIA", 0, 0, 'L');
 
     $pdf->SetFont('','B',12);
     $pdf->Cell(90, 8, "Terima Pelanggan", 0, 1, 'R');

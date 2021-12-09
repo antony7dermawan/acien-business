@@ -6,7 +6,7 @@
 <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
 
 <head>
-    <title>PT. CAHAYA BARU GEMILANG</title>
+    <title>ACIEN GLOBAL INDONESIA</title>
 
 
     <!--[if lt IE 10]>
